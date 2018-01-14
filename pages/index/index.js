@@ -1,21 +1,20 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const recorderManager = wx.getRecorderManager()
-
 Page({
   data: {
     houBaoStyle:1,
     userInfo:[],
-    shuoming1:'小伙伴们说对口令就能获得随即打赏',
-    shuoming2:'好友听完你说的话就能领取赏金',
+    shuoming1: '好友听完你说的话就能领取赏金',
+    shuoming2:'小伙伴们说对口令就能获得随即打赏',
     kouling: '',
     Money:'',
     Number:'',
     fuwufee:0.0,
     hasRecord:false,
-    recording: false,
+    recording:false,
     playing :false ,
+    filePath:'',
   },
   
   //事件处理函数
@@ -87,13 +86,38 @@ Page({
     console.log(e.detail.value);
   },
 
-  huatong:function(){
+  startRecord:function(){
+    var that = this
+    console.log("stat record");
+    this.setData({
+      recording:true
+    })
+    console.log(this.data.recording);
+
    wx.startRecord({
-    
+     success: function (res) {
+       that.setData({
+       tempFilePath:res.tempFilePath
+     })
+     }
    })
+
   },
- stoprecord:function(){
-    wx.stopRecord();
- }
+ stopRecord:function(){
+   console.log("stop record");
+   this.setData({recording: false})
+    wx.stopRecord({
+
+    })
+ },
+
+  playVoice: function () {
+   var that = this
+    var filePath=that.data.tempFilePath
+   console.log(filePath);
+   wx.playVoice({
+     filePath: filePath,
+   })
+  }
  
 })

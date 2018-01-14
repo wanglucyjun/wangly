@@ -6,7 +6,8 @@
     "pages/classify/classify",
     "pages/index/Share/ShareHotMoney",
     "pages/index/Share/share",
-    "pages/index/mRecord/myRecord"
+    "pages/index/mRecord/myRecord",
+    "pages/kouling/kouling"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,9 +24,14 @@
         "iconPath": "pages/image/money.png",
         "selectedIconPath": "pages/image/money.png",
         "pagePath": "pages/index/index",
-        "text": "发红包"
+        "text": "倾听红包"
       },
-     
+        {
+          "iconPath": "pages/image/kouling1.png",
+          "selectedIconPath": "pages/image/kouling2.png",
+          "pagePath": "pages/kouling/kouling",
+          "text": "口令红包"
+        },
       {
         "iconPath": "pages/image/mine-1.png",
         "selectedIconPath": "pages/image/mine-1.png",

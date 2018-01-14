@@ -1,22 +1,8 @@
 <!--index.wxml-->
 <view class="container">
- <view class='com'>
- <!--控制导航  -->
-  <view class='nav'>
-    <view class="nav_box" >
-      <view bindtap='ChangeTab' data-id="1"
-            style="{{houBaoStyle==1?'border-bottom:2px solid #fff':''}}">
-        口令红包
-      </view>
-       <view bindtap='ChangeTab' data-id="2"
-            style="{{houBaoStyle==2?'border-bottom:2px solid #fff':''}}">
-        倾听红包
-      </view>
-      
-    </view>
-  </view>
-    <!--容器  -->
-  <!-- {{currentTab==1?'dispaly:block;':'display:none'}} -->
+ <view class='con'>
+
+   
     <view class="HotMoney_box">
         <view class='watchword' 
               style="">
@@ -24,22 +10,29 @@
             <image src='{{userInfo.avatarUrl}}' mode='widthFix' class='header_size'></image>
            
           </view>
+       
+          
           <view class="setHotMoney">
-          <!--口令红包  -->
-            <view class='setHotMoney_detail1' 
-                  style="{{houBaoStyle==1?'display:block':'display:none'}}">
-                  
-              <view class='setHotMoney_name1 fl' >设置口令</view>
-              <input type='text' placeholder='谢谢老板' class='hotInput1 fr' bindinput='koulingInput'></input>
-            </view>
           <!--倾听红包  -->
-
-            <view class='setHotMoney_detail1' 
-                  style="{{houBaoStyle==2?'display:block':'display:none'}}">
+          <block wx:if="{{recording === false}}">
+            <view class='setHotMoney_detail1' >
               <view class='qingting '>
-               <button class="iconfont icon-huatong paddLeft15" bindtouchstart='huatong' bindtouchmove='stoprecord'>长按录入你对TA想说的话</button>
+               <button class="iconfont icon-huatong paddLeft15" 
+                bindtap='startRecord'>长按录入你对TA想说的话</button>
               </view>
             </view>
+            </block>
+          <block wx:if="{{recording === true}}">
+            <view class='setHotMoney_detail1' >
+              <view class='qingting '>
+               <button class="iconfont icon-huatong paddLeft15" 
+                bindtap='stopRecord'>停止录音</button>
+              </view>
+            </view>
+            </block>
+            <button class="playVoice" 
+             bindtap='playVoice'>播放录音</button>
+
 
             <view class='shuoming'>
               {{houBaoStyle==1?shuoming1:''}}

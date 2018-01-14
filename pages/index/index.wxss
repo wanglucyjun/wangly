@@ -17,15 +17,19 @@ Page{
   display:flex;
   justify-content: space-around;
 }
+.com{
+  height: 100%;
+}
 .HotMoney_box{
   overflow: hidden;
   width:710rpx;
   margin:0 auto;
+  height: 800rpx;
 }
 .watchword{
   /* overflow: hidden; */
-  width:710rpx;
-  height:700rpx;
+  width:810rpx;
+  height:800rpx;
   background:#fff;
    position:relative; 
   margin-top:90rpx;
@@ -51,14 +55,22 @@ Page{
 .setHotMoney{
   padding:0 55rpx;
   width:600rpx;
+  height: 500rpx;
   /* overflow: hidden; */
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:65rpx;
-  line-height:65rpx;
+  height:100rpx;
+  line-height:100rpx;
   font-weight:bold;
   font-size:28rpx;
+}
+.playVoice{
+  height:80rpx;
+  line-height:80rpx;
+  font-weight:bold;
+  font-size:28rpx;
+  margin-top: 50rpx;
 }
 .hotInput{
   width:450rpx;
@@ -66,11 +78,12 @@ Page{
   margin-top:5rpx;
 }
 .shuoming{
-  height:100rpx;
-  line-height: 100rpx;
+  height:50rpx;
+  line-height: 50rpx;
   font-size:20rpx;
   color:#999;
-  margin-top: 20rpx;
+  margin-top: 0rpx;
+
 }
 .server{
   width:600rpx;
