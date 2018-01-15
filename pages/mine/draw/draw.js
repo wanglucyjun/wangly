@@ -1,30 +1,20 @@
-// pages/index/Share/ShareHotMoney.js
-var app = getApp();
+// pages/mine/draw.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo:[],
-    hongbaoDetail:[],
-    houBaoStyle:2
+  
   },
-
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that  = this;
-    that.setData({
-      userInfo: app.globalData.userInfo,
-      houBaoStyle: options.houBaoStyle,
-    })
+  
   },
-  toshareChat:function(){
-    
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

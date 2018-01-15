@@ -51,8 +51,8 @@
             </view>
 
             <view class="{{houBaoStyle==3?'server3':'server'}}">需支付￥{{fuwufee}}服务费,优先使用余额</view>
-            <button 
-            class='VoiceBtn' bindtap='toShare'>生成语音口令</button>
+            <navigator url="./share/share?houBaoStyle={{houBaoStyle}}"
+            class='VoiceBtn' bindtap='toShare'>生成语音口令</navigator>
           </view>
 
 

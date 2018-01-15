@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/mine/mine",
     "pages/classify/classify",
-    "pages/index/Share/ShareHotMoney",
-    "pages/index/Share/share",
-    "pages/index/mRecord/myRecord",
-    "pages/kouling/kouling"
+    "pages/index/share/shareHotMoney",
+    "pages/index/share/share",
+    "pages/kouling/kouling",
+    "pages/mine/mine",
+    "pages/mine/record/myRecord",
+    "pages/mine/draw/draw"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,12 +26,12 @@
         "pagePath": "pages/index/index",
         "text": "倾听红包"
       },
-        {
-          "iconPath": "pages/image/kouling1.png",
-          "selectedIconPath": "pages/image/kouling2.png",
-          "pagePath": "pages/kouling/kouling",
-          "text": "口令红包"
-        },
+      {
+        "iconPath": "pages/image/kouling1.png",
+        "selectedIconPath": "pages/image/kouling2.png",
+        "pagePath": "pages/kouling/kouling",
+        "text": "口令红包"
+      },
       {
         "iconPath": "pages/image/mine-1.png",
         "selectedIconPath": "pages/image/mine-1.png",
