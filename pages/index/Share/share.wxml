@@ -47,7 +47,7 @@
 
       <view class='share_box marginTop'>
         <view class="caozuoShare">
-            <view class=''><text class="iconfont icon-tixian"></text> 去提现</view>
+            <!--<view class=''><text class="iconfont icon-tixian"></text> 去提现</view>-->
             <view class=''><text class="iconfont icon-hongbao1"></text> 再发一个</view>
             <view class=''><text class="iconfont icon-fenxiang"></text> 去转发</view>
         </view>
