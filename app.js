@@ -2,6 +2,7 @@
 App({
   onLoad:function(){
     console.log("App onLoad")
+
     
   },
   onLaunch: function () {
@@ -47,8 +48,37 @@ App({
         }
       }
     })
+    wx.request({
+      url: this.globalData.url,
+      success: function (res) {
+        console.log(res.data),
+        that.globalData.chargeFee = res.data.data.chargeFee,
+        that.globalData.dealFee= res.data.data.dealFee,
+        that.globalData.withdrawFee= res.data.data.withdrawFee,
+        that.globalData.hbType= res.data.data.hbType,
+        console.log(res.data.data.hbType.length)
+
+      },
+      fail:function(res){
+        console.log(res.data)
+      },
+  
+    })
+
+  },
+  analyzeData:function(res){
+    for (var idx in that.globalData.hbType.subjects){
+        var subject=hyType.subjects[idx];
+        var title=subject.title;
+        console.log(title)
+      }
   },
   globalData: {
-    userInfo: []
+    url:"http://www.chemchemchem.com/site/init",  //初始化接口url
+    userInfo: [],
+    chargeFee:[],
+    dealFee:[],
+    withdrawFee:[],
+    hbType:[]
   }
 })

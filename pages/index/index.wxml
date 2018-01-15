@@ -14,11 +14,11 @@
           
           <view class="setHotMoney">
           <!--倾听红包  -->
-          <block wx:if="{{recording === false}}">
+          <block wx:if="{{recording === false }}">
             <view class='setHotMoney_detail1' >
               <view class='qingting '>
                <button class="iconfont icon-huatong paddLeft15" 
-                bindtap='startRecord'>长按录入你对TA想说的话</button>
+                bindtap='startRecord'>{{tips}}</button>
               </view>
             </view>
             </block>
@@ -51,8 +51,8 @@
             </view>
 
             <view class="{{houBaoStyle==3?'server3':'server'}}">需支付￥{{fuwufee}}服务费,优先使用余额</view>
-            <navigator url="./Share/ShareHotMoney?houBaoStyle={{houBaoStyle}}"
-            class='VoiceBtn' bindtap='toShare'>生成语音口令</navigator>
+            <button 
+            class='VoiceBtn' bindtap='toShare'>生成语音口令</button>
           </view>
 
 
