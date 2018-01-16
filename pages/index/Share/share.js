@@ -6,21 +6,36 @@ Page({
    */
   data: {
     userInfo:[],
-    hongbaoDetail:[],
-    houBaoStyle:2
-  },
-
-
-
+    hongbaoUrl:"",
+    hongbaoDetail:[]
+    },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that  = this;
-    that.setData({
-      userInfo: app.globalData.userInfo,
-      houBaoStyle: options.houBaoStyle,
+    //根据id查询红包详情
+    console.log(options.id)
+    wx.request({
+      url: that.data.hongbaoUrl,
+      data: {
+        id: options.id
+      },
+      success: function (res) {
+        console.log(res)
+        var that = this;
+        that.setData({
+          userInfo: app.globalData.userInfo,
+          hongbaoDetail: res.data,
+        })
+      }
+      ,
+      fail: function (res) {
+
+      }
     })
+    that.data.hongbaoDetail.type=1
+    console.log(that.data.hongbaoDetail.type)
   },
   toshareChat:function(){
     
@@ -36,7 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    console.log("onShow")
   },
 
   /**
@@ -71,6 +86,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var Object=[]
+    Object.title="包一抢"
+    Object.desc="新年快乐"
+    Object.path ="pages/index/share/share?id=123"
+    return Object
   }
 })

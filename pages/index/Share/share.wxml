@@ -10,7 +10,7 @@
         <view class='kouling'> {{userInfo.nickName}}</view>
       </view>
       <view class='ChangeHot'>
-        <view style="{{houBaoStyle==1?'display:block':'display:none'}}">
+        <view style="{{hongbaoDetail.type==1?'display:block':'display:none'}}">
           <view class="share_box" >
             <view class='yuyin'><text class="iconfont icon-hongbao">发了一个语音口令  </text></view>
           </view>
@@ -19,7 +19,7 @@
             <view class="moneyNum">1.00<text class='fontSize'>元</text> </view>
           </view>
         </view>
-        <view style="{{houBaoStyle==2?'display:block':'display:none'}}">
+        <view style="{{hongbaoDetail.type==2?'display:block':'display:none'}}">
           <view class="share_box" >
             <view class='qingTing marTop'>
               <text class="iconfont icon-bofang"> </text>
@@ -32,7 +32,7 @@
             <view class="moneyNum">1.00<text class='fontSize'>元</text> </view> 
           </view>
         </view>
-        <view style="{{houBaoStyle==3?'display:block':'display:none'}}">
+        <view style="{{hongbaoDetail.type==3?'display:block':'display:none'}}">
           <view class="share_box" >
             <view class='qingTing marTop3'>长按录入你对TA想说的话</view>
             <!-- <view class='yuyin'><icon></icon> 发了一个语音口令</view> -->
