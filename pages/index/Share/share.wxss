@@ -11,6 +11,15 @@ Page{
   overflow: hidden;
   
 }
+.qingTing{
+  width:530rpx;
+  height:64rpx;
+  background:#fff;
+  line-height: 64rpx;
+  color:#3e3e3e;
+  margin-top:30rpx;
+  border-radius:15rpx;
+}
 .share_box{
   width:690rpx;
   display: flex;
@@ -31,7 +40,7 @@ Page{
   width:690rpx;
   height:136rpx;
   line-height:136rpx;
-  font-size:30rpx;
+  font-size:50rpx;
   color:#fde2b3;
   display: flex;
   justify-content: space-around;
@@ -50,6 +59,32 @@ Page{
 }
 .marginTop{
   margin-top:45rpx;
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:26px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.answer{
+  font-size:26px;
+  font-style:normal;
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #FFFFFF;
+  border-radius:45rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+}
+.iconfont1{
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .btn_box{
   padding-top:20rpx;
@@ -80,14 +115,14 @@ Page{
   margin-top:30rpx;
 }
 .showLing{
-  width:600rpx;
   height:90rpx;
   line-height: 90rpx;
   text-align: center;
   color:#fff;
   background: #31bd48;
   border-radius:45rpx;
-  margin-top:50rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
 }
 .caozuoShare{
   width:690rpx;
