@@ -11,14 +11,16 @@
            
           </view>
        
-          
+
           <view class="setHotMoney">
           <!--倾听红包  -->
           <block wx:if="{{recording === false }}">
             <view class='setHotMoney_detail1' >
               <view class='qingting '>
-               <button class="iconfont icon-huatong paddLeft15" 
+     
+               <button
                 bindtap='startRecord'>{{tips}}</button>
+              
               </view>
             </view>
             </block>

@@ -2,6 +2,7 @@
 App({
   globalData: {
     sessionInfo: '',
+<<<<<<< Updated upstream
     loginUrl: "http://www.chemchemchem.com/user/do-login",
     url:"http://www.chemchemchem.com/site/init",  //初始化接口url
     userInfo: [],
@@ -9,6 +10,15 @@ App({
     dealFee:[],
     withdrawFee:[],
     hbType:[],
+=======
+      url:"http://www.chemchemchem.com/site/init",  //初始化接口url
+      uploadUrl:"http://www.chemchemchem.com/file/upfile",
+      userInfo: [],
+      chargeFee:[],
+      dealFee:[],
+      withdrawFee:[],
+      hbType:[]
+>>>>>>> Stashed changes
   },
   onLoad:function(){
     console.log("App onLoad")

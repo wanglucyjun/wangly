@@ -26,20 +26,21 @@ Page({
     sn:"code",
     rate:0.01,
     minVal:0.01,
-    tips:''
+    tips:'长按输入你想说的内容'
   },
   
   //事件处理函数
   onLoad: function () {
     var that = this;
     var tipArray = app.globalData.hbType[0].tips;
-    console.log("tips length "+tipArray.length)
-    for(var i = 0; i< tipArray.length+1; i++) {
-      that.setData({
-        tips:tipArray[i] 
-      })
-      console.log(that.data.tips)
-    }
+    console.log("tips length " + tipArray.length)
+    Math.random() * (tipArray.length-1)
+    var num = Math.round(Math.random() * (tipArray.length-1) + 0);
+    console.log("random "+num)
+    that.setData({
+      tips: tipArray[num]
+    })
+    
     wx.getUserInfo({
       success:function(user){
         console.log(user)
@@ -164,6 +165,41 @@ Page({
    wx.playVoice({
      filePath: filePath,
    })
+   // that.saveFileToLocal()
+   that.uploadFile()
+  },
+  saveFileToLocal:function(){
+    var that = this
+    wx.saveFile({
+      tempFilePath: that.data.tempFilePath,
+      success:function(res){
+        var filePath=res.savedFilePath
+        console.log(filePath)
+      }
+    })
+    wx.getSavedFileList({
+      success: function (res) {
+        console.log(res.fileList)
+      }
+    })
+
+  },
+  uploadFile:function(){
+    var that =this
+    var url=''
+    wx.uploadFile({
+      url: "http://www.chemchemchem.com/file/upfile",
+      filePath: that.data.tempFilePath,
+      name: 'name',
+      formData: {
+        'token': 'adb'
+      },
+      success: function (res) {
+        var data = res.data
+        console.log(data)
+      }
+    })
+
   },
 
   //费用相关
