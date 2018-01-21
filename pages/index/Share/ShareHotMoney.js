@@ -66,10 +66,15 @@ Page({
   
   },
 
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var Object = []
+    Object.title = "包一抢"
+    Object.desc = "新年快乐"
+    Object.path = "pages/index/Share/Share?id=456"
+    return Object
   }
 })

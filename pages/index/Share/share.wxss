@@ -36,7 +36,17 @@ Page{
   color:#fde2b3;
   text-align: center;
 }
-.yuyin{
+.question1{
+  width:690rpx;
+  height:136rpx;
+  line-height:136rpx;
+  font-size:35rpx;
+  color:#fde2b3;
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+}
+.question2{
   width:690rpx;
   height:136rpx;
   line-height:136rpx;
@@ -45,6 +55,64 @@ Page{
   display: flex;
   justify-content: space-around;
   vertical-align: middle;
+}
+.answer2{
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #31bd48;
+  border-radius:45rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+}
+.answer2ok{
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #cfcfcf;
+  border-radius:45rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+  font-size:30rpx;
+}
+.iconfont3{
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.question3{
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #31bd48;
+  border-radius:45rpx;
+  margin-top:20rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+  margin-bottom:20rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  font-size:16px;
+}
+.question3ok{
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #CD9B9B;
+  border-radius:45rpx;
+  margin-top:20rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+  margin-bottom:20rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  font-size:16px;
 }
 .juhuama{
   width:245rpx;

@@ -123,7 +123,7 @@ Page({
       methods.uploadFile()
       methods.hongbaoCreate(that.data.Money,that.data.count,that.data.fuwufee)
     wx.navigateTo({
-      url: 'Share/share',
+      url: 'Share/Share',
     })
     console.log(e.detail.value);
   }
