@@ -1,5 +1,5 @@
 /**
- * 小程序配置文件
+ * 小程序配置文件,chang name
  */
 
 var host = "http://www.chemchemchem.com"
