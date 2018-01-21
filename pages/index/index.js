@@ -1,4 +1,4 @@
-//kouling.js
+//index.js
 //获取应用实例
 const app = getApp()
 var methods = require('../../utils/methods.js')
@@ -17,13 +17,23 @@ Page({
     rate:1,
   },
 
+  //事件处理函数
   onLoad: function () {
     var that = this;
+    var tipArray = app.globalData.hbType[0].tips;
+    console.log("tips length " + tipArray.length)
+    Math.random() * (tipArray.length-1)
+    var num = Math.round(Math.random() * (tipArray.length-1) + 0);
+    console.log("random "+num)
+    that.setData({
+      tips: tipArray[num]
+    })
+
     wx.getUserInfo({
-      success: function (user) {
+      success:function(user){
         console.log(user)
         that.setData({
-          userInfo: user.userInfo,
+          userInfo:user.userInfo,
         })
       }
     })
@@ -80,10 +90,10 @@ Page({
     })
   },
 
-  toShare: function (e) {
+  toShare:function(e) {
     var that = this;
     console.log(e.detail.value)
-    if (this.data.Money == '') {
+    if(this.data.Money==''){
 
       wx.showModal({
         title: '提示',
@@ -98,7 +108,7 @@ Page({
       })
     }
 
-    else if (this.data.Number == '') {
+    else if(this.data.Number==''){
       wx.showModal({
         title: '提示',
         content: '请输入红包个数',

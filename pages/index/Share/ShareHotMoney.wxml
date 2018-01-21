@@ -24,10 +24,8 @@
     </view>
     <view class='share_box marginTop'>
       <view class='btn_box'>
-        <navigator class='btn_Btn'
-            url='./share?houBaoStyle={{houBaoStyle}}'>转发到好友或着群里</navigator> 
-        <navigator class='btn_Btn'
-            url='./share?houBaoStyle={{houBaoStyle}}'>生成朋友圈分享图</navigator> 
+        <button class='btn_Btn' bindtap='onShareAppMessage'>转发到好友或着群里</button> 
+        <button class='btn_Btn' bindtap='onShareAppMessage'>生成朋友圈分享图</button> 
        
       </view>
     </view>

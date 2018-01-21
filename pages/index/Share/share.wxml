@@ -10,47 +10,59 @@
         <view class='kouling'> {{hongbaoDetail.senderName}}</view>
       </view>
       <view class='ChangeHot'>
-       <!--按住说出以上口令领取赏金-->
+        <!--摇一摇领红包-->
         <view style="{{hongbaoDetail.type==1?'display:block':'display:none'}}">
-          <view class="share_box" >
-            <view class='yuyin'><text class="iconfont icon-hongbao">{{hongbaoDetail.content.question}}  </text></view>
+        <view class="share_box" >
+            <view class='question1'>小伙伴摇摇力超过武力值<text style="font-size:50rpx">{{hongbaoDetail.content.question}}</text>即可领红包</view>
           </view>
-        <view class='showLing' style="{{hongbaoDetail.state==1?'display:block':'display:none'}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
-           <!--<view class='share_box_ju'>
-            <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view>
-          </view>-->
+          <view  style="{{hongbaoDetail.state==1?'display:block':'display:none'}}" >
+           <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
+            <button class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{userHongbao.text}}</button>
+            </view>
         </view>
-        <!--按住收听真心话领取赏金-->
+       <!--按住说出以上口令领取赏金-->
         <view style="{{hongbaoDetail.type==2?'display:block':'display:none'}}">
           <view class="share_box" >
-            <view class='qingTing marTop' bindtap='playVoice' id='{{hongbaoDetail.content.question}}'>
-              <text class="iconfont icon-bofang"> </text>
-               点击收听真心话领取赏金
-            </view>
-            <!-- <view class='yuyin'><icon></icon> 发了一个语音口令</view> -->
+            <view class='question2'><text class="iconfont icon-hongbao">{{hongbaoDetail.content.question}}  </text></view>
           </view>
+        <view class='answer2' style="{{hongbaoDetail.state==1?'display:block':'display:none'}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
+        <view class='answer2ok' style="{{hongbaoDetail.state==2?'display:block':'display:none'}}" >活动已完毕</view>
+        </view>
+        <!--按住收听真心话领取赏金-->
+        <view style="{{hongbaoDetail.type==3?'display:block':'display:none'}}">
+          <view class="share_box" >
+           
+          </view>
+           <view class='question3' bindtap='playVoice' id='{{hongbaoDetail.content.question}}' style="{{hongbaoDetail.state==1?'display:block':'display:none'}}">
+              <text class="iconfont3 icon-bofang">点击收听真心话领取赏金</text>
+               
+            </view>
+            <view class='question3ok' bindtap='playVoice' id='{{hongbaoDetail.content.question}}' style="{{hongbaoDetail.state==2?'display:block':'display:none'}}">
+              <text class="iconfont3 icon-bofang">活动已完毕</text>
+               
+            </view>
           <view class='share_box_ju'>
-            <view class='showLing' hidden='true'>按住说出以上口令领取赏金</view>
             <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 
           </view>
         </view>
          <!--猜谜底领取赏金-->
-        <view style="{{hongbaoDetail.type==3?'display:block':'display:none'}}">
+        <view style="{{hongbaoDetail.type==4?'display:block':'display:none'}}">
           <view class="share_box" >
-            <view class='qingTing marTop3'>{{hongbaoDetail.content.question}}</view>
+            <view class='question4'>{{hongbaoDetail.content.question}}</view>
           </view>
           <view class='share_box_ju'>
-            <view class='answer'><input placeholder="请输入正确答案" auto-focus/></view> 
+            <view class='answer4'><input placeholder="请输入正确答案" auto-focus/></view> 
             <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 
           </view>
         </view>
+        
       </view>
 
       <view class='share_box marginTop'>
         <view class="caozuoShare">
             <!--<view class=''><text class="iconfont icon-tixian"></text> 去提现</view>-->
-            <view class=''><text class="iconfont1 icon-hongbao1">再发一个</text> </view>
-            <view class=''><text class="iconfont1 icon-fenxiang">去转发</text> </view>
+            <view class=''><text class="iconfont1 icon-hongbao1" bindtap="againSend">再发一个</text> </view>
+            <view class=''><text class="iconfont1 icon-fenxiang" bindtap="toShare">去转发</text> </view>
         </view>
       </view>
     </view>
@@ -59,14 +71,17 @@
         <view class='fr'>投诉</view>
     </view>
     <block wx:for="{{hongbaoDetail.list}}" wx:key="url" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
-              <view class='peopleMoney'>
+      <view class='peopleMoney'>
       <view class='peopleMoney_Left fl'>
         <image src='{{item.iocn}}' mode='widthFix' class='header_logo'></image>
       </view>
       <view class='peopleMoney_center fl'>
         <text class='people_NickName'>{{item.name}}</text>
         <icon></icon>
-        <view class='yuying_time' bindtap='playVoice' id='{{item.url}}'>{{item.length}}"</view>
+        <view style="{{hongbaoDetail.type==1?'display:block':'display:none'}}">武力值{{item.length}}</view>
+        <view class='yuying_time' bindtap='playVoice' id='{{item.url}}' style="{{hongbaoDetail.type==2?'display:block':'display:none'}}">{{item.length}}"</view>
+        <view class='yuying_time' style="{{hongbaoDetail.type==3?'display:block':'display:none'}}"></view>
+        <view class='yuying_time' style="{{hongbaoDetail.type==4?'display:block':'display:none'}}"></view>
       </view>
       <view class='peopleMoney_right fr'>
         <view class='yuying_time_right'>

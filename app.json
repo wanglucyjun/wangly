@@ -2,11 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/index/Share/ShareHotMoney",
-    "pages/index/Share/share",
+    "pages/index/Share/Share",
     "pages/kouling/kouling",
     "pages/qingting/qingting",
     "pages/mine/mine",
-    "pages/mine/record/myRecord",
     "pages/mine/draw/draw"
   ],
   "window": {

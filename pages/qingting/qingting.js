@@ -56,7 +56,14 @@ Page({
     })
 
   },
-
+  // 获取页面填入的值
+  koulingInput:function(e){
+    var that = this;
+    console.log(e.detail.value)
+    that.setData({
+      kouling:e.detail.value,
+    })
+  },
   MoneyInput:function(e){
     var that = this;
    var fuwufee=methods.getChargeFee(2)
@@ -109,7 +116,7 @@ Page({
       methods.uploadFile(that.data.tempFilePath)
       methods.hongbaoCreate(that.data.Money,that.data.count,that.data.fuwufee)
     wx.navigateTo({
-      url: '../index/Share/share',
+      url: '../index/Share/Share',
     })
     console.log(e.detail.value);
   }
