@@ -1,5 +1,4 @@
-/* pages/kouling/kouling.wxss */
-
+/**index.wxss**/
 Page{
   background:#f3f5fa;
 }
@@ -18,17 +17,21 @@ Page{
   display:flex;
   justify-content: space-around;
 }
+.com{
+  height: 100%;
+}
 .HotMoney_box{
   overflow: hidden;
   width:710rpx;
   margin:0 auto;
+  height: 800rpx;
 }
 .watchword{
   /* overflow: hidden; */
   width:710rpx;
-  height:700rpx;
+  height:800rpx;
   background:#fff;
-   position:relative; 
+  position:relative; 
   margin-top:90rpx;
   
 }
@@ -52,23 +55,22 @@ Page{
 .setHotMoney{
   padding:0 55rpx;
   width:600rpx;
+  height: 500rpx;
   /* overflow: hidden; */
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:65rpx;
-  line-height:65rpx;
+  height:90rpx;
+  line-height:90rpx;
   font-weight:bold;
   font-size:28rpx;
 }
-.try{
-  width: 450rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  margin-top: 20rpx;
-  font-family:PingFang SC Medium,"微软雅黑";
-  font-size:12px;
-  margin-bottom: 50rpx;
+.playVoice{
+  height:80rpx;
+  line-height:80rpx;
+  font-weight:bold;
+  font-size:28rpx;
+  margin-top: 25rpx;
 }
 .hotInput{
   width:450rpx;
@@ -80,12 +82,13 @@ Page{
   line-height: 50rpx;
   font-size:20rpx;
   color:#999;
-  margin-top: 20rpx;
+  margin-top: 50rpx;
+
 }
 .server{
   width:600rpx;
-  height:100rpx;
-  line-height: 100rpx;
+  height:50rpx;
+  line-height: 50rpx;
   color:#999;
   text-align: center;
 }
@@ -98,6 +101,7 @@ Page{
   font-size:28rpx;
   color:#fff;
   text-align: center;
+  margin-top: 20rpx;
 }
 
 
@@ -107,6 +111,7 @@ Page{
   font-weight:bold;
   font-size:28rpx;
   margin-top:15rpx;
+   margin-bottom:15rpx;
 }
 .hotInput1{
   width:450rpx;

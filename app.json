@@ -4,7 +4,7 @@
     "pages/index/Share/ShareHotMoney",
     "pages/index/Share/Share",
     "pages/kouling/kouling",
-    "pages/yaoyiyao/yaoyiyao",
+    "pages/qingting/qingting",
     "pages/mine/mine",
     "pages/mine/draw/draw"
   ],
@@ -20,22 +20,22 @@
     "selectedColor": "#fe2f5b",
     "list": [
       {
-        "iconPath": "pages/image/kouling1.png",
-        "selectedIconPath": "pages/image/kouling2.png",
-        "pagePath": "pages/yaoyiyao/yaoyiyao",
+        "iconPath": "pages/image/yaoyiyao.png",
+        "selectedIconPath": "pages/image/yaoyiyao.png",
+        "pagePath": "pages/index/index",
         "text": "摇摇包"
       },
       {
         "iconPath": "pages/image/kouling1.png",
         "selectedIconPath": "pages/image/kouling2.png",
         "pagePath": "pages/kouling/kouling",
-        "text": "口令红包"
+        "text": "口令包"
       },
       {
         "iconPath": "pages/image/money.png",
         "selectedIconPath": "pages/image/money.png",
-        "pagePath": "pages/index/index",
-        "text": "倾听红包"
+        "pagePath": "pages/qingting/qingting",
+        "text": "倾听包"
       },
       {
         "iconPath": "pages/image/mine-1.png",
