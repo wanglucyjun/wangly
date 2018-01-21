@@ -1,14 +1,12 @@
 //kouling.js
 //获取应用实例
 const app = getApp()
-const recorderManager = wx.getRecorderManager()
 
 Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
     shuoming1: '小伙伴们说对口令就能获得随即打赏',
-    shuoming2: '好友听完你说的话就能领取赏金',
     kouling: '',
     Money: '',
     Number: '',

@@ -1,16 +1,17 @@
 //index.js
 //获取应用实例
 const app = getApp()
+
+var methods = require('../../utils/methods.js')
+
 Page({
   data: {
     houBaoStyle:1,
     userInfo:[],
-    chargeFee:[],
-    dealFee: [],
-    withdrawFee: [],
     hbType: [],
     shuoming1: '好友听完你说的话就能领取赏金',
     shuoming2:'小伙伴们说对口令就能获得随即打赏',
+    shuoming3: '小伙伴摇摇力超过武力值即可领红包',
     kouling: '',
     Money:'',
     Number:'',
@@ -19,6 +20,7 @@ Page({
     recording:false,
     playing :false ,
     filePath:'',
+    tempFilePath:'',
     chargeParam:0,
     dealParam:0,
     numParam:0,
@@ -26,7 +28,8 @@ Page({
     sn:"code",
     rate:0.01,
     minVal:0.01,
-    tips:'长按输入你想说的内容'
+    tips:'长按输入你想说的内容',
+    NetUrl:'http://www.chemchemchem.com/file/201801201744/178f12143291d5ebe3117c0639d10992.silk'
   },
   
   //事件处理函数
@@ -70,11 +73,11 @@ Page({
   },
   MoneyInput:function(e){
     var that = this;
-   
+   var fuwufee=methods.getChargeFee()
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee: that.getChargeFee()
+      fuwufee: fuwufee
     })
   },
   NumberInput: function (e) {
@@ -117,17 +120,10 @@ Page({
       })
     }
     else{
-    wx.request({
-      url:"http://www.chemchemchem.com/",
-      data: {
-        kouling: this.data.kouling,
-        money: this.data.Money,
-        count: this.data.Number,
-        fuwufei:this.data.fuwufee,
-      },
-    })
+      methods.uploadFile()
+      methods.hongbaoCreate(that.data.Money,that.data.count,that.data.fuwufee)
     wx.navigateTo({
-      url: 'Share/ShareHotMoney',
+      url: 'Share/share',
     })
     console.log(e.detail.value);
   }
@@ -151,10 +147,14 @@ Page({
 
   },
  stopRecord:function(){
+   var that=this
    console.log("stop record");
    this.setData({recording: false})
     wx.stopRecord({
 
+    })
+    that.setData({
+      hasRecord:true
     })
  },
 
@@ -165,77 +165,19 @@ Page({
    wx.playVoice({
      filePath: filePath,
    })
-   // that.saveFileToLocal()
-   that.uploadFile()
-  },
-  saveFileToLocal:function(){
-    var that = this
-    wx.saveFile({
-      tempFilePath: that.data.tempFilePath,
-      success:function(res){
-        var filePath=res.savedFilePath
-        console.log(filePath)
-      }
-    })
-    wx.getSavedFileList({
-      success: function (res) {
-        console.log(res.fileList)
-      }
-    })
-
-  },
-  uploadFile:function(){
-    var that =this
-    var url=''
-    wx.uploadFile({
-      url: "http://www.chemchemchem.com/file/upfile",
-      filePath: that.data.tempFilePath,
-      name: 'name',
-      formData: {
-        'token': 'adb'
-      },
-      success: function (res) {
-        var data = res.data
-        console.log(data)
-      }
-    })
-
+    //that.saveFileToLocal()
+   methods.uploadFile(filePath)
+  //methods.downloadFile()
   },
 
-  //费用相关
-  getChargeFee:function(){
-    var that = this
-    that.getModel();
-    var tempparam = app.globalData.chargeFee[that.data.chargeParam]
-  
-    if (tempparam.isFee=="0"){
-      this.setData({
-       fuwufee:0.00  
-      })
-      return that.data.fuwufee
-    }
-    else{
-      that.setData({
-        rate:tempparam.rate,
-        minVal:tempparam.minVal,
-      })
-     
-      console.log("rate is " + this.data.rate);
-      console.log("rate is " + this.data.Money*this.data.rate);
-      return that.data.Money*rate;
-    }
-  },
-  //获取返回红包类型的模版
-  getModel:function(){
-    var temdata = app.globalData.hbType[0]
-    this.setData({
-    chargeParam:temdata.chargeParam,
-    dealParam: temdata.dealParam,
-    withdrawParam:temdata.withdrawParam,
-    sn: temdata.sn,
-    })
-    console.log("sn is "+this.data.sn);
-   
+  //播放网络返回的地址
+  playNetVoice:function(){
+   console.log("local file address "+this.data.filePath)
+   wx.playVoice({
+     filePath:this.data.filePath,
+   })
   }
+  
  
+  
 })
