@@ -12,30 +12,23 @@ Page({
     shuoming1: '好友听完你说的话就能领取赏金',
     shuoming2:'小伙伴们说对口令就能获得随即打赏',
     shuoming3: '小伙伴摇摇力超过武力值即可领红包',
-    kouling: '',
     Money:'',
     Number:'',
     fuwufee:0.0,
     hasRecord:false,
     recording:false,
-    playing :false ,
     filePath:'',
     tempFilePath:'',
-    chargeParam:0,
-    dealParam:0,
-    numParam:0,
-    withdrawParam:0,
-    sn:"code",
     rate:0.01,
     minVal:0.01,
     tips:'长按输入你想说的内容',
-    NetUrl:'http://www.chemchemchem.com/file/201801201744/178f12143291d5ebe3117c0639d10992.silk'
+    NetUrl:'http://www.chemchemchem.com/file/201801212303/40affe2a9c37c223dfcca82339b8aee2.silk'
   },
   
   //事件处理函数
   onLoad: function () {
     var that = this;
-    var tipArray = app.globalData.hbType[0].tips;
+    var tipArray = methods.getModel(2).tips;
     console.log("tips length " + tipArray.length)
     Math.random() * (tipArray.length-1)
     var num = Math.round(Math.random() * (tipArray.length-1) + 0);
@@ -63,17 +56,10 @@ Page({
     })
 
   },
-  // 获取页面填入的值
-  koulingInput:function(e){
-    var that = this;
-    console.log(e.detail.value)
-    that.setData({
-      kouling:e.detail.value,
-    })
-  },
+
   MoneyInput:function(e){
     var that = this;
-   var fuwufee=methods.getChargeFee()
+   var fuwufee=methods.getChargeFee(2)
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
@@ -120,10 +106,10 @@ Page({
       })
     }
     else{
-      methods.uploadFile()
+      methods.uploadFile(that.data.tempFilePath)
       methods.hongbaoCreate(that.data.Money,that.data.count,that.data.fuwufee)
     wx.navigateTo({
-      url: 'Share/share',
+      url: '../index/Share/share',
     })
     console.log(e.detail.value);
   }
@@ -165,19 +151,14 @@ Page({
    wx.playVoice({
      filePath: filePath,
    })
-    //that.saveFileToLocal()
-   methods.uploadFile(filePath)
-  //methods.downloadFile()
   },
 
   //播放网络返回的地址
   playNetVoice:function(){
-   console.log("local file address "+this.data.filePath)
-   wx.playVoice({
-     filePath:this.data.filePath,
-   })
+    var that=this
+   //var filePath=methods.downloadFile(that.data.NetUrl)
+  console.log("qingting "+that.data.NetUrl)
+   methods.playNetVoice(that.data.NetUrl)
+
   }
-  
- 
-  
 })

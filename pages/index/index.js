@@ -69,7 +69,7 @@ Page({
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee: e.detail.value * 0.02,
+      fuwufee: methods.getChargeFee(0),
     })
   },
   NumberInput: function (e) {
@@ -114,6 +114,7 @@ Page({
     else {
       //停止监听武力值
       wx.stopAccelerometer({})
+
       methods.hongbaoCreate(that.data.Money, that.data.count, that.data.fuwufee,'',that.data.wuliset)
       wx.navigateTo({
         url: 'Share/share',

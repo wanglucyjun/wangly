@@ -34,7 +34,7 @@
             <block wx:if="{{hasRecord === true}}">
             
               <button class="playVoice" 
-              bindtap='playVoice'>播放录音</button>
+              bindtap='playNetVoice'>播放录音</button>
               
             </block>
             
