@@ -27,9 +27,16 @@ function getChargeFee(type) {
     return fuwufee;
   }
 }
+// 返回是否使用余额支付，初始化接口返回,0为不使用余额支付，1为使用余额支付
+function get_Use_Balance(type){
+    var isBalance=getModel(type).use_balance;
+    return isBalance
+}
+
 //上传文件方法
 function uploadFile(filePath) {
   var that = this
+  var serverFilePath;
   wx.uploadFile({
     url: uploadUrl,
     filePath: filePath,
@@ -40,11 +47,15 @@ function uploadFile(filePath) {
     success: function (res) {
       var data = res.data
       data = JSON.parse(data);
-      console.log(data)
-
+      serverFilePath=data.data
+      //console.log("upload return is " + serverFilePath)
+      wx.setStorageSync({
+        key: "voiceTempFile",
+        data: serverFilePath
+      })
+      console.log("upload return is " + serverFilePath)
     }
   })
-
 }
 //下载服务器上的文件
 function downloadFile(netUrl){
@@ -94,19 +105,21 @@ function saveFileToLocal() {
 }
 
 //创建红包接口请求
-function hongbaoCreate(Money,count,fuwufee){
+function hongbaoCreate(type,question,power,Money,num,fee,filePath){
   var that = this
 wx.request({
 
   url: hongbaoCreateUrl,
   data: {
     token:"1-2-3",
-    //kouling: this.data.kouling,
+    type:type,
+    question:question,
+    power:power,
     money: Money,
-    count: count,
-    fuwufee:fuwufee,
-    type: 1,
-    isbalance: 0
+    num: num,
+    fee:fee,
+    filePath:filePath,
+    usebalance:get_Use_Balance(type),
   },
 
 success:function(res){

@@ -22,7 +22,8 @@ Page({
     rate:0.01,
     minVal:0.01,
     tips:'长按输入你想说的内容',
-    NetUrl:'http://www.chemchemchem.com/file/201801212303/40affe2a9c37c223dfcca82339b8aee2.silk'
+    NetUrl:'http://www.chemchemchem.com/file/201801212303/40affe2a9c37c223dfcca82339b8aee2.silk',
+    serverFilePath:''
   },
   
   //事件处理函数
@@ -113,8 +114,11 @@ Page({
       })
     }
     else{
-      methods.uploadFile(that.data.tempFilePath)
-      methods.hongbaoCreate(that.data.Money,that.data.count,that.data.fuwufee)
+      var value = wx.getStorageSync('voiceTempFile')
+     
+      //console.log("server file path is " + that.data.serverFilePath)
+
+      methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
     wx.navigateTo({
       url: '../index/Share/Share',
     })
@@ -158,6 +162,8 @@ Page({
    wx.playVoice({
      filePath: filePath,
    })
+   methods.uploadFile(filePath)
+  
   },
 
   //播放网络返回的地址

@@ -8,13 +8,13 @@ Page({
     houBaoStyle: 1,
     userInfo: [],
     shuoming: '小伙伴摇摇力超过武力值即可领红包',
-    wiliset:'60',
+    powerset:'60',
     Money: '',
     Number: '',
     fuwufee: 0.0,
     moving: false,
-    wulizhi:0,
-    rate:1,
+    power:0,
+    rate:2,
   },
 
   //事件处理函数
@@ -55,10 +55,10 @@ Page({
       // console.log(res.y + ',')
       // console.log(res.z + ',')
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
-      if (wuli > 10){
+      if (wuli > 5){
         console.log(wuli)
         that.setData({
-          wulizhi: wuli.toFixed(2)*that.data.rate
+          power: wuli.toFixed(2)*that.data.rate
         })
       }
      
@@ -67,11 +67,11 @@ Page({
    
   },
   // 获取页面填入的值
-  wuliInput: function (e) {
+  powerInput: function (e) {
     var that = this;
     console.log(e.detail.value)
     that.setData({
-      wiliset: e.detail.value,
+      powerset: e.detail.value,
     })
   },
   MoneyInput: function (e) {
@@ -125,7 +125,7 @@ Page({
       //停止监听武力值
       wx.stopAccelerometer({})
 
-      methods.hongbaoCreate(that.data.Money, that.data.count, that.data.fuwufee,'',that.data.wuliset)
+      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'',1)
       wx.navigateTo({
         url: 'Share/share',
       })

@@ -102,7 +102,7 @@ Page({
     }
     else {
       methods.uploadFile()
-      methods.hongbaoCreate(that.data.Money, that.data.count, that.data.fuwufee)
+      methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
       wx.navigateTo({
         url: 'Share/share',
       })
