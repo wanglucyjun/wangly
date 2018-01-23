@@ -211,7 +211,7 @@ Page({
     
     var url=''
     if (that.data.hongbaoDetail.type == 1){
-      url ='../../yaoyiyao/yaoyiyao'
+      url ='../../qingting/qingting'
     }
     if (that.data.hongbaoDetail.type == 2) {
       url = '../../kouling/kouling'

@@ -33,12 +33,7 @@
   border:10rpx;
   border-radius:50%;
 }
-.header_Head{
-  width:150rpx;
-  height:150rpx;
-  border-radius:50%;
-  border:8rpx solid #fff;
-}
+
 .marginAuto{
   margin: 0 auto;
 }

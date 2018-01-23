@@ -3,7 +3,8 @@ Page{
   background:#d6344f;
 }
 .bg_pic{
-  
+  margin-bottom:100rpx;
+  padding-bottom: 350rpx;
 }
 .con{
   overflow: hidden;
@@ -49,7 +50,20 @@ Page{
   justify-content: space-around;
 }
 .marginTop{
-  margin-top:45rpx;
+  margin-top:65rpx;
+  padding-top:30rpx;
+}
+.moneyNum{
+  font-size:80rpx;
+  color:#fde2b3;
+  width:100%;
+  text-align: center;
+}
+.share_box_ju{
+  width:690rpx;
+  border-radius:50%;
+  /* display: flex;
+  justify-content: space-around; */
 }
 .btn_box{
   padding-top:20rpx;
