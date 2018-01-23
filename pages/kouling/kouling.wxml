@@ -18,7 +18,7 @@
                 >
                   
               <view class='setHotMoney_name1 fl' >设置口令</view>
-              <input type='text' placeholder='谢谢老板' class='hotInput1 fr' bindinput='koulingInput'></input>
+              <input type='text' placeholder='{{tips}}' class='hotInput1 fr' bindinput='koulingInput'></input>
             </view>
          
 

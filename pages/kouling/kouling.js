@@ -1,6 +1,7 @@
 //kouling.js
 //获取应用实例
 const app = getApp()
+var methods = require('../../utils/methods.js')
 
 Page({
   data: {
@@ -11,20 +12,10 @@ Page({
     Money: '',
     Number: '',
     fuwufee: 0.0,
-    hasRecord: false,
-    recording: false,
-    playing: false,
+    tips:"新的一年大吉大利"
   },
 
-  //事件处理函数
-  ChangeTab: function (e) {
-    var that = this;
-    console.log("currentTab")
-    var currentTab = e.currentTarget.dataset.id;
-    that.setData({
-      houBaoStyle: currentTab,
-    })
-  },
+ 
   onLoad: function () {
     var that = this;
     wx.getUserInfo({
@@ -34,6 +25,14 @@ Page({
           userInfo: user.userInfo,
         })
       }
+    })
+    var tipArray = methods.getModel(1).tips;
+    console.log("tips length " + tipArray.length)
+    Math.random() * (tipArray.length - 1)
+    var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
+    console.log("random " + num)
+    that.setData({
+      tips: tipArray[num]
     })
   },
 
@@ -59,7 +58,7 @@ Page({
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee: e.detail.value * 0.02,
+      fuwufee:methods.getChargeFee(1),
     })
   },
   NumberInput: function (e) {
@@ -73,25 +72,42 @@ Page({
   toShare: function (e) {
     var that = this;
     console.log(e.detail.value)
-    wx.request({
-      url: "http://www.baidu.test",
-      data: {
-        kouling: this.data.kouling,
-        money: this.data.Money,
-        count: this.data.Number,
-        fuwufei: this.data.fuwufee,
-      },
-    })
-    console.log(e.detail.value);
-  },
+    if (this.data.Money == '') {
 
-  huatong: function () {
-    wx.startRecord({
+      wx.showModal({
+        title: '提示',
+        content: '请先输入金额',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
 
-    })
-  },
-  stoprecord: function () {
-    wx.stopRecord();
+    else if (this.data.Number == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请输入红包个数',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    else {
+      methods.uploadFile()
+      methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
+      wx.navigateTo({
+        url: 'Share/share',
+      })
+      console.log(e.detail.value);
+    }
   }
 
 })
