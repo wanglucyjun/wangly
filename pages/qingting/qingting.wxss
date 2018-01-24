@@ -48,7 +48,8 @@ Page{
   z-index:99;
 }
 .header_size{
-  width:110rpx;
+  width:106rpx;
+  height:106rpx;
   border-radius:50%;
   border:2px solid #fff;
 }

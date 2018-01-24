@@ -34,15 +34,15 @@ function get_Use_Balance(type){
 }
 
 //上传文件方法
-function uploadFile(filePath) {
+function uploadFile(obj) {
   var that = this
   var serverFilePath;
   wx.uploadFile({
     url: uploadUrl,
-    filePath: filePath,
+    filePath: obj.filePath,
     name: 'recordfile',
     formData: {
-      'token': 'adb'
+      'token': app.globalData.sessionInfo
     },
     success: function (res) {
       var data = res.data
@@ -53,6 +53,7 @@ function uploadFile(filePath) {
         key: "voiceTempFile",
         data: serverFilePath
       })
+      obj.success(serverFilePath)
       console.log("upload return is " + serverFilePath)
     }
   })
@@ -111,7 +112,7 @@ wx.request({
 
   url: hongbaoCreateUrl,
   data: {
-    token:"1-2-3",
+    token: app.globalData.sessionInfo,
     type:type,
     question:question,
     power:power,
@@ -123,7 +124,9 @@ wx.request({
   },
 
 success:function(res){
-console.log(res.data)
+  wx.navigateTo({
+    url: '/pages/index/Share/Share?id='+res.data.data.hotid,
+  })
 }
 })
   }

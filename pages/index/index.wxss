@@ -45,7 +45,8 @@ Page{
   z-index:99;
 }
 .header_size{
-  width:110rpx;
+  width:106rpx;
+  height:106rpx;
   border-radius:50%;
   border:2px solid #fff;
 }
@@ -69,6 +70,7 @@ Page{
   font-family:PingFang SC Medium,"微软雅黑";
   font-size:12px;
   margin-bottom: 50rpx;
+  display:none;
 }
 .hotInput{
   width:450rpx;
@@ -78,9 +80,10 @@ Page{
 .shuoming{
   height:50rpx;
   line-height: 50rpx;
-  font-size:20rpx;
+  font-size:24rpx;
   color:#999;
   margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .server{
   width:600rpx;

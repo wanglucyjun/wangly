@@ -22,6 +22,24 @@ Page({
    that.setData({
      userInfo: app.globalData.userInfo,
    })
+   var receivedHongbao={}
+   receivedHongbao.receivedMoney=10
+   receivedHongbao.receivedNum=10
+   receivedHongbao.page=1
+   receivedHongbao.list=[{id:'1',name:'龙',icon:'',money:1,title:'倾听',type:1,date:'2017年6月12日'},
+     { id: '2', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+     { id: '3', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+     { id: '4', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' }]
+   var sendedHongbao = {}
+   sendedHongbao.sendedMoney = 10
+   sendedHongbao.sendedNum = 10
+   sendedHongbao.page = 1
+   sendedHongbao.list = [{ id: '1', title: '倾听', type: 1, date: '2017年6月12日',allMoney:10,allNum:10,leftMoney:5,leftNum:5 },
+     { id: '2', title: '摇一摇', type: 1, date: '2017年6月12日', allMoney: 10, allNum: 10, leftMoney: 5, leftNum: 5 }]
+    that.setData({
+      sendedHongbao: sendedHongbao,
+      receivedHongbao: receivedHongbao
+    })
   },
   // tab 切换函数
   changeTab: function (e) {

@@ -17,6 +17,16 @@ Page({
 
  
   onLoad: function () {
+
+    if (app.globalData.userInfo.nickName) {
+      console.log('index0')
+      this.initPage()
+    } else {
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.initPage()
+      }
+    }
     var that = this;
     wx.getUserInfo({
       success: function (user) {
@@ -35,7 +45,8 @@ Page({
       tips: tipArray[num]
     })
   },
-
+  initPage: function () {
+  },
   // 跳转链接
 
   tomyRecord: function () {
@@ -101,12 +112,9 @@ Page({
       })
     }
     else {
-      methods.uploadFile()
+      console.log('fdjkdfslkj');
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
-      wx.navigateTo({
-        url: 'Share/share',
-      })
-      console.log(e.detail.value);
+     
     }
   }
 

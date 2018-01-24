@@ -114,14 +114,17 @@ Page({
       })
     }
     else{
-      var value = wx.getStorageSync('voiceTempFile')
-     
-      //console.log("server file path is " + that.data.serverFilePath)
+      console.log(that.data.tempFilePath)
 
-      methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
-    wx.navigateTo({
-      url: '../index/Share/Share',
-    })
+      methods.uploadFile({filePath:that.data.tempFilePath,success:function(obj){
+        var value = obj
+        //console.log()
+        console.log("server file path is " + value)
+        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
+      }})
+
+
+
     console.log(e.detail.value);
   }
   },
@@ -170,7 +173,7 @@ Page({
   playNetVoice:function(){
     var that=this
    //var filePath=methods.downloadFile(that.data.NetUrl)
-  console.log("qingting "+that.data.NetUrl)
+   console.log("qingting "+that.data.NetUrl)
    methods.playNetVoice(that.data.NetUrl)
 
   }

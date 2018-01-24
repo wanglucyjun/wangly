@@ -9,7 +9,7 @@
         <view class='watchword' 
               style="">
           <view class='header' bindtap='tomyRecord'>
-            <image src='{{userInfo.avatarUrl}}' mode='widthFix' class='header_size'></image>
+            <image src='{{userInfo.avatarUrl}}' class='header_size'></image>
            
           </view>
           <view class="setHotMoney">

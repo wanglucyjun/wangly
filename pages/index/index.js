@@ -19,24 +19,29 @@ Page({
 
   //事件处理函数
   onLoad: function () {
+    if (app.globalData.userInfo.nickName){
+      console.log('index0')
+       this.initPage()
+    }else{
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.initPage()
+      }
+    }
+    
+  },
+  initPage:function(){
     var that = this;
     var tipArray = app.globalData.hbType[0].tips;
     console.log("tips length " + tipArray.length)
-    Math.random() * (tipArray.length-1)
-    var num = Math.round(Math.random() * (tipArray.length-1) + 0);
-    console.log("random "+num)
+    Math.random() * (tipArray.length - 1)
+    var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
+    console.log("random " + num)
     that.setData({
-      tips: tipArray[num]
+      tips: tipArray[num],
+      userInfo: app.globalData.userInfo
     })
-
-    wx.getUserInfo({
-      success:function(user){
-        console.log(user)
-        that.setData({
-          userInfo:user.userInfo,
-        })
-      }
-    })
+    console.log(app.globalData.userInfo)
   },
 
   //开始摇手机
@@ -126,9 +131,7 @@ Page({
       wx.stopAccelerometer({})
 
       methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'',1)
-      wx.navigateTo({
-        url: 'Share/share',
-      })
+     
       console.log(e.detail.value);
     }
   },

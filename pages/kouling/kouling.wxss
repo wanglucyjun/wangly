@@ -45,7 +45,8 @@ Page{
   z-index:99;
 }
 .header_size{
-  width:110rpx;
+  width:106rpx;
+  height:106rpx;
   border-radius:50%;
   border:2px solid #fff;
 }
@@ -67,11 +68,12 @@ Page{
   margin-top:5rpx;
 }
 .shuoming{
-  height:100rpx;
-  line-height: 100rpx;
-  font-size:20rpx;
+  height:50rpx;
+  line-height: 50rpx;
+  font-size:24rpx;
   color:#999;
   margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .server{
   width:600rpx;

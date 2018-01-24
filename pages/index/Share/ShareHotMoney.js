@@ -103,7 +103,7 @@ Page({
     var Object = []
     Object.title = "红包乐翻天"
     Object.desc = "新年快乐"
-    Object.path = "pages/index/Share/Share?id=456"
+    Object.path = "pages/index/Share/Share?id=" + this.data.hongbaoID
     return Object
   }
 })

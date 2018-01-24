@@ -1,2 +1,17 @@
-<!--pages/mine/draw.wxml-->
-<text>pages/mine/draw.wxml</text>
+<view class='container'>
+<view class='draw_box'>
+  <view class='balance'> 
+    <view class='draw_text fl'>账户余额</view>
+    <view class='balance_money'>{{balance}} 元</view>
+  </view>
+  <view class='draw_text'>提现金额</view>
+  <view class='setHotMoney_detail' >
+    <view class='setHotMoney_name fl' >￥</view>
+    <input type='number' placeholder='' class='hotInput'
+                     bindinput='MoneyInput'></input>
+  </view>
+  <view  class='draw_text2'>提现到微信钱包， 全部提现</view>
+  <view class='draw' bindtap="getMoney">提现</view>
+  <view  class='draw_text3'>1-5个工作日到账</view>
+</view>
+</view>
