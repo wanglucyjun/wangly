@@ -1,8 +1,6 @@
 <!--index.wxml-->
 <view class="container">
  <view class='con'>
-
-   
     <view class="HotMoney_box">
         <view class='watchword' 
               style="">
@@ -14,36 +12,26 @@
           <!--倾听红包  -->
           <block wx:if="{{recording === false }}">
             <view class='setHotMoney_detail1' >
-              <view class='qingting '>
+
      
-               <button
+               <button class='qingting'
                 bindtap='startRecord'>{{tips}}</button>
-              
-              </view>
+
             </view>
             </block>
           <block wx:if="{{recording === true}}">
             <view class='setHotMoney_detail1' >
-              <view class='qingting '>
-               <button class="iconfont icon-huatong paddLeft15" 
+
+               <button class="qingting iconfont icon-huatong" 
                 bindtap='stopRecord'>停止录音</button>
-              </view>
+
             </view>
             </block>
-            
-            <block wx:if="{{hasRecord === true}}">
-            
-              <button class="playVoice" 
-              bindtap='playVoice'>播放录音</button>
-              
-            </block>
-            
+         
 
             <view class='shuoming'>
-              {{houBaoStyle==1?shuoming1:''}}
-              {{houBaoStyle==2?shuoming2:''}}
-              
-            </view>
+              {{shuoming}}
+           </view>
             <view class='setHotMoney_detail'>
               <view class='setHotMoney_name fl' >赏金（元）</view>
               <input type='number' placeholder='填写金额' class='hotInput fr'
@@ -55,9 +43,9 @@
                      bindinput='NumberInput'></input>
             </view>
 
-            <view class="{{houBaoStyle==3?'server3':'server'}}">需支付￥{{fuwufee}}服务费,优先使用余额</view>
+            <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额</view>
             <navigator url="./share/share?houBaoStyle={{houBaoStyle}}"
-            class='VoiceBtn' bindtap='toShare'>生成语音口令</navigator>
+            class='VoiceBtn' bindtap='toShare'>生成语音倾听包</navigator>
           </view>
 
 

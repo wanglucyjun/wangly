@@ -60,7 +60,7 @@ App({
                     } else {
                       wx.showModal({
                         title: '提示',
-                        content: '登录失败'
+                        content: '登录失败1'
                       })
                     }
                   }
@@ -68,7 +68,7 @@ App({
                   fail: function (res) {
                     wx.showModal({
                       title: '提示',
-                      content: '登录失败'
+                      content: '登录失败2' + res.errMsg + loginUrl
                     })
                   }
                 })
@@ -76,7 +76,7 @@ App({
                 //console.log('获取用户登录态失败！' + res.errMsg)
                 wx.showModal({
                   title: '提示',
-                  content: '登录失败'
+                  content: '登录失败3'
                 })
               }
             }

@@ -24,7 +24,7 @@
       <text class="nav_con {{mineRecod==2? 'on':''}}" data-num="2" bindtap='changeTab'>我收到的</text>
     </view>
     <view class='content'>
-    <view class='content_bottom' style="{{mineRecod==1?'display:block':'display:none'}}" >
+    <view class='content_bottom'  wx:if="{{mineRecod==1}}"  >
         <view class='Money_Number fl'>
           <view class='Money_name'>金额（元）</view>
           <view class='money_num'>{{sendedHongbao.sendedMoney}}</view>
@@ -36,7 +36,7 @@
     
     </view>
     
-    <view class='content_bottom' style="{{mineRecod==2?'display:block':'display:none'}}">
+    <view class='content_bottom'  wx:if="{{mineRecod==2}}" >
         <view class='Money_Number fl'>
           <view class='Money_name'>金额（元）</view>
           <view class='money_num'>{{receivedHongbao.receivedMoney}}</view>
@@ -49,10 +49,10 @@
     </view>
     
       </view>
-      <view style="{{mineRecod==1?'display:block':'display:none'}}">
+      <view  wx:if="{{mineRecod==1}}" >
        <block wx:for="{{sendedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
       <view class='hotPeopleDetail' >
-        <view class='peopleBox'>
+        <view class='peopleBox' data-hongbaoid='{{item.id}}' bindtap='toShare'>
           <view class='people'>
             <view class='fl'>{{item.title}}</view>
             <view class='fr'>{{item.allMoney}}元</view>
@@ -65,10 +65,10 @@
       </view>
       </block>
  </view>
- <view style="{{mineRecod==2?'display:block':'display:none'}}">
+ <view  wx:if="{{mineRecod==2}}" >
        <block wx:for="{{receivedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
       <view class='hotPeopleDetail' >
-        <view class='peopleBox'>
+        <view class='peopleBox'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
           <view class='people'>
             <view class='fl'>{{item.title}}</view>
             <view class='fr'>{{item.money}}元</view>

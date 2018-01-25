@@ -7,7 +7,7 @@ Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
-    shuoming1: '小伙伴们说对口令就能获得随即打赏',
+    shuoming1: '小伙伴们说对口令就能获得随机赏金',
     kouling: '',
     Money: '',
     Number: '',
@@ -15,7 +15,6 @@ Page({
     tips:"新的一年大吉大利"
   },
 
- 
   onLoad: function () {
 
     if (app.globalData.userInfo.nickName) {
@@ -27,25 +26,19 @@ Page({
         this.initPage()
       }
     }
+    
+  },
+  initPage: function () {
     var that = this;
-    wx.getUserInfo({
-      success: function (user) {
-        console.log(user)
-        that.setData({
-          userInfo: user.userInfo,
-        })
-      }
-    })
     var tipArray = methods.getModel(1).tips;
     console.log("tips length " + tipArray.length)
     Math.random() * (tipArray.length - 1)
     var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
     console.log("random " + num)
     that.setData({
+      userInfo: app.globalData.userInfo,
       tips: tipArray[num]
     })
-  },
-  initPage: function () {
   },
   // 跳转链接
 

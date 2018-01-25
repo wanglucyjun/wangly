@@ -40,10 +40,10 @@ var config = {
     hongbaoGetBalanceUrl: `${host}/hongbao/getUserBalance`,
 
     // 查询我发出的红包记录接口
-    hongbaoSendedUrl: `${host}/hongbao/querySended`,
+    hongbaoSendedUrl: `${host}/user/send-list`,
 
     // 查询我收到的红包记录接口
-    hongbaoReceivedUrl: `${host}/hongbao/queryReceived`,
+    hongbaoReceivedUrl: `${host}/user/receive-list`,
 
     // 提现我的余额接口
     hongbaoDrawUrl: `${host}/hongbao/drawUserBalance`,

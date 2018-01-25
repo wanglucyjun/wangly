@@ -61,10 +61,19 @@ Page{
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:90rpx;
-  line-height:90rpx;
+  height:65rpx;
+  line-height:65rpx;
   font-weight:bold;
   font-size:28rpx;
+}
+.qingting{
+  width:600rpx;
+  height:70rpx;
+  line-height:70rpx;
+  background:#f3f5fa;
+  font-size:35rpx;
+  color:#000;
+  border-radius:15rpx;
 }
 .playVoice{
   height:80rpx;
@@ -81,15 +90,15 @@ Page{
 .shuoming{
   height:50rpx;
   line-height: 50rpx;
-  font-size:20rpx;
+  font-size:24rpx;
   color:#999;
-  margin-top: 50rpx;
-
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
 }
 .server{
   width:600rpx;
-  height:50rpx;
-  line-height: 50rpx;
+  height:100rpx;
+  line-height: 100rpx;
   color:#999;
   text-align: center;
 }
@@ -102,17 +111,16 @@ Page{
   font-size:28rpx;
   color:#fff;
   text-align: center;
-  margin-top: 20rpx;
 }
 
 
 .setHotMoney_detail1{
-  height:65rpx;
-  line-height:65rpx;
+  height:70rpx;
+  line-height:70rpx;
   font-weight:bold;
-  font-size:28rpx;
+  font-size:30rpx;
   margin-top:15rpx;
-   margin-bottom:15rpx;
+  margin-bottom:15rpx;
 }
 .hotInput1{
   width:450rpx;

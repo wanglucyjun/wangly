@@ -7,7 +7,7 @@ Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
-    shuoming: '小伙伴摇摇力超过武力值即可领红包',
+    shuoming: '小伙伴摇摇超过武力值领赏金',
     powerset:'60',
     Money: '',
     Number: '',

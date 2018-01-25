@@ -2,7 +2,7 @@
 var app = getApp();
 var methods = require('../../../utils/methods.js')
 const config = require('../../../config')
-
+var map=new Map();
 
 
 Page({
@@ -23,25 +23,25 @@ Page({
     var that  = this;
     //临时数据
     var hongbaoDetail = {}
-    hongbaoDetail.id = options.id
-    hongbaoDetail.senderName = app.globalData.userInfo.nickName
-    hongbaoDetail.senderIcon = app.globalData.userInfo.avatarUrl
-    hongbaoDetail.state = 1
-    hongbaoDetail.allNum = 5
-    hongbaoDetail.allMoney = 10
-    hongbaoDetail.sendNum = 3
-    hongbaoDetail.sendMoney = 6
-    hongbaoDetail.type = 1
-    hongbaoDetail.content = { question: '哈哈', answer: '' }
-    hongbaoDetail.list = [{ name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 2, url: '123', date: '1月16日 20:30', length: 3 },
-    {
-      name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-      url: '456', date: '1月17日 20:30', length: 2
-    },
-    {
-      name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-      url: '789', date: '1月17日 20:30', length: 2
-    }]
+    // hongbaoDetail.id = options.id
+    // hongbaoDetail.senderName = app.globalData.userInfo.nickName
+    // hongbaoDetail.senderIcon = app.globalData.userInfo.avatarUrl
+    // hongbaoDetail.state = 1
+    // hongbaoDetail.allNum = 5
+    // hongbaoDetail.allMoney = 10
+    // hongbaoDetail.sendNum = 3
+    // hongbaoDetail.sendMoney = 6
+    // hongbaoDetail.type = 1
+    // hongbaoDetail.content = { question: '哈哈', answer: '' }
+    // hongbaoDetail.list = [{ name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 2, url: '123', date: '1月16日 20:30', length: 3 },
+    // {
+    //   name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
+    //   url: '456', date: '1月17日 20:30', length: 2
+    // },
+    // {
+    //   name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
+    //   url: '789', date: '1月17日 20:30', length: 2
+    // }]
     var userHongbao={}
     userHongbao.id = options.id
     userHongbao.text=0
@@ -131,7 +131,15 @@ Page({
     wx.startRecord({
       success: function (res) {
         that.data.userHongbao.file = res.tempFilePath
+        console.log(that.data.userHongbao.file);
         that.data.userHongbao.text=''
+
+        methods.uploadFile({
+          filePath: that.data.userHongbao.file, success: function (file) {
+            that.data.userHongbao.file = file
+            that.getHongbao()
+          }
+        })
       }
     })
 
@@ -141,9 +149,9 @@ Page({
      console.log("stop record");
      wx.stopRecord({
       success: function (res) {
-        methods.uploadFile(that.data.userHongbao.file)
-        that.data.userHongbao.file = wx.getStorageSync('voiceTempFile')
-        that.getHongbao()
+        console.log(that.data.userHongbao.file);
+       
+        
       }
     })
   },
@@ -184,19 +192,45 @@ Page({
 
   playVoice: function (obj) {
     var that = this
-    var filePath = obj.target.id
-    console.log(obj);
-    console.log(obj.target.id)
-    wx.playVoice({
-      filePath: filePath,
-      success:function(){
-        if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state==1){
-          that.data.userHongbao.file = ''
-          that.data.userHongbao.text = ''
-          that.getHongbao()
+    //var filePath = obj.currentTarget.id
+    console.log(obj)
+    console.log(obj.currentTarget.dataset.url)
+    var filePath = map.get(obj.currentTarget.dataset.url)
+    if (filePath){
+      wx.playVoice({
+        filePath: filePath,
+        complete: function () {
+          if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state == 1) {
+            that.data.userHongbao.file = ''
+            that.data.userHongbao.text = ''
+            that.getHongbao()
+          }
         }
-      }
-    })
+      })
+    }else{
+      wx.downloadFile({
+        url: obj.currentTarget.dataset.url, //仅为示例，并非真实的资源
+        success: function (res) {
+          console.log(res.tempFilePath);
+          map.set(obj.currentTarget.dataset.url, res.tempFilePath);
+          wx.playVoice({
+            filePath: res.tempFilePath,
+            complete: function () {
+              if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state == 1) {
+                that.data.userHongbao.file = ''
+                that.data.userHongbao.text = ''
+                that.getHongbao()
+              }
+            }
+          })
+        }
+      })
+    }
+
+    
+
+    
+
   },
   //开始摇手机
   startMove: function () {
