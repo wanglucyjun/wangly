@@ -37,7 +37,8 @@ Page({
     console.log("random " + num)
     that.setData({
       userInfo: app.globalData.userInfo,
-      tips: tipArray[num]
+      tips: tipArray[num],
+      kouling: tipArray[num]
     })
   },
   // 跳转链接
@@ -106,6 +107,10 @@ Page({
     }
     else {
       console.log('fdjkdfslkj');
+      if (that.data.kouling==''){
+        that.data.kouling = that.data.tips
+      }
+      console.log(that.data.kouling);
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
      
     }

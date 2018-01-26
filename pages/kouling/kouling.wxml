@@ -39,8 +39,8 @@
             </view>
 
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额</view>
-            <navigator url="./Share/ShareHotMoney?houBaoStyle={{houBaoStyle}}"
-            class='VoiceBtn' bindtap='toShare'>生成语音口令包</navigator>
+            <view 
+            class='VoiceBtn' bindtap='toShare'>生成语音口令包</view>
           </view>
 
 

@@ -23,24 +23,24 @@ Page({
    that.setData({
      userInfo: app.globalData.userInfo,
    })
-   var receivedHongbao={}
-   receivedHongbao.receivedMoney=10
-   receivedHongbao.receivedNum=10
-   receivedHongbao.page=1
-   receivedHongbao.list=[{id:'1',name:'龙',icon:'',money:1,title:'倾听',type:1,date:'2017年6月12日'},
-     { id: '2', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
-     { id: '3', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
-     { id: '4', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' }]
-   var sendedHongbao = {}
-   sendedHongbao.sendedMoney = 10
-   sendedHongbao.sendedNum = 10
-   sendedHongbao.page = 1
-   sendedHongbao.list = [{ id: '1', title: '倾听', type: 1, date: '2017年6月12日',allMoney:10,allNum:10,leftMoney:5,leftNum:5 },
-     { id: '2', title: '摇一摇', type: 1, date: '2017年6月12日', allMoney: 10, allNum: 10, leftMoney: 5, leftNum: 5 }]
-    that.setData({
-      sendedHongbao: sendedHongbao,
-      receivedHongbao: receivedHongbao
-    })
+  //  var receivedHongbao={}
+  //  receivedHongbao.receivedMoney=10
+  //  receivedHongbao.receivedNum=10
+  //  receivedHongbao.page=1
+  //  receivedHongbao.list=[{id:'1',name:'龙',icon:'',money:1,title:'倾听',type:1,date:'2017年6月12日'},
+  //    { id: '2', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+  //    { id: '3', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+  //    { id: '4', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' }]
+  //  var sendedHongbao = {}
+  //  sendedHongbao.sendedMoney = 10
+  //  sendedHongbao.sendedNum = 10
+  //  sendedHongbao.page = 1
+  //  sendedHongbao.list = [{ id: '1', title: '倾听', type: 1, date: '2017年6月12日',allMoney:10,allNum:10,leftMoney:5,leftNum:5 },
+  //    { id: '2', title: '摇一摇', type: 1, date: '2017年6月12日', allMoney: 10, allNum: 10, leftMoney: 5, leftNum: 5 }]
+  //   that.setData({
+  //     sendedHongbao: sendedHongbao,
+  //     receivedHongbao: receivedHongbao
+  //   })
     this.refresh()
   },
   // tab 切换函数
@@ -97,19 +97,23 @@ Page({
 
   },
   getReceivedHongbao:function(){
+    
     var that = this;
+    console.log(that.data.receivedHongbao.page)
     wx.request({
       url: config.hongbaoReceivedUrl,
       data: {
         token: app.globalData.sessionInfo,
-        page: that.data.receivedHongbao.page+1
+        page: that.data.receivedHongbao.page + 1
       },
       success: function (res) {
         console.log(res)
-        res.data.data.page = that.data.receivedHongbao.page + 1
-        that.setData({
-          receivedHongbao: res.data.data
-        })
+        //res.data.data.page = that.data.receivedHongbao.page + 1
+        if (res.data.data){
+          that.setData({
+            receivedHongbao: res.data.data
+          })
+        }
       }
       ,
       fail: function (res) {
@@ -126,19 +130,24 @@ Page({
         page: that.data.sendedHongbao.page + 1
       },
       success: function (res) {
-        if (that.data.sendedHongbao.page==0){
-          res.data.data.page = that.data.sendedHongbao.page + 1
-          console.log(res)
-          that.setData({
-            sendedHongbao: res.data.data
-          })
-        }else{
-          var list= that.data.sendedHongbao.list
-          that.data.sendedHongbao.list=list.concat(res.data.data.list)
-          console.log(list)
-          that.setData({
-            sendedHongbao: that.data.sendedHongbao
-          })
+        console.log(res)
+        if (res.data.data && res.data.data.list.length>0){
+          
+          that.data.sendedHongbao.page = that.data.sendedHongbao.page+1
+          if (that.data.sendedHongbao.page==1){
+            //res.data.data.page = that.data.sendedHongbao.page + 1
+            that.setData({
+              sendedHongbao: res.data.data
+            })
+          }else{
+            var list= that.data.sendedHongbao.list
+            console.log(that.data.sendedHongbao)
+            that.data.sendedHongbao.list=list.concat(res.data.data.list)
+            
+            that.setData({
+              sendedHongbao: that.data.sendedHongbao
+            })
+          }
         }
       }
       ,
@@ -167,7 +176,10 @@ Page({
       }
     })
     that.data.sendedHongbao.page=0
-    that.data.receivedHongbao.page = 0
+    console.log("that.data.receivedHongbao.page")
+    that.data.receivedHongbao.page=0
+    
+    console.log(that.data.receivedHongbao.page)
     this.getReceivedHongbao()
     this.getSendedHongbao()
   },
