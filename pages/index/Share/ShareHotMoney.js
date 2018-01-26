@@ -1,12 +1,12 @@
 // pages/index/Share/ShareHotMoney.js
 var app = getApp();
+const config = require('../../../config')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
     hongbaoID: '123',
     hongbaoDetail:{}
   },
@@ -16,46 +16,26 @@ Page({
    */
   onLoad: function (options) {
     var that  = this;
-    var hongbaoDetail = {}
-    hongbaoDetail.id = options.id
-    hongbaoDetail.senderName = app.globalData.userInfo.nickName
-    hongbaoDetail.senderIcon = app.globalData.userInfo.avatarUrl
-    hongbaoDetail.state = 1
-    hongbaoDetail.allNum = 5
-    hongbaoDetail.allMoney = 10
-    hongbaoDetail.leftNum = 3
-    hongbaoDetail.leftMoney = 6
-    hongbaoDetail.type = 1
-    hongbaoDetail.content = { question: '哈哈', answer: '' }
-    hongbaoDetail.list = [{ name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 2, url: '123', date: '1月16日 20:30', length: 3 },
-    {
-      name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-      url: '456', date: '1月17日 20:30', length: 2
-    },
-    {
-      name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-      url: '789', date: '1月17日 20:30', length: 2
-    }]
+   
     console.log(options);
     that.setData({
       hongbaoID: options.id,
-      userInfo: app.globalData.userInfo,
-      hongbaoDetail:hongbaoDetail
     })
-    refersh()
+    that.refersh()
   },
   refersh: function () {
+    console.log('refersh')
     var that = this;
     wx.request({
-      url: that.data.hongbaoUrl,
+      url: config.hongbaoDetailUrl,
       data: {
-        id: that.data.hongbaoID
+        id: that.data.hongbaoID,
+        token: app.globalData.sessionInfo
       },
       success: function (res) {
         console.log(res)
         that.setData({
-          userInfo: app.globalData.userInfo,
-          hongbaoDetail: res.data,
+          hongbaoDetail: res.data.data,
         })
       }
       ,
@@ -103,7 +83,7 @@ Page({
     var Object = []
     Object.title = "红包乐翻天"
     Object.desc = "新年快乐"
-    Object.path = "pages/index/Share/Share?id=456"
+    Object.path = "pages/index/Share/Share?id=" + this.data.hongbaoID
     return Object
   }
 })

@@ -11,9 +11,8 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#e73b58",
-    "navigationBarTitleText": "红包乐翻天",
-    "navigationBarTextStyle": "#fff",
-    "enablePullDownRefresh": "true"
+    "navigationBarTitleText": "包包乐翻天",
+    "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
     "backgroundColor": "#fff",
@@ -32,14 +31,14 @@
         "text": "口令包"
       },
       {
-        "iconPath": "pages/image/money.png",
-        "selectedIconPath": "pages/image/money.png",
+        "iconPath": "pages/image/qingting1.jpg",
+        "selectedIconPath": "pages/image/qingting2.jpg",
         "pagePath": "pages/qingting/qingting",
         "text": "倾听包"
       },
       {
         "iconPath": "pages/image/mine-1.png",
-        "selectedIconPath": "pages/image/mine-1.png",
+        "selectedIconPath": "pages/image/mine-2.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }

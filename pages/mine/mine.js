@@ -1,5 +1,6 @@
 // pages/mine/mine.js
 var app = getApp();
+const config = require('../../config')
 Page({
 
   /**
@@ -22,6 +23,25 @@ Page({
    that.setData({
      userInfo: app.globalData.userInfo,
    })
+  //  var receivedHongbao={}
+  //  receivedHongbao.receivedMoney=10
+  //  receivedHongbao.receivedNum=10
+  //  receivedHongbao.page=1
+  //  receivedHongbao.list=[{id:'1',name:'龙',icon:'',money:1,title:'倾听',type:1,date:'2017年6月12日'},
+  //    { id: '2', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+  //    { id: '3', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
+  //    { id: '4', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' }]
+  //  var sendedHongbao = {}
+  //  sendedHongbao.sendedMoney = 10
+  //  sendedHongbao.sendedNum = 10
+  //  sendedHongbao.page = 1
+  //  sendedHongbao.list = [{ id: '1', title: '倾听', type: 1, date: '2017年6月12日',allMoney:10,allNum:10,leftMoney:5,leftNum:5 },
+  //    { id: '2', title: '摇一摇', type: 1, date: '2017年6月12日', allMoney: 10, allNum: 10, leftMoney: 5, leftNum: 5 }]
+  //   that.setData({
+  //     sendedHongbao: sendedHongbao,
+  //     receivedHongbao: receivedHongbao
+  //   })
+    this.refresh()
   },
   // tab 切换函数
   changeTab: function (e) {
@@ -62,7 +82,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    refresh()
+    this.refresh()
   },
 
   /**
@@ -70,25 +90,30 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.mineRecod==1){
-      this.getReceivedHongbao();
-    } else if (this.data.mineRecod == 2){
       this.getSendedHongbao();
+    } else if (this.data.mineRecod == 2){
+      this.getReceivedHongbao();
     }
 
   },
   getReceivedHongbao:function(){
+    
     var that = this;
+    console.log(that.data.receivedHongbao.page)
     wx.request({
-      url: that.data.hongbaoReceivedUrl,
+      url: config.hongbaoReceivedUrl,
       data: {
         token: app.globalData.sessionInfo,
-        page: that.data.receivedHongbao.page+1
+        page: that.data.receivedHongbao.page + 1
       },
       success: function (res) {
         console.log(res)
-        that.setData({
-          receivedHongbao: res.data
-        })
+        //res.data.data.page = that.data.receivedHongbao.page + 1
+        if (res.data.data){
+          that.setData({
+            receivedHongbao: res.data.data
+          })
+        }
       }
       ,
       fail: function (res) {
@@ -99,16 +124,31 @@ Page({
   getSendedHongbao: function() {
     var that = this;
     wx.request({
-      url: that.data.hongbaoSendedUrl,
+      url: config.hongbaoSendedUrl,
       data: {
         token: app.globalData.sessionInfo,
         page: that.data.sendedHongbao.page + 1
       },
       success: function (res) {
         console.log(res)
-        that.setData({
-          sendedHongbao: res.data
-        })
+        if (res.data.data && res.data.data.list.length>0){
+          
+          that.data.sendedHongbao.page = that.data.sendedHongbao.page+1
+          if (that.data.sendedHongbao.page==1){
+            //res.data.data.page = that.data.sendedHongbao.page + 1
+            that.setData({
+              sendedHongbao: res.data.data
+            })
+          }else{
+            var list= that.data.sendedHongbao.list
+            console.log(that.data.sendedHongbao)
+            that.data.sendedHongbao.list=list.concat(res.data.data.list)
+            
+            that.setData({
+              sendedHongbao: that.data.sendedHongbao
+            })
+          }
+        }
       }
       ,
       fail: function (res) {
@@ -119,7 +159,7 @@ Page({
   refresh:function(){
     var that = this;
     wx.request({
-      url: that.data.hongbaoUrl,
+      url: config.hongbaoGetBalanceUrl,
       data: {
         token: app.globalData.sessionInfo
       },
@@ -127,7 +167,7 @@ Page({
         console.log(res)
         that.setData({
           userInfo: app.globalData.userInfo,
-          userHongbao: res.data,
+          userHongbao: res.data.data,
         })
       }
       ,
@@ -136,9 +176,21 @@ Page({
       }
     })
     that.data.sendedHongbao.page=0
-    that.data.receivedHongbao.page = 0
-    getReceivedHongbao()
-    getSendedHongbao()
+    console.log("that.data.receivedHongbao.page")
+    that.data.receivedHongbao.page=0
+    
+    console.log(that.data.receivedHongbao.page)
+    this.getReceivedHongbao()
+    this.getSendedHongbao()
+  },
+  toShare:function(obj){
+    var that = this
+    //var filePath = obj.currentTarget.id
+    console.log(obj)
+    console.log(obj.currentTarget.dataset.hongbaoid)
+    wx.navigateTo({
+      url: '/pages/index/Share/Share?id=' + obj.currentTarget.dataset.hongbaoid,
+    })
   },
   /**
    * 提现交互

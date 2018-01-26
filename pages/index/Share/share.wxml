@@ -11,33 +11,33 @@
       </view>
       <view class='ChangeHot'>
         <!--摇一摇领红包-->
-        <view style="{{hongbaoDetail.type==1?'display:block':'display:none'}}">
+        <view wx:if="{{hongbaoDetail.type==1}}">
         <view class="share_box" >
             <view class='question1'>小伙伴摇摇力超过武力值<text style="font-size:50rpx">{{hongbaoDetail.content.question}}</text>即可领红包</view>
           </view>
-          <view  style="{{hongbaoDetail.state==1?'display:block':'display:none'}}" >
+          <view wx:if="{{hongbaoDetail.state==1}}">
            <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
             <button class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{userHongbao.text}}</button>
             </view>
         </view>
        <!--按住说出以上口令领取赏金-->
-        <view style="{{hongbaoDetail.type==2?'display:block':'display:none'}}">
+        <view wx:if="{{hongbaoDetail.type==2}}">
           <view class="share_box" >
             <view class='question2'><text class="iconfont icon-hongbao">{{hongbaoDetail.content.question}}  </text></view>
           </view>
-        <view class='answer2' style="{{hongbaoDetail.state==1?'display:block':'display:none'}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
-        <view class='answer2ok' style="{{hongbaoDetail.state==2?'display:block':'display:none'}}" >活动已完毕</view>
+        <view class='answer2' wx:if="{{hongbaoDetail.state==1}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
+        <view class='answer2ok' wx:if="{{hongbaoDetail.state==2}}">活动已完毕</view>
         </view>
         <!--按住收听真心话领取赏金-->
-        <view style="{{hongbaoDetail.type==3?'display:block':'display:none'}}">
+        <view wx:if="{{hongbaoDetail.type==3}}">
           <view class="share_box" >
-           
+          
           </view>
-           <view class='question3' bindtap='playVoice' id='{{hongbaoDetail.content.question}}' style="{{hongbaoDetail.state==1?'display:block':'display:none'}}">
+           <view class='question3'  bindtap='playVoice'  data-url='{{hongbaoDetail.content.question}}' wx:if="{{hongbaoDetail.state==1}}">
               <text class="iconfont3 icon-bofang">点击收听真心话领取赏金</text>
                
             </view>
-            <view class='question3ok' bindtap='playVoice' id='{{hongbaoDetail.content.question}}' style="{{hongbaoDetail.state==2?'display:block':'display:none'}}">
+            <view class='question3ok' bindtap='playVoice' data-url='{{hongbaoDetail.content.question}}'  wx:if="{{hongbaoDetail.state==2}}">
               <text class="iconfont3 icon-bofang">活动已完毕</text>
                
             </view>
@@ -46,7 +46,7 @@
           </view>
         </view>
          <!--猜谜底领取赏金-->
-        <view style="{{hongbaoDetail.type==4?'display:block':'display:none'}}">
+        <view wx:if="{{hongbaoDetail.type==4}}">
           <view class="share_box" >
             <view class='question4'>{{hongbaoDetail.content.question}}</view>
           </view>
@@ -67,7 +67,7 @@
       </view>
     </view>
     <view class='hotMoneyNum'>
-        <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.leftNum}}/{{hongbaoDetail.allNum}}个</view>
+        <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.sendNum}}/{{hongbaoDetail.allNum}}个</view>
         <view class='fr'>投诉</view>
     </view>
     <block wx:for="{{hongbaoDetail.list}}" wx:key="url" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
@@ -78,10 +78,10 @@
       <view class='peopleMoney_center fl'>
         <text class='people_NickName'>{{item.name}}</text>
         <icon></icon>
-        <view style="{{hongbaoDetail.type==1?'display:block':'display:none'}}">武力值{{item.length}}</view>
-        <view class='yuying_time' bindtap='playVoice' id='{{item.url}}' style="{{hongbaoDetail.type==2?'display:block':'display:none'}}">{{item.length}}"</view>
-        <view class='yuying_time' style="{{hongbaoDetail.type==3?'display:block':'display:none'}}"></view>
-        <view class='yuying_time' style="{{hongbaoDetail.type==4?'display:block':'display:none'}}"></view>
+        <view wx:if="{{hongbaoDetail.type==1}}">武力值{{item.length}}</view>
+        <view class='yuying_time' bindtap='playVoice' data-url='{{item.url}}' wx:if="{{hongbaoDetail.type==2}}">{{item.length}}"</view>
+        <view class='yuying_time' wx:if="{{hongbaoDetail.type==3}}"></view>
+        <view class='yuying_time' wx:if="{{hongbaoDetail.type==4}}"></view>
       </view>
       <view class='peopleMoney_right fr'>
         <view class='yuying_time_right'>

@@ -9,9 +9,7 @@ Page({
     houBaoStyle:1,
     userInfo:[],
     hbType: [],
-    shuoming1: '好友听完你说的话就能领取赏金',
-    shuoming2:'小伙伴们说对口令就能获得随即打赏',
-    shuoming3: '小伙伴摇摇力超过武力值即可领红包',
+    shuoming: '好友听完你说的话就能领取赏金',
     Money:'',
     Number:'',
     fuwufee:0.0,
@@ -28,26 +26,31 @@ Page({
   
   //事件处理函数
   onLoad: function () {
+
+    if (app.globalData.userInfo.nickName) {
+      console.log('index0')
+      this.initPage()
+    } else {
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.initPage()
+      }
+    }
+
+  },
+  initPage:function(){
     var that = this;
     var tipArray = methods.getModel(2).tips;
     console.log("tips length " + tipArray.length)
-    Math.random() * (tipArray.length-1)
-    var num = Math.round(Math.random() * (tipArray.length-1) + 0);
-    console.log("random "+num)
+    Math.random() * (tipArray.length - 1)
+    var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
+    console.log("random " + num)
     that.setData({
-      tips: tipArray[num]
+      tips: tipArray[num],
+      userInfo: app.globalData.userInfo,
     })
-    
-    wx.getUserInfo({
-      success:function(user){
-        console.log(user)
-        that.setData({
-          userInfo:user.userInfo,
-        })
-      }
-    })
+
   },
-  
   // 跳转链接
 
   tomyRecord:function(){
@@ -114,14 +117,17 @@ Page({
       })
     }
     else{
-      var value = wx.getStorageSync('voiceTempFile')
+      console.log(that.data.tempFilePath)
 
-      //console.log("server file path is " + that.data.serverFilePath)
+      methods.uploadFile({filePath:that.data.tempFilePath,success:function(obj){
+        var value = obj
+        //console.log()
+        console.log("server file path is " + value)
+        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
+      }})
 
-      methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
-    wx.navigateTo({
-      url: '../index/Share/Share',
-    })
+
+
     console.log(e.detail.value);
   }
   },
@@ -170,7 +176,7 @@ Page({
   playNetVoice:function(){
     var that=this
    //var filePath=methods.downloadFile(that.data.NetUrl)
-  console.log("qingting "+that.data.NetUrl)
+   console.log("qingting "+that.data.NetUrl)
    methods.playNetVoice(that.data.NetUrl)
 
   }

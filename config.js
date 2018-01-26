@@ -14,10 +14,12 @@ var config = {
 
     // 登录地址，用于建立会话
     loginUrl: `${host}/user/do-login`,
+
+    //
+    updateUrl: `${host}/user/info-update`,
    
     // 用code换取openId
     openIdUrl: `${host}/openid`,
-
 
     // 生成红包接口
     hongbaoCreateUrl: `${host}/hongbao/create`,
@@ -25,6 +27,29 @@ var config = {
     // 上传文件接口
     uploadUrl: `${host}/file/upfile`,
 
+    // 查询红包接口
+    hongbaoDetailUrl: `${host}/hongbao/detail`,
+
+    // 领取红包接口
+    hongbaoGetVoiceUrl: `${host}/hongbao/draw`,
+
+    // 领取红包接口
+    hongbaoGetUrl: `${host}/hongbao/draw`,
+
+    // 查询我的余额接口
+    hongbaoGetBalanceUrl: `${host}/hongbao/getUserBalance`,
+
+    // 查询我发出的红包记录接口
+    hongbaoSendedUrl: `${host}/user/send-list`,
+
+    // 查询我收到的红包记录接口
+    hongbaoReceivedUrl: `${host}/user/receive-list`,
+
+    // 提现我的余额接口
+    hongbaoDrawUrl: `${host}/hongbao/drawUserBalance`,
+
+    // 查询问题帮助列表的接口
+    hongbaoHelpUrl: `${host}/other/help`,
 };
 
 module.exports = config

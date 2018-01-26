@@ -134,7 +134,7 @@ success:function(res) {
 
     } else {
         wx.navigateTo({
-            url: 'Share/share',
+            url: '/pages/index/Share/Share?id='+res.data.data.hotid,
         })
     }
 }
@@ -148,3 +148,4 @@ success:function(res) {
         playNetVoice: playNetVoice
     }
 }
+

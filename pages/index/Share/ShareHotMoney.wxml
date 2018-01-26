@@ -3,8 +3,11 @@
   <view class='con'>
     <view class='bg_pic' style="background:url('../../image/bg.png') no-repeat;background-size:750rpx 630rpx;">
       <view class='share_box'>
-        <image src='{{userInfo.avatarUrl}}'
-              mode='widthFix' class='header_logo'></image>
+        <image src='{{hongbaoDetail.senderIcon}}'
+              mode='widthFix' class='header'></image>
+      </view>
+      <view class="share_box">
+        <view class='kouling'> {{hongbaoDetail.senderName}}</view>
       </view>
       <view class="share_box">
         <view class='kouling'> 发了一个红包</view>

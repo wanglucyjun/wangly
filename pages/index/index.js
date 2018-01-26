@@ -7,7 +7,7 @@ Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
-    shuoming: '小伙伴摇摇力超过武力值即可领红包',
+    shuoming: '小伙伴摇摇超过武力值领赏金',
     powerset:'60',
     Money: '',
     Number: '',
@@ -19,24 +19,29 @@ Page({
 
   //事件处理函数
   onLoad: function () {
+    if (app.globalData.userInfo.nickName){
+      console.log('index0')
+       this.initPage()
+    }else{
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.initPage()
+      }
+    }
+    
+  },
+  initPage:function(){
     var that = this;
     var tipArray = app.globalData.hbType[0].tips;
     console.log("tips length " + tipArray.length)
-    Math.random() * (tipArray.length-1)
-    var num = Math.round(Math.random() * (tipArray.length-1) + 0);
-    console.log("random "+num)
+    Math.random() * (tipArray.length - 1)
+    var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
+    console.log("random " + num)
     that.setData({
-      tips: tipArray[num]
+      tips: tipArray[num],
+      userInfo: app.globalData.userInfo
     })
-
-    wx.getUserInfo({
-      success:function(user){
-        console.log(user)
-        that.setData({
-          userInfo:user.userInfo,
-        })
-      }
-    })
+    console.log(app.globalData.userInfo)
   },
 
   //开始摇手机
@@ -92,8 +97,8 @@ Page({
 
   toShare:function(e) {
     var that = this;
-    console.log("money is "+that.data.Money )
-    if(that.data.Money==''){
+    console.log(e.detail.value)
+    if(this.data.Money==''){
 
       wx.showModal({
         title: '提示',
@@ -108,7 +113,7 @@ Page({
       })
     }
 
-    else if(that.data.Number==''){
+    else if(this.data.Number==''){
       wx.showModal({
         title: '提示',
         content: '请输入红包个数',
@@ -126,10 +131,8 @@ Page({
       wx.stopAccelerometer({})
 
       methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'',1)
-      // wx.navigateTo({
-      //   url: 'Share/share',
-      // })
-      // console.log(e.detail.value);
+     
+      console.log(e.detail.value);
     }
   },
 

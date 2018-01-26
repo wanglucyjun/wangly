@@ -7,7 +7,7 @@ Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
-    shuoming1: '小伙伴们说对口令就能获得随即打赏',
+    shuoming1: '小伙伴们说对口令就能获得随机赏金',
     kouling: '',
     Money: '',
     Number: '',
@@ -15,27 +15,32 @@ Page({
     tips:"新的一年大吉大利"
   },
 
- 
   onLoad: function () {
-    var that = this;
-    wx.getUserInfo({
-      success: function (user) {
-        console.log(user)
-        that.setData({
-          userInfo: user.userInfo,
-        })
+
+    if (app.globalData.userInfo.nickName) {
+      console.log('index0')
+      this.initPage()
+    } else {
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.initPage()
       }
-    })
+    }
+    
+  },
+  initPage: function () {
+    var that = this;
     var tipArray = methods.getModel(1).tips;
     console.log("tips length " + tipArray.length)
     Math.random() * (tipArray.length - 1)
     var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
     console.log("random " + num)
     that.setData({
-      tips: tipArray[num]
+      userInfo: app.globalData.userInfo,
+      tips: tipArray[num],
+      kouling: tipArray[num]
     })
   },
-
   // 跳转链接
 
   tomyRecord: function () {
@@ -101,12 +106,13 @@ Page({
       })
     }
     else {
-      methods.uploadFile()
+      console.log('fdjkdfslkj');
+      if (that.data.kouling==''){
+        that.data.kouling = that.data.tips
+      }
+      console.log(that.data.kouling);
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
-      wx.navigateTo({
-        url: 'Share/share',
-      })
-      console.log(e.detail.value);
+     
     }
   }
 
