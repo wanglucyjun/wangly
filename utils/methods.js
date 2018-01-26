@@ -122,19 +122,29 @@ wx.request({
     usebalance:get_Use_Balance(type),
   },
 
-success:function(res){
-console.log(res.data)
+success:function(res) {
+    console.log(res.data)
+    if (res.data.code == '101') {
+        wx.showToast({
+            title: res.data.message,
+        })
+    }
+    if (res.data.code == '0') {
+        var hotid = res.data.data.hotid;
+
+    } else {
+        wx.navigateTo({
+            url: 'Share/share',
+        })
+    }
 }
 })
-  }
-
-
- module.exports={
-  getModel:getModel,
-  getChargeFee: getChargeFee,
-  uploadFile:uploadFile,
-  downloadFile: downloadFile,
-  hongbaoCreate: hongbaoCreate,
-  playNetVoice:playNetVoice
+    module.exports = {
+        getModel: getModel,
+        getChargeFee: getChargeFee,
+        uploadFile: uploadFile,
+        downloadFile: downloadFile,
+        hongbaoCreate: hongbaoCreate,
+        playNetVoice: playNetVoice
+    }
 }
-

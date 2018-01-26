@@ -92,8 +92,8 @@ Page({
 
   toShare:function(e) {
     var that = this;
-    console.log(e.detail.value)
-    if(this.data.Money==''){
+    console.log("money is "+that.data.Money )
+    if(that.data.Money==''){
 
       wx.showModal({
         title: '提示',
@@ -108,7 +108,7 @@ Page({
       })
     }
 
-    else if(this.data.Number==''){
+    else if(that.data.Number==''){
       wx.showModal({
         title: '提示',
         content: '请输入红包个数',
@@ -126,10 +126,10 @@ Page({
       wx.stopAccelerometer({})
 
       methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'',1)
-      wx.navigateTo({
-        url: 'Share/share',
-      })
-      console.log(e.detail.value);
+      // wx.navigateTo({
+      //   url: 'Share/share',
+      // })
+      // console.log(e.detail.value);
     }
   },
 

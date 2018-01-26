@@ -115,7 +115,7 @@ Page({
     }
     else{
       var value = wx.getStorageSync('voiceTempFile')
-     
+
       //console.log("server file path is " + that.data.serverFilePath)
 
       methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
