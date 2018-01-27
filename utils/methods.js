@@ -123,10 +123,19 @@ wx.request({
     usebalance:get_Use_Balance(type),
   },
 
-success:function(res){
-  wx.navigateTo({
-    url: '/pages/index/Share/Share?id='+res.data.data.hotid,
-  })
+success:function(res) {
+    console.log(res.data)
+    if (res.data.code == '101') {
+        wx.showToast({
+            title: res.data.message,
+        })
+    }
+    if (res.data.code == '0') {
+        var hotid = res.data.data.hotid;
+        wx.navigateTo({
+            url: '/pages/index/Share/share?id='+res.data.data.hotid,
+        })
+    }
 }
 })
   }

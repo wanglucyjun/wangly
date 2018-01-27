@@ -70,7 +70,7 @@ Page{
   font-family:PingFang SC Medium,"微软雅黑";
   font-size:12px;
   margin-bottom: 50rpx;
-  display:none;
+
 }
 .hotInput{
   width:450rpx;
@@ -78,8 +78,8 @@ Page{
   margin-top:5rpx;
 }
 .shuoming{
-  height:50rpx;
-  line-height: 50rpx;
+  height:35rpx;
+  line-height: 35rpx;
   font-size:24rpx;
   color:#999;
   margin-top: 20rpx;
@@ -104,13 +104,7 @@ Page{
 }
 
 
-.setHotMoney_detail1{
-  height:65rpx;
-  line-height:65rpx;
-  font-weight:bold;
-  font-size:28rpx;
-  margin-top:15rpx;
-}
+
 .hotInput1{
   width:450rpx;
   border-bottom:1px solid #ccc;
