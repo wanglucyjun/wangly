@@ -3,9 +3,14 @@ Page{
   background: #f3f5fa;
 }
 .mine_header{
-  width:680rpx;
+  width:100%;
   height:346rpx; 
-  padding:0 35rpx;
+  position: relative;
+
+}
+.bg{
+    width: 100%;
+    height: 100%;
 }
 .header_Head{
   width:150rpx;
@@ -25,19 +30,19 @@ Page{
   line-height: 95rpx;
 }
 .header_Box{
-  width:160rpx;
-  height:222rpx;
-  padding-top:28rpx;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+
 }
 .header_center{
-  margin-left:20rpx;
-  width:344rpx;
-  height:222rpx;
+    position: absolute;
+    top: 10%;
+    left: 30%;
   color:#fff;
 
 }
 .header_name{
-  margin-top:55rpx;
   height:70rpx;
   line-height: 70rpx;
   font-size:32rpx;
@@ -49,13 +54,13 @@ Page{
   font-size:26rpx;
 }
 .header_right{
-  width:130rpx;
-  height:222rpx;
+ position: absolute;
+ top: 10%;
+ left: 75%;
+  color:#fff;
 }
 .hotMoney_tu{
   width:110rpx;
-  margin-left:10rpx;
-  margin-top:32rpx;
 }
 .header-right_tixian{
   color:#fff;
@@ -65,11 +70,19 @@ Page{
 .betterPlay{
   width:750rpx;
   height:55rpx;
+  position: relative;
   text-align: center;
   line-height: 55rpx;
   font-size:30rpx;
   font-weight:bold;
   background: #fff;
+}
+.betterPlay image{
+  position:absolute;
+  left:0%;
+  top:0%;
+  width:100%;
+  height: 100%;
 }
 .mine_hotStyle{
   width:750rpx;

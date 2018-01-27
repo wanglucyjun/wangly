@@ -199,5 +199,10 @@ Page({
     wx.navigateTo({
       url: 'draw/draw',
     })
+  },
+  showHelp:function(){
+    wx.navigateTo({
+      url: 'help/help',
+    })
   }
 })

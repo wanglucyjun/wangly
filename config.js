@@ -2,7 +2,7 @@
  * 小程序配置文件,chang name
  */
 
-var host = "http://www.chemchemchem.com"
+var host = "https://www.chemchemchem.com"
 
 var config = {
 
@@ -49,7 +49,7 @@ var config = {
     hongbaoDrawUrl: `${host}/hongbao/drawUserBalance`,
 
     // 查询问题帮助列表的接口
-    hongbaoHelpUrl: `${host}/other/help`,
+    hongbaoHelpUrl: `${host}/help/list`,
 };
 
 module.exports = config

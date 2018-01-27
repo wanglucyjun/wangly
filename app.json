@@ -6,7 +6,8 @@
     "pages/kouling/kouling",
     "pages/qingting/qingting",
     "pages/mine/mine",
-    "pages/mine/draw/draw"
+    "pages/mine/draw/draw",
+    "pages/mine/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",

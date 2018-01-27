@@ -1,7 +1,11 @@
 <!--pages/index/Share/ShareHotMoney.wxml-->
 <view class='container'>
   <view class='con'>
-    <view class='bg_pic' style="background:url('../../image/bg.png') no-repeat;background-size:750rpx 630rpx;">
+    <view class='bg_pic'>
+    <image class='bg' src='../../image/bg.png'></image>
+  
+
+    <view class='bg_picbody'>
       <view class='share_box'>
         <image src='{{hongbaoDetail.senderIcon}}'
               mode='widthFix' class='header'></image>
@@ -21,6 +25,7 @@
       </view>
       
     </view>
+    </view>
     <view class='share_box marginTop'>
       <view class='btn_box'>
         <button class='btn_Btn' open-type="share">转发到好友或着群里</button> 
@@ -28,6 +33,6 @@
        
       </view>
     </view>
-
+    
   </view>
 </view>

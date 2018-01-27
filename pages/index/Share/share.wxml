@@ -1,7 +1,9 @@
 <!--pages/index/Share/ShareHotMoney.wxml-->
 <view class='container'>
   <view class='con'>
-    <view class='topBox'style="background:url('../../image/lingquBg.png') no-repeat;background-size:750rpx 544rpx;">
+ <view class='topBox'>
+    <image class='bg' src='../../image/lingquBg.png'></image>
+    <view  class='topBoxBody'>
       <view class='share_box'>
         <image src='{{hongbaoDetail.senderIcon}}'
               mode='widthFix' class='header'></image>
@@ -16,16 +18,23 @@
             <view class='question1'>小伙伴摇摇力超过武力值<text style="font-size:50rpx">{{hongbaoDetail.content.question}}</text>即可领红包</view>
           </view>
           <view wx:if="{{hongbaoDetail.state==1}}">
-           <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
-            <button class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{userHongbao.text}}</button>
+            <view wx:if="{{hongbaoDetail.hadSend==0}}">
+              <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
+              <button class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{userHongbao.text}}</button>
             </view>
+            <view class='answer2ok' wx:if="{{hongbaoDetail.hadSend==1}}">已领红包</view>
+          </view>
         </view>
        <!--按住说出以上口令领取赏金-->
         <view wx:if="{{hongbaoDetail.type==2}}">
           <view class="share_box" >
             <view class='question2'><text class="iconfont icon-hongbao">{{hongbaoDetail.content.question}}  </text></view>
           </view>
-        <view class='answer2' wx:if="{{hongbaoDetail.state==1}}" bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
+          <view wx:if="{{hongbaoDetail.state==1}}">
+             <view class='answer2' wx:if="{{hongbaoDetail.hadSend==0}}"  bindtouchstart='startRecord' bindtouchend='stopRecord'>按住说出以上口令领取赏金</view>
+             <view class='answer2ok' wx:if="{{hongbaoDetail.hadSend==1}}">已领红包</view>
+          </view>
+       
         <view class='answer2ok' wx:if="{{hongbaoDetail.state==2}}">活动已完毕</view>
         </view>
         <!--按住收听真心话领取赏金-->
@@ -66,6 +75,7 @@
         </view>
       </view>
     </view>
+</view>
     <view class='hotMoneyNum'>
         <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.sendNum}}/{{hongbaoDetail.allNum}}个</view>
         <view class='fr'>投诉</view>

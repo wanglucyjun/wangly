@@ -1,8 +1,9 @@
 <!--pages/mine/mine.wxml-->
 <view class='container'>
   <view class='con'>
-    <view class='mine_header' style="background:url('../image/hot1.png') no-repeat;background-size:750rpx 346rpx;">
-    <view class='header_Box fl'>
+    <view class='mine_header'>
+    <image class='bg' src='../image/hot1.png'></image>
+    <view class='header_Box fl' bindtap='showHelp'>
       <image src='{{userInfo.avatarUrl}}'  class='header_Head'> </image>
     </view>
     <view class='header_center fl'>
@@ -13,11 +14,13 @@
         <image src='../image/hot.png' mode='widthFix' class='hotMoney_tu'></image>
         <view class='header-right_tixian'>提现</view>
      </view>
+     
     </view>
 
-    <view class='betterPlay' style='background:#fff url(../image/line.png) no-repeat;background-size: contain'>
-      我的记录
-    </view>
+    <view class='betterPlay' >
+      <image src='../image/line.png'></image>
+      <text>我的记录</text>
+</view>
 
     <view class='nav'>
       <text class="nav_con {{mineRecod==1? 'on':''}}" data-num="1" bindtap='changeTab'>我发出的</text>

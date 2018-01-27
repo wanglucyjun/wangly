@@ -1,0 +1,16 @@
+<view>
+<view class='help-list'>
+  <block wx:for="{{helpinfos.lists}}"  wx:key="{{item.title}}" >
+      <view class='help-list-item' >
+        <view id='{{item.title}}' class="help-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
+          <view class="kind-list-text">{{item.title}}</view>
+        </view>
+        <view class="help-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+          <view class="kind-list-text">{{item.content}}</view>
+        </view>
+      </view>
+      </block>
+</view>
+<view>
+</view>
+</view>

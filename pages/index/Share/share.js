@@ -114,6 +114,8 @@ Page({
       },
       success: function (res) {
         console.log(res)
+
+        
         that.setData({
           userInfo: app.globalData.userInfo,
           hongbaoDetail: res.data.data,
@@ -200,7 +202,9 @@ Page({
       wx.playVoice({
         filePath: filePath,
         complete: function () {
-          if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state == 1) {
+          if (that.data.hongbaoDetail.type == 3 
+          && that.data.hongbaoDetail.state == 1
+          &&that.data.hongbaoDetail.hadSend==0) {
             that.data.userHongbao.file = ''
             that.data.userHongbao.text = ''
             that.getHongbao()

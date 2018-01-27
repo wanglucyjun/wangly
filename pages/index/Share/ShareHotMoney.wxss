@@ -3,8 +3,18 @@ Page{
   background:#d6344f;
 }
 .bg_pic{
-  margin-bottom:100rpx;
-  padding-bottom: 350rpx;
+   height: 600rpx;
+   width: 100%;
+   position: relative;
+}
+.bg_picbody{
+
+  position:absolute;
+}
+.bg{
+    width: 100%;
+    height: 100%;
+    position:absolute;
 }
 .con{
   overflow: hidden;
