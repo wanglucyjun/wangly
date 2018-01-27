@@ -37,25 +37,12 @@
 .marginAuto{
   margin: 0 auto;
 }
-.qingting{
-  width:600rpx;
-  height:60rpx;
-  line-height:60rpx;
-  background:#f3f5fa;
-  font-size:20rpx;
-  color:#999;
-  border-radius:15rpx;
+.help{
+   margin-top: 60rpx;
+   text-align: center;
+   font-size: 18rpx;
 }
-.qingTing{
-  width:530rpx;
-  height:64rpx;
-  background:#fff;
-  line-height: 64rpx;
-  color:#3e3e3e;
-  font-size:24rpx;
-  margin-top:30rpx;
-  border-radius:15rpx;
-}
+
 .paddLeft25{
   padding-left:25rpx;
 }

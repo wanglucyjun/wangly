@@ -21,8 +21,8 @@
           <!--摇摇红包  -->
             <view class='setHotMoney_detail' >
                   
-              <view class='setHotMoney_name1 fl' >设置武力值</view>
-              <input type='text' placeholder='60' class='hotInput1 fr'      bindinput='powerInput'></input>
+              <view class='setHotMoney_name fl' >设置武力值</view>
+              <input type='text' placeholder='60' class='hotInput fr'      bindinput='powerInput'></input>
             </view>
 
             <view class='shuoming'>
@@ -52,6 +52,6 @@
 
         </view>
     </view>
-
+    <view class='help' bindtap='clickhelp'>常见问题</view>
  </view>
 </view>

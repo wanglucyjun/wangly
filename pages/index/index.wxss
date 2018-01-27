@@ -39,7 +39,7 @@ Page{
   margin-top:-55rpx;
   border-radius:50%;
   position:absolute;
-  top:0;
+  top:20;
   left:50%;
   margin-left:-55rpx;
   z-index:99;
@@ -57,10 +57,14 @@ Page{
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:65rpx;
-  line-height:65rpx;
+  height:80rpx;
+  line-height:80rpx;
   font-weight:bold;
   font-size:28rpx;
+}
+.setHotMoney_name{
+  font-weight:bold;
+  font-size:30rpx;
 }
 .try{
   width: 450rpx;
@@ -75,7 +79,8 @@ Page{
 .hotInput{
   width:450rpx;
   border-bottom:1px solid #ccc;
-  margin-top:5rpx;
+  margin-top:0rpx;
+  
 }
 .shuoming{
   height:35rpx;
@@ -105,11 +110,7 @@ Page{
 
 
 
-.hotInput1{
-  width:450rpx;
-  border-bottom:1px solid #ccc;
-  margin-top:5rpx;
-}
+
 
 .answer{
   width:350rpx;

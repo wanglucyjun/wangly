@@ -60,14 +60,12 @@ Page({
       // console.log(res.y + ',')
       // console.log(res.z + ',')
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
-      if (wuli > 5){
+      if (wuli > 2){
         console.log(wuli)
         that.setData({
           power: wuli.toFixed(2)*that.data.rate
         })
-      }
-     
-      
+      } 
     })
    
   },
@@ -135,5 +133,11 @@ Page({
       console.log(e.detail.value);
     }
   },
+
+  clickhelp:function(){
+    wx.navigateTo({
+      url: '../mine/help/help',
+    })
+  }
 
 })
