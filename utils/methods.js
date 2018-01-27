@@ -34,15 +34,15 @@ function get_Use_Balance(type){
 }
 
 //上传文件方法
-function uploadFile(obj) {
+function uploadFile(filePath) {
   var that = this
   var serverFilePath;
   wx.uploadFile({
     url: uploadUrl,
-    filePath: obj.filePath,
+    filePath: filePath,
     name: 'recordfile',
     formData: {
-      'token': app.globalData.sessionInfo
+      'token': 'adb'
     },
     success: function (res) {
       var data = res.data
@@ -53,7 +53,6 @@ function uploadFile(obj) {
         key: "voiceTempFile",
         data: serverFilePath
       })
-      obj.success(serverFilePath)
       console.log("upload return is " + serverFilePath)
     }
   })
@@ -112,7 +111,7 @@ wx.request({
 
   url: hongbaoCreateUrl,
   data: {
-    token: app.globalData.sessionInfo,
+    token:"1-2-3",
     type:type,
     question:question,
     power:power,
@@ -123,21 +122,30 @@ wx.request({
     usebalance:get_Use_Balance(type),
   },
 
-success:function(res){
-  wx.navigateTo({
-    url: '/pages/index/Share/Share?id='+res.data.data.hotid,
-  })
+success:function(res) {
+    console.log(res.data)
+    if (res.data.code == '101') {
+        wx.showToast({
+            title: res.data.message,
+        })
+    }
+    if (res.data.code == '0') {
+        var hotid = res.data.data.hotid;
+
+    } else {
+        wx.navigateTo({
+            url: '/pages/index/Share/Share?id='+res.data.data.hotid,
+        })
+    }
 }
 })
-  }
-
-
- module.exports={
-  getModel:getModel,
-  getChargeFee: getChargeFee,
-  uploadFile:uploadFile,
-  downloadFile: downloadFile,
-  hongbaoCreate: hongbaoCreate,
-  playNetVoice:playNetVoice
+    module.exports = {
+        getModel: getModel,
+        getChargeFee: getChargeFee,
+        uploadFile: uploadFile,
+        downloadFile: downloadFile,
+        hongbaoCreate: hongbaoCreate,
+        playNetVoice: playNetVoice
+    }
 }
 
