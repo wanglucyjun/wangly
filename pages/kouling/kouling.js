@@ -63,7 +63,10 @@ Page({
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee:methods.getChargeFee(1),
+    })
+    console.log("now money is" + that.data.Money)
+    that.setData({
+      fuwufee: methods.getSendFee(1, that.data.Money),
     })
   },
   NumberInput: function (e) {

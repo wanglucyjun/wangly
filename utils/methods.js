@@ -1,5 +1,6 @@
 const uploadUrl = require('../config').uploadUrl
 const hongbaoCreateUrl = require('../config').hongbaoCreateUrl
+const userinfoUrl = require('../config').userinfoUrl
 const app = getApp()
 var innerAudioContext = wx.createInnerAudioContext()
 
@@ -10,10 +11,10 @@ function getModel(type) {
    return temdata
  
 }
-//费用相关
-function getChargeFee(type) {
+//费用相关,得到生成红包时返回的服务费
+function getSendFee(type,money) {
   var that = this
-  var tempparam = app.globalData.chargeFee[getModel(type).chargeParam]
+  var tempparam = app.globalData.sendFee[getModel(type).sendParam]
 
   if (tempparam.isFee == "0") {
     var fuwufee="0.0"
@@ -21,18 +22,85 @@ function getChargeFee(type) {
   }
   else {
     var rate=tempparam.rate
-    var fuwufee=that.data.Money * rate
+    var fuwufee=money * rate
+    console.log("rate is " + rate);
+    console.log("fuwufee is " + fuwufee);
+    if(fuwufee < tempparam.minVal){
+      fuwufee=tempparam.minVal
+    }
+    return fuwufee;
+  }
+}
+//费用相关,得到充值是需要的服务费
+function getChargeFee(type,money) {
+  var that = this
+  var tempparam = app.globalData.chargeFee[getModel(type).chargeParam]
+
+  if (tempparam.isFee == "0") {
+    var fuwufee = "0.0"
+    return fuwufee
+  }
+  else {
+    var rate = tempparam.rate
+    var fuwufee = money * rate
     console.log("rate is " + rate);
     console.log("fuwufee is " + fuwufee);
     return fuwufee;
   }
 }
+//费用相关,领取红包需要的服务费
+function getReceiveFee(type) {
+  var that = this
+  var tempparam = app.globalData.receiveFee[getModel(type).receiveParam]
+
+  if (tempparam.isFee == "0") {
+    var fuwufee = "0.0"
+    return fuwufee
+  }
+  else {
+    var rate = tempparam.rate
+    var fuwufee = that.data.Money * rate
+    console.log("rate is " + rate);
+    console.log("fuwufee is " + fuwufee);
+    return fuwufee;
+  }
+}
+
+//费用相关,体现需要的服务费
+function getWithdrawFee(type) {
+  var that = this
+  var tempparam = app.globalData.withdrawFee[getModel(type).withdrawParam]
+
+  if (tempparam.isFee == "0") {
+    var fuwufee = "0.0"
+    return fuwufee
+  }
+  else {
+    var rate = tempparam.rate
+    var fuwufee = that.data.Money * rate
+    console.log("rate is " + rate);
+    console.log("fuwufee is " + fuwufee);
+    return fuwufee;
+  }
+}
+
 // 返回是否使用余额支付，初始化接口返回,0为不使用余额支付，1为使用余额支付
 function get_Use_Balance(type){
     var isBalance=getModel(type).use_balance;
     return isBalance
 }
-
+//得到用户基本账号余额信息
+function getAccountInfo(){
+  wx.request({
+    url: userinfoUrl,
+    data:{
+    'token': app.globalData.sessionInfo,
+  },
+  success:function(res){
+    console.log(res.data);
+  }
+  })
+}
 //上传文件方法
 function uploadFile(obj) {
   var that = this
@@ -78,12 +146,7 @@ function downloadFile(netUrl){
     }
   })
 }
-//播放网络地址音频
-function playNetVoice(NetUrl){
-  innerAudioContext.src = 'http://www.chemchemchem.com/file/201801212303/40affe2a9c37c223dfcca82339b8aee2.silk';
-  console.log("net url is "+innerAudioContext.src)
-  innerAudioContext.play();
-}
+
 //保存文件到本地
 function saveFileToLocal() {
   var that = this
@@ -132,9 +195,16 @@ success:function(res) {
     }
     if (res.data.code == '0') {
         var hotid = res.data.data.hotid;
-        wx.navigateTo({
-            url: '/pages/index/Share/share?id='+res.data.data.hotid,
-        })
+        if (res.data.data.needpay == '0'){
+          //不需要调取支付，直接跳转
+          wx.navigateTo({
+            url: '/pages/index/Share/share?id=' + res.data.data.hotid,
+          })
+        }
+        else{
+          //调起微信支付
+        }
+       
     }
 }
 })
@@ -144,9 +214,12 @@ success:function(res) {
  module.exports={
   getModel:getModel,
   getChargeFee: getChargeFee,
+  getSendFee: getSendFee,
+  getReceiveFee: getReceiveFee,
+  getWithdrawFee: getWithdrawFee,
   uploadFile:uploadFile,
   downloadFile: downloadFile,
   hongbaoCreate: hongbaoCreate,
-  playNetVoice:playNetVoice
+  getAccountInfo: getAccountInfo
 }
 

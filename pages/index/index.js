@@ -82,7 +82,11 @@ Page({
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee: methods.getChargeFee(0),
+    })
+    methods.getAccountInfo()
+    console.log("now money is"+that.data.Money)
+    that.setData({
+      fuwufee: methods.getSendFee(0,that.data.Money),
     })
   },
   NumberInput: function (e) {

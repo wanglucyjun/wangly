@@ -8,7 +8,8 @@ App({
     needInfo:0,
     userInfo: [],
     chargeFee:[],
-    dealFee:[],
+    sendFee:[],
+    receiveFee:[],
     withdrawFee:[],
     hbType:[],
   },
@@ -132,10 +133,10 @@ App({
       success: function (res) {
         console.log(res.data),
           that.globalData.chargeFee = res.data.data.chargeFee,
-          that.globalData.dealFee = res.data.data.dealFee,
+          that.globalData.sendFee = res.data.data.sendFee,
+          that.globalData.receiveFee = res.data.receiveFee,
           that.globalData.withdrawFee = res.data.data.withdrawFee,
-          that.globalData.hbType = res.data.data.hbType,
-          console.log(res.data.data.hbType.length)
+          that.globalData.hbType = res.data.data.hbType
       },
       fail: function (res) {
         console.log(res.data)

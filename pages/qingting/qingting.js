@@ -12,7 +12,7 @@ Page({
     shuoming: '好友听完你说的话就能领取赏金',
     Money:'',
     Number:'',
-    fuwufee:0.0,
+    fuwufee:'0.0',
     hasRecord:false,
     recording:false,
     filePath:'',
@@ -68,15 +68,18 @@ Page({
       kouling:e.detail.value,
     })
   },
-  MoneyInput:function(e){
+  MoneyInput: function (e) {
     var that = this;
-   var fuwufee=methods.getChargeFee(2)
     console.log(e.detail.value)
     that.setData({
       Money: e.detail.value,
-      fuwufee: fuwufee
+    })
+    console.log("now money is" + that.data.Money)
+    that.setData({
+      fuwufee: methods.getSendFee(2, that.data.Money),
     })
   },
+  
   NumberInput: function (e) {
     var that = this;
     console.log(e.detail.value)
@@ -168,16 +171,6 @@ Page({
    wx.playVoice({
      filePath: filePath,
    })
-   methods.uploadFile(filePath)
-  
   },
 
-  //播放网络返回的地址
-  playNetVoice:function(){
-    var that=this
-   //var filePath=methods.downloadFile(that.data.NetUrl)
-   console.log("qingting "+that.data.NetUrl)
-   methods.playNetVoice(that.data.NetUrl)
-
-  }
 })

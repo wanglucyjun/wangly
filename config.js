@@ -50,6 +50,9 @@ var config = {
 
     // 查询问题帮助列表的接口
     hongbaoHelpUrl: `${host}/help/list`,
+
+    //获取用户信息接口
+    userinfoUrl: `${host}/user/info`
 };
 
 module.exports = config
