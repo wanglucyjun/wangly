@@ -14,7 +14,7 @@
           </view>
           <view class="setHotMoney">
           <!--口令红包  -->
-            <view class='setHotMoney_detail1' 
+            <view class='setHotMoney_detail' 
                 >
                   
               <view class='setHotMoney_name1 fl' >设置口令</view>
