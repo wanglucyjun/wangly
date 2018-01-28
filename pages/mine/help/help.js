@@ -25,6 +25,7 @@ Page({
           var list = res.data.data.lists
           for (var i = 0, len = list.length; i < len; ++i) {
             list[i].open = false
+            list[i].id=i
           }
           res.data.data.lists=list
           that.setData({
@@ -67,16 +68,18 @@ Page({
   
   },
   kindToggle: function (e) {
+    console.log(e)
     var id = e.currentTarget.id, list = this.data.helpinfos.lists;
     for (var i = 0, len = list.length; i < len; ++i) {
-      if (list[i].title == id) {
+      if (list[i].id == id) {
         list[i].open = !list[i].open
       } else {
         list[i].open = false
       }
     }
+    this.data.helpinfos.lists = list
     this.setData({
-      list: list
+      helpinfos: this.data.helpinfos
     });
   }
  })

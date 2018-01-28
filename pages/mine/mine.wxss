@@ -39,18 +39,18 @@ Page{
     position: absolute;
     top: 10%;
     left: 30%;
-  color:#fff;
+    color:#fff;
 
 }
 .header_name{
-  height:70rpx;
-  line-height: 70rpx;
+  height:50rpx;
+  line-height: 50rpx;
   font-size:32rpx;
 
 }
 .header_yue{
-  height:70rpx;
-  line-height: 70rpx;
+  height:50rpx;
+  line-height: 50rpx;
   font-size:26rpx;
 }
 .header_right{
@@ -155,17 +155,85 @@ Page{
   font-weight:bold;
 }
 
-.hotPeopleDetail{
+.sended-list-item{
+  width:750rpx;
+  height:85rpx;
+  background: #fff;
+  margin-bottom:5rpx;
+}
+.sended-list-item-box{
+  width:700rpx;
+  margin:0 auto;
+  overflow:hidden;
+}
+.sended-list-item-left{
+  width:85rpx;
+  height:90rpx;
+
+}
+.sended-list-item-center{
+  padding-top: 10rpx;
+  width:300rpx;
+  height:85rpx;
+}
+.sended-list-item-right{
+  height:85rpx;
+}
+.sended-list-item-logo{
+  width:80rpx;
+  height:80rpx;
+  border-radius:15rpx;
+}
+.sended-list-item text{
+  font-size:28rpx;
+}
+.sended-list-item-money{
+  font-size:30rpx;
+  color:#90EE90;
+}
+.sended-list-item-date{
+  font-size:22rpx;
+}
+.received-list-item{
   width:750rpx;
   height:90rpx;
   background: #fff;
   margin-bottom:5rpx;
 }
-.peopleBox{
+.received-list-item-box{
   width:700rpx;
   margin:0 auto;
   overflow:hidden;
 }
+.received-list-item-left{
+  width:90rpx;
+  height:90rpx;
+
+}
+.received-list-item-center{
+  width:300rpx;
+  height:90rpx;
+}
+.received-list-item-right{
+  height:90rpx;
+}
+.received-list-item-logo{
+  width:80rpx;
+  height:80rpx;
+  border-radius:15rpx;
+}
+.received-list-item-text{
+  font-size:25rpx;
+}
+.received-list-item-money{
+  font-size:30rpx;
+  color:#e73b58;
+}
+.received-list-item-date{
+  font-size:22rpx;
+}
+
+
 .people{
   width:700rpx;
   font-size:26rpx;
