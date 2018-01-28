@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
 	"appid": "wxadeaead1276aaced",
-	"projectname": "GitHotMoney",
+	"projectname": "hotmoney",
 	"condition": {
 		"search": {
 			"current": -1,

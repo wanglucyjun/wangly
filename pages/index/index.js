@@ -50,26 +50,69 @@ Page({
   },
 
   //开始摇手机
-  startMove:function(){
+  yyydata: {
+    lastTime : 0,
+    lastIndex : 0,
+    currentIndex : 0,
+    liliang : [],
+  },
+  addLiliang:function(liliang) {
+    var currentIndex = this.yyydata.lastIndex % 100;
+    this.yyydata.liliang[currentIndex] = 0+liliang;
+    var newTime= (new Date()).getTime();
+    var sum = 0;
+    var count = 5
+    if (this.yyydata.lastIndex > 5 && (newTime - this.yyydata.lastTime) > 2000) {
+      this.yyydata.lastTime = newTime;
+      for (var i = 0; i < count; i++) {
+        sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
+      }
+      console.log('sum:' + sum + ';lasttime:' + this.yyydata.lastTime)
+      //this.sayWord(sum);
+    }
+    this.yyydata.lastIndex++
+    return sum;
+  },
+  sayWord: function(word) {
+    //must be string
+    word=word + 'str';
+    var p = /[0-9]/;
+    for(var i= 0;i<word.length;i++){
+  if (p.test(word[i])) {
+    var filePath = '../../../lib/audio/num' + word[i] + '.mp3'
+    console.log('say' + word[i]+filePath);
+    wx.playVoice({
+      filePath: filePath,
+    })
+  } else {
+    break;
+  }
+}
+                    },
+ startMove:function(){
       var that=this
       that.setData({
         moving:true
       })
+      this.yyydata.lastTime = (new Date()).getTime();
+      this.yyydata.lastIndex = 0;
+      this.yyydata.currentIndex = 0;
+      this.yyydata.liliang = [];
     wx.startAccelerometer({
       success: function (res) {
         console.log("the wuli " + res)
       }
     })
     wx.onAccelerometerChange(function (res) {
-      // console.log(res.x+',')
-      // console.log(res.y + ',')
-      // console.log(res.z + ',')
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
       if (wuli > 2){
-        console.log(wuli)
+        var sum = that.addLiliang(wuli);
+        if(sum>10){
+          that.sayWord(sum);
         that.setData({
-          power: wuli.toFixed(2)*that.data.rate
-        })
+          power: sum.toFixed(2)*that.data.rate
+          })
+        }
       } 
     })
    
