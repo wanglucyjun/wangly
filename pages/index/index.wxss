@@ -18,7 +18,12 @@ Page{
   display:flex;
   justify-content: space-around;
 }
-
+.hotInput1{
+  width:430rpx;
+  border-bottom:1px solid #ccc;
+  margin-top:2rpx;
+  text-align:left;
+}
 
 .setHotMoney_name{
   font-weight:bold;
@@ -31,6 +36,7 @@ Page{
   margin-top: 20rpx;
   font-family:PingFang SC Medium,"微软雅黑";
   font-size:12px;
-  margin-bottom: 50rpx;
-
+  text-align: center;
+  margin-bottom: 20rpx;
+  margin-left: 45rpx;
 }

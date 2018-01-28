@@ -41,6 +41,26 @@
   margin-top:90rpx;
   
 }
+.header_logo{
+  width:110rpx;
+  height:110rpx;
+  border:15rpx;
+  margin:15rpx auto;
+}
+.headerShare{
+  width:110rpx;
+  height:110rpx;
+  border:10rpx;
+  border-radius:50%;
+  margin-top:12rpx; 
+}
+.header_Head{
+  width:150rpx;
+  height:150rpx;
+  border-radius:50%;
+  border:8rpx solid #fff;
+}
+
 .header{
   width:110rpx;
   height:110rpx;
@@ -66,30 +86,31 @@
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:65rpx;
-  line-height:65rpx;
+  height:70rpx;
+  line-height:70rpx;
   font-weight:bold;
   font-size:28rpx;
 }
 .hotInput{
   width:450rpx;
   border-bottom:1px solid #ccc;
-  margin-top:5rpx;
+  margin-top:2rpx;
 }
 .shuoming{
   height:50rpx;
   line-height: 50rpx;
   font-size:24rpx;
   color:#999;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
 .server{
   width:600rpx;
-  height:100rpx;
-  line-height: 100rpx;
+  height:80rpx;
+  line-height: 80rpx;
   color:#999;
   text-align: center;
+  font-size: 24rpx;
 }
 .VoiceBtn{
   width:600rpx;
@@ -102,14 +123,6 @@
   text-align: center;
 }
 
-
-.setHotMoney_detail1{
-  height:65rpx;
-  line-height:65rpx;
-  font-weight:bold;
-  font-size:28rpx;
-  margin-top:15rpx;
-}
 .header{
   width:110rpx;
   height:110rpx;

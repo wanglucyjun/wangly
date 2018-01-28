@@ -6,7 +6,7 @@
     <view  class='topBoxBody'>
       <view class='share_box'>
         <image src='{{hongbaoDetail.senderIcon}}'
-              mode='widthFix' class='header'></image>
+              mode='widthFix' class='headerShare'></image>
       </view>
       <view class="share_box">
         <view class='kouling'> {{hongbaoDetail.senderName}}</view>
@@ -78,7 +78,7 @@
 </view>
     <view class='hotMoneyNum'>
         <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.sendNum}}/{{hongbaoDetail.allNum}}个</view>
-        <view class='fr'>投诉</view>
+        <view class='fr'></view>
     </view>
     <block wx:for="{{hongbaoDetail.list}}" wx:key="url" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='peopleMoney'>
@@ -101,7 +101,10 @@
       </view>
     </view>
       </block>
-    <view class='jilu'>查看我的记录</view>
+    <view class='jilu' bindtap='gotoMine'>
+      查看我的记录
+   </view>
+
     <view class='weilingqu'>未领取的金额，将于24小时后退还到余额</view>
   </view>
 </view>

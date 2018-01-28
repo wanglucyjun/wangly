@@ -136,7 +136,7 @@ Page{
   justify-content: space-around; */
 }
 .marginTop{
-  margin-top:45rpx;
+  margin-top:10rpx;
 }
 .iconfont{
   font-family:"iconfont" !important;

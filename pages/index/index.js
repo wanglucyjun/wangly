@@ -79,16 +79,22 @@ Page({
     var p = /[0-9]/;
     for(var i= 0;i<word.length;i++){
   if (p.test(word[i])) {
-    var filePath = '../../../lib/audio/num' + word[i] + '.mp3'
-    console.log('say' + word[i]+filePath);
-    wx.playVoice({
-      filePath: filePath,
+    //var filePath = '../../../lib/audio/num' + word[i] + '.mp3'
+    var fileP = 'https://www.chemchemchem.com/audio/num/num' + word[i] + '.mp3'
+    console.log('say' + word[i] + fileP);
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = fileP
+    innerAudioContext.buffered=i*200
+    innerAudioContext.onError((res) => {
+      console.log(res)
     })
   } else {
     break;
   }
 }
                     },
+ voiceContent:[],
  startMove:function(){
       var that=this
       that.setData({

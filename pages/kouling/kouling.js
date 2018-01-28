@@ -66,7 +66,7 @@ Page({
     })
     console.log("now money is" + that.data.Money)
     that.setData({
-      fuwufee: methods.getSendFee(1, that.data.Money),
+      fuwufee: methods.getSendFee(1, that.data.Money).toFixed(2),
     })
   },
   NumberInput: function (e) {

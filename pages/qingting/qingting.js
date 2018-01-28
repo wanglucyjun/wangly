@@ -20,7 +20,6 @@ Page({
     rate:0.01,
     minVal:0.01,
     tips:'长按输入你想说的内容',
-    NetUrl:'http://www.chemchemchem.com/file/201801212303/40affe2a9c37c223dfcca82339b8aee2.silk',
     serverFilePath:''
   },
   
@@ -74,10 +73,21 @@ Page({
     that.setData({
       Money: e.detail.value,
     })
-    console.log("now money is" + that.data.Money)
+    console.log("acountbalance is " + app.globalData.balanceInfo.allMoney)
+    console.log("now money is " + that.data.Money)
+    var sendfee = methods.getSendFee(2, that.data.Money)
+    console.log(sendfee)
+    var chargefee = methods.getChargeFee(2, (that.data.Money - app.globalData.balanceInfo.allMoney))
+    if (chargefee < 0) {
+      chargefee = 0
+    }
+    console.log("chargefee is " + chargefee)
+    var fee = (sendfee + chargefee).toFixed(2);
     that.setData({
-      fuwufee: methods.getSendFee(2, that.data.Money),
+      fuwufee: fee,
     })
+    console.log("now fuwufee is" + that.data.fuwufee)
+  
   },
   
   NumberInput: function (e) {
