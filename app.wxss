@@ -41,6 +41,25 @@
   margin-top:90rpx;
   
 }
+.header_logo{
+  width:110rpx;
+  height:110rpx;
+  border:15rpx;
+  margin:15rpx auto;
+}
+.headerShare{
+  width:110rpx;
+  height:110rpx;
+  border:10rpx;
+  border-radius:50%;
+}
+.header_Head{
+  width:150rpx;
+  height:150rpx;
+  border-radius:50%;
+  border:8rpx solid #fff;
+}
+
 .header{
   width:110rpx;
   height:110rpx;

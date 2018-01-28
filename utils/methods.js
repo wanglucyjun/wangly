@@ -200,7 +200,7 @@ success:function(res) {
         if (res.data.data.needpay == '0'){
           //不需要调取支付，直接跳转
           wx.navigateTo({
-            url: '/pages/index/Share/share?id=' + res.data.data.hotid,
+            url: '/pages/index/Share/Share?id=' + res.data.data.hotid,
           })
         }
         else{
