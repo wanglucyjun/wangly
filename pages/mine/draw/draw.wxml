@@ -2,15 +2,19 @@
 <view class='draw_box'>
   <view class='balance'> 
     <view class='draw_text fl'>账户余额</view>
-    <view class='balance_money'>{{balance}} 元</view>
+    <view class='balance_money'>{{userHongbao.allMoney}} 元</view>
+  </view>
+  <view class='balance'> 
+    <view class='draw_text fl'>可用余额</view>
+    <view class='balance_money'>{{userHongbao.withdrawableMoney}} 元</view>
   </view>
   <view class='draw_text'>提现金额</view>
   <view class='setHotMoney_detail' >
     <view class='setHotMoney_name fl' >￥</view>
-    <input type='number' placeholder='' class='hotInput'
+    <input type='digit' placeholder='' class='hotInput'
                      bindinput='MoneyInput'></input>
   </view>
-  <view  class='draw_text2'>提现到微信钱包， 全部提现</view>
+  <view  class='draw_text2'>手续费{{drawfee}},实际到账{{actualfee}},<text>全部提现</text></view>
   <view class='draw' bindtap="getMoney">提现</view>
   <view  class='draw_text3'>1-5个工作日到账</view>
 </view>

@@ -49,7 +49,7 @@ function getChargeFee(type,money) {
   }
 }
 //费用相关,领取红包需要的服务费
-function getReceiveFee(type) {
+function getReceiveFee(type, money) {
   var that = this
   var tempparam = app.globalData.receiveFee[getModel(type).receiveParam]
 
@@ -67,17 +67,17 @@ function getReceiveFee(type) {
 }
 
 //费用相关,体现需要的服务费
-function getWithdrawFee(type) {
+function getWithdrawFee(type, money) {
   var that = this
   var tempparam = app.globalData.withdrawFee[getModel(type).withdrawParam]
 
   if (tempparam.isFee == "0") {
-    var fuwufee = "0.0"
+    var fuwufee = 0.0
     return fuwufee
   }
   else {
     var rate = tempparam.rate
-    var fuwufee = that.data.Money * rate
+    var fuwufee = money * rate
     console.log("rate is " + rate);
     console.log("fuwufee is " + fuwufee);
     return fuwufee;

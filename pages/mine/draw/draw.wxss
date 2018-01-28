@@ -3,7 +3,7 @@ Page{
   background: #f3f5fa;
 }
 .balance{
-
+overflow: hidden;
 }
 .setHotMoney_detail{
   height:110rpx;
