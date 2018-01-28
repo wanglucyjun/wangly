@@ -37,7 +37,7 @@ var config = {
     hongbaoGetUrl: `${host}/hongbao/draw`,
 
     // 查询我的余额接口
-    hongbaoGetBalanceUrl: `${host}/hongbao/getUserBalance`,
+    hongbaoGetBalanceUrl: `${host}/withdraw/get-money`,
 
     // 查询我发出的红包记录接口
     hongbaoSendedUrl: `${host}/user/send-list`,

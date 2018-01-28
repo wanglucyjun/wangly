@@ -62,7 +62,7 @@
           </view>       
           <view class='time'>
             <view class='fl'>{{item.date}}</view>
-            <view class='fr'>{{item.leftNum}}/{{item.allNum}}</view>
+            <view class='fr'>{{item.allNum-item.leftNum}}/{{item.allNum}}</view>
           </view>
         </view>
       </view>

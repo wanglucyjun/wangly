@@ -15,6 +15,7 @@ Page({
     moving: false,
     power:0,
     rate:2,
+    //balanceInfo: {},
     accountBalance:'',
   },
 
@@ -31,20 +32,7 @@ Page({
     }
   },
   onReady: function (){
-    var that=this
-    wx.request({
-      url: userinfoUrl ,
-      data:{
-        'token': app.globalData.sessionInfo,
-      },
-      success:function (res) {
-        console.log("now balance is "+res.data.data.money);
-       // console.log(res.data);
-        that.setData({
-          accountBalance: res.data.data.money
-        })
-      }
-    })
+   
   },
   initPage:function(){
     var that = this;
@@ -55,32 +43,76 @@ Page({
     console.log("random " + num)
     that.setData({
       tips: tipArray[num],
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      //balanceInfo: app.globalData.balanceInfo,
     })
     console.log(app.globalData.userInfo)
   },
 
   //开始摇手机
-  startMove:function(){
+  yyydata: {
+    lastTime : 0,
+    lastIndex : 0,
+    currentIndex : 0,
+    liliang : [],
+  },
+  addLiliang:function(liliang) {
+    var currentIndex = this.yyydata.lastIndex % 100;
+    this.yyydata.liliang[currentIndex] = 0+liliang;
+    var newTime= (new Date()).getTime();
+    var sum = 0;
+    var count = 5
+    if (this.yyydata.lastIndex > 5 && (newTime - this.yyydata.lastTime) > 2000) {
+      this.yyydata.lastTime = newTime;
+      for (var i = 0; i < count; i++) {
+        sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
+      }
+      console.log('sum:' + sum + ';lasttime:' + this.yyydata.lastTime)
+      //this.sayWord(sum);
+    }
+    this.yyydata.lastIndex++
+    return sum;
+  },
+  sayWord: function(word) {
+    //must be string
+    word=word + 'str';
+    var p = /[0-9]/;
+    for(var i= 0;i<word.length;i++){
+  if (p.test(word[i])) {
+    var filePath = '../../../lib/audio/num' + word[i] + '.mp3'
+    console.log('say' + word[i]+filePath);
+    wx.playVoice({
+      filePath: filePath,
+    })
+  } else {
+    break;
+  }
+}
+                    },
+ startMove:function(){
       var that=this
       that.setData({
         moving:true
       })
+      this.yyydata.lastTime = (new Date()).getTime();
+      this.yyydata.lastIndex = 0;
+      this.yyydata.currentIndex = 0;
+      this.yyydata.liliang = [];
     wx.startAccelerometer({
       success: function (res) {
         console.log("the wuli " + res)
       }
     })
     wx.onAccelerometerChange(function (res) {
-      // console.log(res.x+',')
-      // console.log(res.y + ',')
-      // console.log(res.z + ',')
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
       if (wuli > 2){
-        console.log(wuli)
+        var sum = that.addLiliang(wuli);
+        if(sum>10){
+          that.sayWord(sum);
         that.setData({
-          power: wuli.toFixed(2)*that.data.rate
-        })
+          power: sum.toFixed(2)*that.data.rate
+          })
+        }
       } 
     })
    
@@ -99,14 +131,16 @@ Page({
     that.setData({
       Money: e.detail.value,
     })
-    console.log("acountbalance is " + that.data.accountBalance)
-    console.log("now money is"+that.data.Money)
+    //console.log(app.globalData.balanceInfo)
+    console.log("acountbalance is " + app.globalData.balanceInfo.allMoney)
+    console.log("now money is "+that.data.Money)
     var sendfee = methods.getSendFee(0, that.data.Money)
-    var chargefee = methods.getChargeFee(0, (that.data.Money - that.data.accountBalance))
+    console.log(sendfee)
+    var chargefee = methods.getChargeFee(0, (that.data.Money - app.globalData.balanceInfo.allMoney))
     if(chargefee<0){
       chargefee=0
     }
-    console.log("chargefee is"+chargefee)
+    console.log("chargefee is "+chargefee)
     var fee = (sendfee + chargefee).toFixed(2);
     that.setData({
       fuwufee: fee,

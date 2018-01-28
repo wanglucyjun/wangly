@@ -1,7 +1,5 @@
 //app.js
-const loginUrl = require('./config').loginUrl
-const initUrl = require('./config').initUrl
-const updateUrl = require('./config').updateUrl
+const config = require('./config')
 App({
   globalData: {
     sessionInfo: '',
@@ -12,6 +10,7 @@ App({
     receiveFee:[],
     withdrawFee:[],
     hbType:[],
+    balanceInfo:{},
   },
   onLoad:function(){
     console.log("App onLoad")
@@ -44,7 +43,7 @@ App({
               if (res.code) {
                 //发起网络请求
                 wx.request({
-                  url: loginUrl,
+                  url: config.loginUrl,
                   data: {
                     code: res.code
                   },
@@ -96,7 +95,7 @@ App({
           var userInfo = user.userInfo
           userInfo.token = that.globalData.sessionInfo
           wx.request({
-            url: updateUrl,
+            url: config.updateUrl,
             data: userInfo,
             success: function (res) {
 
@@ -110,6 +109,7 @@ App({
             }
           })
         }
+        that.getBalance()
         that.globalData.userInfo = user.userInfo
         if (that.userInfoReadyCallback) {
           console.log(user.userInfo)
@@ -129,26 +129,48 @@ App({
     var that = this
     console.log("App OnLaunch")
     wx.request({
-      url:initUrl,
+      url:config.initUrl,
       success: function (res) {
-        console.log(res.data),
+        console.log(res.data)
+        if(res.data.data){
           that.globalData.chargeFee = res.data.data.chargeFee,
           that.globalData.sendFee = res.data.data.sendFee,
           that.globalData.receiveFee = res.data.receiveFee,
           that.globalData.withdrawFee = res.data.data.withdrawFee,
           that.globalData.hbType = res.data.data.hbType
+        }
       },
       fail: function (res) {
         console.log(res.data)
       },
     })
-
+    
     //检查登录状态
     that.checkSession({success:function(){
       console.log('获取用户登录态成功！' + that.globalData.sessionInfo)
     }})
     //请求成功
 
+  },
+  //获取提现初始值
+  getBalance: function () {
+    var that=this
+    wx.request({
+      url: config.hongbaoGetBalanceUrl,
+      data: {
+        token: that.globalData.sessionInfo
+      },
+      success: function (res) {
+        console.log(res.data)
+        if(res.data.code=="0"){
+          that.globalData.balanceInfo = res.data.data
+        }
+      },
+      fail: function (res) {
+        console.log(res.data)
+      },
+    })
   }
+  
 
 })
