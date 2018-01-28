@@ -15,6 +15,7 @@ Page({
     moving: false,
     power:0,
     rate:2,
+    //balanceInfo: {},
     accountBalance:'',
   },
 
@@ -31,20 +32,7 @@ Page({
     }
   },
   onReady: function (){
-    var that=this
-    wx.request({
-      url: userinfoUrl ,
-      data:{
-        'token': app.globalData.sessionInfo,
-      },
-      success:function (res) {
-        console.log("now balance is "+res.data.data.money);
-       // console.log(res.data);
-        that.setData({
-          accountBalance: res.data.data.money
-        })
-      }
-    })
+   
   },
   initPage:function(){
     var that = this;
@@ -55,7 +43,8 @@ Page({
     console.log("random " + num)
     that.setData({
       tips: tipArray[num],
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      //balanceInfo: app.globalData.balanceInfo,
     })
     console.log(app.globalData.userInfo)
   },
@@ -99,14 +88,16 @@ Page({
     that.setData({
       Money: e.detail.value,
     })
-    console.log("acountbalance is " + that.data.accountBalance)
-    console.log("now money is"+that.data.Money)
+    //console.log(app.globalData.balanceInfo)
+    console.log("acountbalance is " + app.globalData.balanceInfo.allMoney)
+    console.log("now money is "+that.data.Money)
     var sendfee = methods.getSendFee(0, that.data.Money)
-    var chargefee = methods.getChargeFee(0, (that.data.Money - that.data.accountBalance))
+    console.log(sendfee)
+    var chargefee = methods.getChargeFee(0, (that.data.Money - app.globalData.balanceInfo.allMoney))
     if(chargefee<0){
       chargefee=0
     }
-    console.log("chargefee is"+chargefee)
+    console.log("chargefee is "+chargefee)
     var fee = (sendfee + chargefee).toFixed(2);
     that.setData({
       fuwufee: fee,
