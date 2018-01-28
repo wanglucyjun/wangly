@@ -17,7 +17,7 @@ function getSendFee(type,money) {
   var tempparam = app.globalData.sendFee[getModel(type).sendParam]
 
   if (tempparam.isFee == "0") {
-    var fuwufee="0.0"
+    var fuwufee=0.0
     return fuwufee
   }
   else {
@@ -37,7 +37,7 @@ function getChargeFee(type,money) {
   var tempparam = app.globalData.chargeFee[getModel(type).chargeParam]
 
   if (tempparam.isFee == "0") {
-    var fuwufee = "0.0"
+    var fuwufee = 0.0
     return fuwufee
   }
   else {
@@ -54,7 +54,7 @@ function getReceiveFee(type) {
   var tempparam = app.globalData.receiveFee[getModel(type).receiveParam]
 
   if (tempparam.isFee == "0") {
-    var fuwufee = "0.0"
+    var fuwufee = 0.0
     return fuwufee
   }
   else {
