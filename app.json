@@ -11,7 +11,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#e73b58",
+    "navigationBarBackgroundColor": "#D95940",
     "navigationBarTitleText": "包包乐翻天",
     "navigationBarTextStyle": "#fff"
   },
@@ -20,8 +20,8 @@
     "selectedColor": "#fe2f5b",
     "list": [
       {
-        "iconPath": "pages/image/yaoyiyao.png",
-        "selectedIconPath": "pages/image/yaoyiyao.png",
+        "iconPath": "pages/image/yaoyiyao10.png",
+        "selectedIconPath": "pages/image/yaoyiyao20.png",
         "pagePath": "pages/index/index",
         "text": "摇摇包"
       },
@@ -32,8 +32,8 @@
         "text": "口令包"
       },
       {
-        "iconPath": "pages/image/qingting1.jpg",
-        "selectedIconPath": "pages/image/qingting2.jpg",
+        "iconPath": "pages/image/qingting100.png",
+        "selectedIconPath": "pages/image/qingting200.png",
         "pagePath": "pages/qingting/qingting",
         "text": "倾听包"
       },
