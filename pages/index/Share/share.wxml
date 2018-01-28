@@ -101,8 +101,8 @@
       </view>
     </view>
       </block>
-    <view class='jilu'>
-      <navigator url="pages/mine/mine" open-type="navigateBack" delta='2'>查看我的记录</navigator>
+    <view class='jilu' bindtap='gotoMine'>
+      查看我的记录
    </view>
 
     <view class='weilingqu'>未领取的金额，将于24小时后退还到余额</view>

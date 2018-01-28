@@ -295,5 +295,10 @@ Page({
     wx.navigateTo({
       url: 'ShareHotMoney?id='+this.data.hongbaoID,
     })
+  },
+  gotoMine:function(){
+    wx.switchTab({
+      url: '../../mine/mine',
+    })
   }
 })
