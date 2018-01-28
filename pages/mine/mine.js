@@ -18,30 +18,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   var that = this;
-   var userInfo = app.globalData.userInfo;
-   that.setData({
-     userInfo: app.globalData.userInfo,
-   })
-  //  var receivedHongbao={}
-  //  receivedHongbao.receivedMoney=10
-  //  receivedHongbao.receivedNum=10
-  //  receivedHongbao.page=1
-  //  receivedHongbao.list=[{id:'1',name:'龙',icon:'',money:1,title:'倾听',type:1,date:'2017年6月12日'},
-  //    { id: '2', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
-  //    { id: '3', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' },
-  //    { id: '4', name: '虎', icon: '', money: 1, title: '倾听', type: 1, date: '2017年6月12日' }]
-  //  var sendedHongbao = {}
-  //  sendedHongbao.sendedMoney = 10
-  //  sendedHongbao.sendedNum = 10
-  //  sendedHongbao.page = 1
-  //  sendedHongbao.list = [{ id: '1', title: '倾听', type: 1, date: '2017年6月12日',allMoney:10,allNum:10,leftMoney:5,leftNum:5 },
-  //    { id: '2', title: '摇一摇', type: 1, date: '2017年6月12日', allMoney: 10, allNum: 10, leftMoney: 5, leftNum: 5 }]
-  //   that.setData({
-  //     sendedHongbao: sendedHongbao,
-  //     receivedHongbao: receivedHongbao
-  //   })
-    this.refresh()
+    if (app.globalData.userInfo.nickName) {
+      console.log('index0')
+      this.refresh()
+    } else {
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.refresh()
+      }
+    }
   },
   // tab 切换函数
   changeTab: function (e) {
@@ -108,12 +93,25 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        //res.data.data.page = that.data.receivedHongbao.page + 1
-        if (res.data.data){
-          that.setData({
-            receivedHongbao: res.data.data
-          })
+        if (res.data.data && res.data.data.list.length > 0) {
+
+          that.data.receivedHongbao.page = that.data.receivedHongbao.page + 1
+          if (that.data.receivedHongbao.page == 1) {
+            //res.data.data.page = that.data.sendedHongbao.page + 1
+            that.setData({
+              receivedHongbao: res.data.data
+            })
+          } else {
+            var list = that.data.receivedHongbao.list
+            console.log(that.data.receivedHongbao)
+            that.data.receivedHongbao.list = list.concat(res.data.data.list)
+
+            that.setData({
+              receivedHongbao: that.data.receivedHongbao
+            })
+          }
         }
+        
       }
       ,
       fail: function (res) {
@@ -158,22 +156,10 @@ Page({
   },
   refresh:function(){
     var that = this;
-    wx.request({
-      url: config.hongbaoGetBalanceUrl,
-      data: {
-        token: app.globalData.sessionInfo
-      },
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          userInfo: app.globalData.userInfo,
-          userHongbao: res.data.data,
-        })
-      }
-      ,
-      fail: function (res) {
-
-      }
+    app.getBalance()
+    that.setData({
+      userInfo: app.globalData.userInfo,
+      userHongbao: app.globalData.balanceInfo,
     })
     that.data.sendedHongbao.page=0
     console.log("that.data.receivedHongbao.page")

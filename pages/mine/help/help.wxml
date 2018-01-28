@@ -1,16 +1,18 @@
 <view>
-<view class='help-list'>
-  <block wx:for="{{helpinfos.lists}}"  wx:key="{{item.title}}" >
+ <view class='help-list'>
+  <block wx:for="{{helpinfos.lists}}"  wx:key="{{item.id}}" >
       <view class='help-list-item' >
-        <view id='{{item.title}}' class="help-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
+        <view id='{{item.id}}' class="help-list-item-hd {{item.open ? 'help-list-item-hd-show' : ''}}" bindtap="kindToggle">
           <view class="kind-list-text">{{item.title}}</view>
         </view>
-        <view class="help-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+        <view class="help-list-item-center"/>
+        <view class="help-list-item-bd {{item.open ? 'help-list-item-bd-show' : ''}}">
           <view class="kind-list-text">{{item.content}}</view>
         </view>
       </view>
       </block>
-</view>
+ </view>
 <view>
+  <button class='contact' open-type="contact">进入客服会话</button>
 </view>
 </view>

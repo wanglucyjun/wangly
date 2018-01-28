@@ -8,9 +8,10 @@
     </view>
     <view class='header_center fl'>
       <view class='header_name'>{{userInfo.nickName}}</view>
-      <view class='header_yue'>余额:￥ 0.00</view>
+      <view class='header_yue'>余额:￥{{userHongbao.allMoney}}</view>
+      <view class='header_yue'>可提:￥{{userHongbao.withdrawableMoney}}</view>
     </view>
-     <view class='header_right fr'  bindtap="getMoney">
+    <view class='header_right fr'  bindtap="getMoney">
         <image src='../image/hot.png' mode='widthFix' class='hotMoney_tu'></image>
         <view class='header-right_tixian'>提现</view>
      </view>
@@ -54,15 +55,20 @@
       </view>
       <view  wx:if="{{mineRecod==1}}" >
        <block wx:for="{{sendedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
-      <view class='hotPeopleDetail' >
-        <view class='peopleBox' data-hongbaoid='{{item.id}}' bindtap='toShare'>
-          <view class='people'>
-            <view class='fl'>{{item.title}}</view>
-            <view class='fr'>{{item.allMoney}}元</view>
-          </view>       
-          <view class='time'>
-            <view class='fl'>{{item.date}}</view>
-            <view class='fr'>{{item.allNum-item.leftNum}}/{{item.allNum}}</view>
+      
+      <view class='sended-list-item' >
+        <view class='sended-list-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='sended-list-item-center fl'>
+            <text class='sended-list-item-money' wx:if="{{item.type==1}}">摇摇包  </text>
+            <text class='sended-list-item-money' wx:if="{{item.type==2}}">口令包  </text>
+            <text class='sended-list-item-money' wx:if="{{item.type==3}}">倾听包  </text>
+            <text class='sended-list-item-money' wx:if="{{item.type==4}}">猜谜包  </text>
+            <text >{{item.title}}</text>
+            <view class='sended-list-item-date'>{{item.date}}</view>
+          </view>
+          <view class='sended-list-item-right fr'>
+            <view class='sended-list-item-money'>{{item.allMoney}}元</view>
+            <text >{{item.allNum-item.leftNum}}/{{item.allNum}}</text>
           </view>
         </view>
       </view>
@@ -70,15 +76,22 @@
  </view>
  <view  wx:if="{{mineRecod==2}}" >
        <block wx:for="{{receivedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
-      <view class='hotPeopleDetail' >
-        <view class='peopleBox'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
-          <view class='people'>
-            <view class='fl'>{{item.title}}</view>
-            <view class='fr'>{{item.money}}元</view>
-          </view>       
-          <view class='time'>
-            <view class='fl'>{{item.date}}</view>
-            <view class='fr'></view>
+      <view class='received-list-item' >
+        <view class='received-list-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='received-list-item-left fl'>
+          <image src='{{item.icon}}' mode='widthFix' class='received-list-item-logo'></image>
+          </view>
+          <view class='received-list-item-center fl'>
+            <view class='received-list-item-text'>{{item.name}}</view>
+            <text class='received-list-item-money' wx:if="{{item.type==1}}">摇摇包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==2}}">口令包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==3}}">倾听包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==4}}">猜谜包</text>
+            <text class='received-list-item-text'>  {{item.title}}</text>
+          </view>
+          <view class='received-list-item-right fr'>
+            <view class='received-list-item-money'>{{item.money}}元</view>
+            <view class='received-list-item-date'>{{item.date}}</view>
           </view>
         </view>
       </view>
