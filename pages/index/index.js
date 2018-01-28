@@ -30,10 +30,13 @@ Page({
         this.initPage()
       }
     }
+    for (var i = 0; i < 10; i++) {
+      methods.downloadFile('num' + i, 'https://www.chemchemchem.com/audio/num/num' + i + '.mp3')
+    }
+    methods.downloadFile('kai0', 'https://www.chemchemchem.com/audio/num/kai0.mp3')
+    methods.downloadFile('kai1', 'https://www.chemchemchem.com/audio/num/kai1.mp3')
   },
-  onReady: function (){
-   
-  },
+    
   initPage:function(){
     var that = this;
     var tipArray = app.globalData.hbType[0].tips;
@@ -55,6 +58,7 @@ Page({
     lastIndex : 0,
     currentIndex : 0,
     liliang : [],
+    saying:[],
   },
   addLiliang:function(liliang) {
     var currentIndex = this.yyydata.lastIndex % 100;
@@ -68,32 +72,40 @@ Page({
         sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
       }
       console.log('sum:' + sum + ';lasttime:' + this.yyydata.lastTime)
-      //this.sayWord(sum);
-    }
+      this.yyydata.saying=[]
+      sum = sum * this.data.rate + '';
+      var p = /[0-9]/;
+      for (var i = 0; i < sum.length; i++) {
+        if (p.test(sum[i])) {
+          this.yyydata.saying[i] = 'num' +sum[i]; 
+        } else {
+          break;
+        }
+    }}
     this.yyydata.lastIndex++
     return sum;
   },
-  sayWord: function(word) {
-    //must be string
-    word=word + 'str';
-    var p = /[0-9]/;
-    for(var i= 0;i<word.length;i++){
-  if (p.test(word[i])) {
-    //var filePath = '../../../lib/audio/num' + word[i] + '.mp3'
-    var fileP = 'https://www.chemchemchem.com/audio/num/num' + word[i] + '.mp3'
-    console.log('say' + word[i] + fileP);
+  sayWord:function(){
+    var fileIndex = this.yyydata.saying.shift();
+    if(fileIndex!=undefined){
+    var fileP = wx.getStorageSync(fileIndex)
+    console.log(fileIndex+fileP);
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
     innerAudioContext.src = fileP
-    innerAudioContext.buffered=i*200
-    innerAudioContext.onError((res) => {
-      console.log(res)
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
     })
-  } else {
-    break;
-  }
-}
-                    },
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+
+    // wx.playVoice({
+    //   filePath: fileP,
+    // })
+    }
+  },
  voiceContent:[],
  startMove:function(){
       var that=this
@@ -112,11 +124,14 @@ Page({
     wx.onAccelerometerChange(function (res) {
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
       if (wuli > 2){
-        var sum = that.addLiliang(wuli);
+        var sum = that.addLiliang(wuli)*1;
         if(sum>10){
-          that.sayWord(sum);
+          var interv=400
+          setTimeout(function () { that.sayWord(); }, 0);
+          setTimeout(function () { that.sayWord(); }, interv*1);
+          setTimeout(function () { that.sayWord(); }, interv*2);
         that.setData({
-          power: sum.toFixed(2)*that.data.rate
+          power: sum.toFixed(2)
           })
         }
       } 
