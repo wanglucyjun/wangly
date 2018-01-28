@@ -8,7 +8,7 @@
     <view class='bg_picbody'>
       <view class='share_box'>
         <image src='{{hongbaoDetail.senderIcon}}'
-              mode='widthFix' class='header'></image>
+              mode='widthFix' class='headerShare'></image>
       </view>
       <view class="share_box">
         <view class='kouling'> {{hongbaoDetail.senderName}}</view>

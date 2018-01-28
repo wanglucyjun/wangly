@@ -52,6 +52,7 @@
   height:110rpx;
   border:10rpx;
   border-radius:50%;
+  margin-top:12rpx; 
 }
 .header_Head{
   width:150rpx;
