@@ -97,7 +97,8 @@ function getAccountInfo(){
     'token': app.globalData.sessionInfo,
   },
   success:function(res){
-    console.log(res.data);
+    console.log(res.data.data);
+    var accountMoney=res.data.data.money;
   }
   })
 }
@@ -195,6 +196,7 @@ success:function(res) {
     }
     if (res.data.code == '0') {
         var hotid = res.data.data.hotid;
+        var orderid=res.data.data.orderid;
         if (res.data.data.needpay == '0'){
           //不需要调取支付，直接跳转
           wx.navigateTo({
@@ -203,6 +205,8 @@ success:function(res) {
         }
         else{
           //调起微信支付
+
+
         }
        
     }
@@ -220,6 +224,6 @@ success:function(res) {
   uploadFile:uploadFile,
   downloadFile: downloadFile,
   hongbaoCreate: hongbaoCreate,
-  getAccountInfo: getAccountInfo
+  getAccountInfo: getAccountInfo,
 }
 

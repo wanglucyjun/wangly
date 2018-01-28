@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 var methods = require('../../utils/methods.js')
-
+const userinfoUrl = require('../../config').userinfoUrl
 Page({
   data: {
     houBaoStyle: 1,
@@ -11,10 +11,11 @@ Page({
     powerset:'60',
     Money: '',
     Number: '',
-    fuwufee: 0.0,
+    fuwufee: '0.0',
     moving: false,
     power:0,
     rate:2,
+    accountBalance:'',
   },
 
   //事件处理函数
@@ -28,7 +29,22 @@ Page({
         this.initPage()
       }
     }
-    
+  },
+  onReady: function (){
+    var that=this
+    wx.request({
+      url: userinfoUrl ,
+      data:{
+        'token': app.globalData.sessionInfo,
+      },
+      success:function (res) {
+        console.log("now balance is "+res.data.data.money);
+       // console.log(res.data);
+        that.setData({
+          accountBalance: res.data.data.money
+        })
+      }
+    })
   },
   initPage:function(){
     var that = this;
@@ -83,11 +99,19 @@ Page({
     that.setData({
       Money: e.detail.value,
     })
-    methods.getAccountInfo()
+    console.log("acountbalance is " + that.data.accountBalance)
     console.log("now money is"+that.data.Money)
+    var sendfee = methods.getSendFee(0, that.data.Money)
+    var chargefee = methods.getChargeFee(0, (that.data.Money - that.data.accountBalance))
+    if(chargefee<0){
+      chargefee=0
+    }
+    console.log("chargefee is"+chargefee)
+    var fee = (sendfee + chargefee).toFixed(2);
     that.setData({
-      fuwufee: methods.getSendFee(0,that.data.Money),
+      fuwufee: fee,
     })
+    console.log("now fuwufee is"+that.data.fuwufee)
   },
   NumberInput: function (e) {
     var that = this;
