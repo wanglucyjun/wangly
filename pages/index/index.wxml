@@ -34,7 +34,7 @@
 </view>
             <view class='setHotMoney_detail'>
               <view class='setHotMoney_name fl' >赏金（元）</view>
-              <input type='number' placeholder='填写金额' class='hotInput fr'
+              <input type='digit' placeholder='填写金额' class='hotInput fr'
                      bindinput='MoneyInput'></input>
             </view>
             <view class='setHotMoney_detail'>
