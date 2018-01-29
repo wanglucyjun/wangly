@@ -189,6 +189,15 @@ function saveFileToLocal() {
     console.log(res.errCode)
   })
 }
+//生成随机数
+function getRandom(){
+  var num=Math.random().toString(26).substr(2);
+  console.log(num)
+  return num+''
+}
+function makeSign(){
+
+}
 //创建红包接口请求
 function hongbaoCreate(type,question,power,Money,num,fee,filePath){
   var that = this
@@ -217,7 +226,7 @@ success:function(res) {
     if (res.data.code == '0') {
         var hotid = res.data.data.hotid;
         var orderid=res.data.data.orderid;
-        if (res.data.data.needpay == '0'){
+        if (res.data.data.needpay == '1'){
           //不需要调取支付，直接跳转
           wx.navigateTo({
             url: '/pages/index/Share/Share?id=' + res.data.data.hotid,
@@ -225,7 +234,22 @@ success:function(res) {
         }
         else{
           //调起微信支付
+          var timeStamp=new Date().getTime()+"";
+          var nonceStr = getRandom();
+          var sign ='appId = wx2fa05e7b28426662 & nonceStr='+nonceStr+'& package =prepay_id ='+ orderid+'& signType=MD5 & timeStamp='+timeStamp+' & key=qazwsxedcrfvtgbyhnujmikolp111111';
 
+          wx.requestPayment({
+            'timeStamp': timeStamp,
+            'nonceStr': nonceStr,
+            'package': 'prepay_id='+orderid,
+            'signType': 'MD5',
+            'paySign': 'MD5(sign)',
+            'success': function (res) {
+              console.log(res.data)
+            },
+            'fail': function (res) {
+            }
+          })
 
         }
        
@@ -233,7 +257,6 @@ success:function(res) {
 }
 })
   }
-
 
  module.exports={
   getModel:getModel,
@@ -246,5 +269,6 @@ success:function(res) {
   hongbaoCreate: hongbaoCreate,
   getAccountInfo: getAccountInfo,
   getSound: getSound,
+  getRandom: getRandom,
 }
 
