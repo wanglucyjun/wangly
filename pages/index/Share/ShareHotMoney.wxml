@@ -14,22 +14,20 @@
         <view class='kouling'> {{hongbaoDetail.senderName}}</view>
       </view>
       <view class="share_box">
-        <view class='kouling'> 发了一个红包</view>
-        
-      </view>
-      <view class='share_box_ju'>
-            <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 
-      </view>
-       <view class='share_box_ju'>
-             
-      </view>
-      
+        <view class='kouling'>     
+            发送了一个    
+            <text  wx:if="{{hongbaoDetail.type==1}}">摇摇包</text>
+            <text  wx:if="{{hongbaoDetail.type==2}}">口令包</text>
+            <text  wx:if="{{hongbaoDetail.type==3}}">倾听包</text>
+            <text  wx:if="{{hongbaoDetail.type==4}}">猜谜包</text>
+        </view>
+    </view>
     </view>
     </view>
     <view class='share_box marginTop'>
       <view class='btn_box'>
         <button class='btn_Btn' open-type="share">转发到好友或着群里</button> 
-        <button class='btn_Btn' >生成朋友圈分享图</button> 
+        <button class='btn_Btn' style="display:none" >生成朋友圈分享图</button> 
        
       </view>
     </view>

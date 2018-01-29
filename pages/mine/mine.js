@@ -67,13 +67,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("onPullDownRefresh")
     this.refresh()
+    wx.stopPullDownRefresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log("onReachBottom")
     if (this.data.mineRecod==1){
       this.getSendedHongbao();
     } else if (this.data.mineRecod == 2){

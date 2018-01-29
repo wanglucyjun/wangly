@@ -17,29 +17,29 @@
   },
   "tabBar": {
     "backgroundColor": "#fff",
-    "selectedColor": "#fe2f5b",
+    "selectedColor": "#D95940",
     "list": [
       {
-        "iconPath": "pages/image/yaoyiyao10.png",
-        "selectedIconPath": "pages/image/yaoyiyao20.png",
+        "iconPath": "pages/image/1.png",
+        "selectedIconPath": "pages/image/2.png",
         "pagePath": "pages/index/index",
         "text": "摇摇包"
       },
       {
-        "iconPath": "pages/image/kouling1.png",
-        "selectedIconPath": "pages/image/kouling2.png",
+        "iconPath": "pages/image/7.png",
+        "selectedIconPath": "pages/image/8.png",
         "pagePath": "pages/kouling/kouling",
         "text": "口令包"
       },
       {
-        "iconPath": "pages/image/qingting100.png",
-        "selectedIconPath": "pages/image/qingting200.png",
+        "iconPath": "pages/image/3.png",
+        "selectedIconPath": "pages/image/4.png",
         "pagePath": "pages/qingting/qingting",
         "text": "倾听包"
       },
       {
-        "iconPath": "pages/image/mine-1.png",
-        "selectedIconPath": "pages/image/mine-2.png",
+        "iconPath": "pages/image/5.png",
+        "selectedIconPath": "pages/image/6.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }

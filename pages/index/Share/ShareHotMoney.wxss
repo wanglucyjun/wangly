@@ -1,6 +1,6 @@
 /* pages/index/Share/ShareHotMoney.wxss */
 Page{
-  background:#d6344f;
+  background:#CD533C;
 }
 .bg_pic{
    height: 600rpx;
@@ -36,6 +36,9 @@ Page{
   font-size:30rpx;
   color:#fde2b3;
   text-align: center;
+}
+.kouling text{
+ font-size:40rpx;
 }
 .yuyin{
   width:690rpx;

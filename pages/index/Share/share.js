@@ -20,31 +20,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that  = this;
+    var that = this;
     //临时数据
     var hongbaoDetail = {}
-    // hongbaoDetail.id = options.id
-    // hongbaoDetail.senderName = app.globalData.userInfo.nickName
-    // hongbaoDetail.senderIcon = app.globalData.userInfo.avatarUrl
-    // hongbaoDetail.state = 1
-    // hongbaoDetail.allNum = 5
-    // hongbaoDetail.allMoney = 10
-    // hongbaoDetail.sendNum = 3
-    // hongbaoDetail.sendMoney = 6
-    // hongbaoDetail.type = 1
-    // hongbaoDetail.content = { question: '哈哈', answer: '' }
-    // hongbaoDetail.list = [{ name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 2, url: '123', date: '1月16日 20:30', length: 3 },
-    // {
-    //   name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-    //   url: '456', date: '1月17日 20:30', length: 2
-    // },
-    // {
-    //   name: hongbaoDetail.senderName, iocn: hongbaoDetail.senderIcon, money: 3,
-    //   url: '789', date: '1月17日 20:30', length: 2
-    // }]
-    var userHongbao={}
+
+    var userHongbao = {}
     userHongbao.id = options.id
-    userHongbao.text=0
+    userHongbao.text = 0
     //临时数据
     that.setData({
       userInfo: app.globalData.userInfo,
@@ -52,10 +34,19 @@ Page({
       hongbaoID: options.id,
       userHongbao: userHongbao
     })
-    console.log(config)
-    that.refersh()
-    //根据id查询红包详情
-    console.log(options.id)
+    
+    if (app.globalData.userInfo.nickName) {
+      console.log('index0')
+      this.refersh()
+    } else {
+      console.log('index1')
+      app.userInfoReadyCallback = res => {
+        this.refersh()
+      }
+    }
+
+    
+
   },
   toshareChat:function(){
     
@@ -94,6 +85,7 @@ Page({
   onPullDownRefresh: function () {
     console.log("onPullDownRefresh");
     this.refersh()
+    wx.stopPullDownRefresh()
   },
 
   /**
