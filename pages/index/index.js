@@ -66,7 +66,7 @@ Page({
     var newTime= (new Date()).getTime();
     var sum = 0;
     var count = 5
-    if (this.yyydata.lastIndex > 5 && (newTime - this.yyydata.lastTime) > 2000) {
+    if (this.yyydata.lastIndex > 0 && (newTime - this.yyydata.lastTime) > 2000) {
       this.yyydata.lastTime = newTime;
       for (var i = 0; i < count; i++) {
         sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
@@ -127,9 +127,10 @@ Page({
         var sum = that.addLiliang(wuli)*1;
         if(sum>10){
           var interv=400
-          setTimeout(function () { that.sayWord(); }, 0);
-          setTimeout(function () { that.sayWord(); }, interv*1);
+          setTimeout(function () { methods.getSound("kai0"); }, 0);
+          setTimeout(function () { that.sayWord(); }, interv);
           setTimeout(function () { that.sayWord(); }, interv*2);
+          setTimeout(function () { that.sayWord(); }, interv*3);
         that.setData({
           power: sum.toFixed(2)
           })
