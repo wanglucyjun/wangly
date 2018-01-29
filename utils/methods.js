@@ -176,7 +176,19 @@ function saveFileToLocal() {
   })
 
 }
-
+//声音请求
+ function getSound(key) {
+  const innerAudioContext = wx.createInnerAudioContext()
+  innerAudioContext.autoplay = true
+  innerAudioContext.src = wx.getStorageSync(key)
+  innerAudioContext.onPlay(() => {
+    console.log('开始播放')
+  })
+  innerAudioContext.onError((res) => {
+    console.log(res.errMsg)
+    console.log(res.errCode)
+  })
+}
 //创建红包接口请求
 function hongbaoCreate(type,question,power,Money,num,fee,filePath){
   var that = this
@@ -233,5 +245,6 @@ success:function(res) {
   downloadFile: downloadFile,
   hongbaoCreate: hongbaoCreate,
   getAccountInfo: getAccountInfo,
+  getSound: getSound,
 }
 
