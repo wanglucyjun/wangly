@@ -11,6 +11,8 @@ Page({
     hbType: [],
     shuoming: '好友听完你说的话就能领取赏金',
     Money:'',
+    zhifu:'',
+    balance:'0.0',
     Number:'',
     fuwufee:'0.0',
     hasRecord:false,
@@ -81,10 +83,17 @@ Page({
     if (chargefee < 0) {
       chargefee = 0
     }
+   
     console.log("chargefee is " + chargefee)
     var fee = (sendfee + chargefee).toFixed(2);
+    var balance = that.data.Money*1 + fee*1
+    if (balance > app.globalData.balanceInfo.allMoney) {
+      balance = app.globalData.balanceInfo.allMoney
+    }
     that.setData({
       fuwufee: fee,
+      balance: balance,
+      zhifu: that.data.Money + fee - balance
     })
     console.log("now fuwufee is" + that.data.fuwufee)
   

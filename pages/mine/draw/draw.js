@@ -74,12 +74,13 @@ Page({
     }else{
       
       var drawfee = methods.getWithdrawFee(0, e.detail.value)*1
-      var actualfee = e.detail.value*1
+      var actualfee = e.detail.value * 1
       var fee = (actualfee + drawfee).toFixed(2);
       console.log(fee)
       if (fee > parseFloat(that.data.userHongbao.allMoney) ) {
         actualfee = that.data.userHongbao.allMoney-drawfee
       }
+      actualfee = actualfee.toFixed(2);
       console.log(actualfee)
       that.setData({
         money: e.detail.value,
