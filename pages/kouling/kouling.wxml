@@ -9,7 +9,12 @@
         <view class='watchword' 
               style="">
           <view class='header' bindtap='tomyRecord'>
-            <image src='{{userInfo.avatarUrl}}' class='header_size'></image>
+             <block wx:if="{{!userInfo.avatarUrl}}" >
+            <image class='header_size' src="../image/headDefault.jpg"/>
+            </block>
+         <block  wx:else>
+          <image src="{{userInfo.avatarUrl}}" class='header_size'></image>
+          </block>
            
           </view>
           <view class="setHotMoney">

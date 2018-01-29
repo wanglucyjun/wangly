@@ -36,6 +36,16 @@ Page({
     methods.downloadFile('kai0', 'https://www.chemchemchem.com/audio/num/kai0.mp3')
     methods.downloadFile('kai1', 'https://www.chemchemchem.com/audio/num/kai1.mp3')
   },
+  onShow:function(){
+      wx.startAccelerometer({
+        
+      })
+  },
+  onHide:function(){
+      wx.stopAccelerometer({
+        
+      })
+  },
     
   initPage:function(){
     var that = this;
@@ -66,7 +76,7 @@ Page({
     var newTime= (new Date()).getTime();
     var sum = 0;
     var count = 5
-    if (this.yyydata.lastIndex > 0 && (newTime - this.yyydata.lastTime) > 2000) {
+    if (this.yyydata.lastIndex > 5 && (newTime - this.yyydata.lastTime) > 2000) {
       this.yyydata.lastTime = newTime;
       for (var i = 0; i < count; i++) {
         sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
@@ -113,9 +123,9 @@ Page({
         moving:true
       })
       this.yyydata.lastTime = (new Date()).getTime();
-      this.yyydata.lastIndex = 0;
-      this.yyydata.currentIndex = 0;
-      this.yyydata.liliang = [];
+      this.yyydata.lastIndex = 5;
+      this.yyydata.currentIndex = 5;
+      this.yyydata.liliang = [12, 9, 8, 12, 24];
     wx.startAccelerometer({
       success: function (res) {
         console.log("the wuli " + res)
