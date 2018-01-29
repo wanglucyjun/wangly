@@ -10,6 +10,8 @@ Page({
     shuoming: '小伙伴摇摇超过武力值领赏金',
     powerset:'60',
     Money: '',
+    zhifu: '',
+    balance: '0.0',
     Number: '',
     fuwufee: '0.0',
     moving: false,
@@ -18,7 +20,26 @@ Page({
     //balanceInfo: {},
     accountBalance:'',
   },
+  /**
+     * 生命周期函数--监听页面显示
+     */
+  onShow: function () {
+    console.log("onShow")
+    app.globalData.accelerometer.issend=true
+  },
 
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    var that = this
+    that.setData({
+      moving: false
+    })
+    app.globalData.accelerometer.issend=false
+    wx.stopAccelerometer({})
+    
+  },
   //事件处理函数
   onLoad: function () {
     if (app.globalData.userInfo.nickName){
@@ -86,6 +107,7 @@ Page({
     return sum;
   },
   sayWord:function(){
+    if (this.data.moving){
     var fileIndex = this.yyydata.saying.shift();
     if(fileIndex!=undefined){
     var fileP = wx.getStorageSync(fileIndex)
@@ -100,7 +122,7 @@ Page({
       console.log(res.errMsg)
       console.log(res.errCode)
     })
-
+    }
     // wx.playVoice({
     //   filePath: fileP,
     // })
@@ -123,15 +145,16 @@ Page({
     })
     wx.onAccelerometerChange(function (res) {
       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
-      if (wuli > 2){
+      if (wuli > 2 && app.globalData.accelerometer.issend){
         var sum = that.addLiliang(wuli)*1;
+        //var sum=wuli
         if(sum>10){
           var interv=400
           setTimeout(function () { methods.getSound("kai0"); }, 0);
           setTimeout(function () { that.sayWord(); }, interv);
           setTimeout(function () { that.sayWord(); }, interv*2);
           setTimeout(function () { that.sayWord(); }, interv*3);
-        that.setData({
+          that.setData({
           power: sum.toFixed(2)
           })
         }
@@ -164,8 +187,14 @@ Page({
     }
     console.log("chargefee is "+chargefee)
     var fee = (sendfee + chargefee).toFixed(2);
+    var balance = that.data.Money * 1 + fee * 1
+    if (balance > app.globalData.balanceInfo.allMoney) {
+      balance = app.globalData.balanceInfo.allMoney
+    }
     that.setData({
       fuwufee: fee,
+      balance: balance,
+      zhifu: that.data.Money + fee - balance
     })
     console.log("now fuwufee is"+that.data.fuwufee)
   },

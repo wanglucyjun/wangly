@@ -134,9 +134,9 @@
   margin: 0 auto;
 }
 .help{
-   margin-top: 60rpx;
+   margin-top: 40rpx;
    text-align: center;
-   font-size: 18rpx;
+   font-size: 25rpx;
 }
 
 .paddLeft25{

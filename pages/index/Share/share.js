@@ -14,6 +14,7 @@ Page({
     userHongbao:{},
     hongbaoDetail: {},
     hongbaoID:'123',
+    rate: 2,
     moving:false
     },
   /**
@@ -62,21 +63,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.globalData.accelerometer.issend = false
     console.log("onShow")
+    var that = this;
+    if (that.data.hongbaoDetail.type == 1 && that.data.hongbaoDetail.hadSend == 0) {
+      that.startMove()
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    var that = this
+    that.setData({
+      moving: false
+    })
+    app.globalData.accelerometer.issend = true
+    wx.stopAccelerometer({})
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
   },
 
   /**
@@ -94,25 +104,10 @@ Page({
   onReachBottom: function () {
   
   },
-  sayget:function(){
-    var fileP = wx.getStorageSync('kai1')
-    console.log("fileP")
-    console.log(fileP)
-    const innerAudioContext = wx.createInnerAudioContext()
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = fileP
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放')
-    })
-    innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-    })
-  },
   refersh:function(){
     console.log('refersh')
     var that = this;
-    methods.downloadFile('kai1', 'https://www.chemchemchem.com/audio/num/kai1.mp3')
+    wx.stopAccelerometer({})
     wx.request({
       url: config.hongbaoDetailUrl,
       data: {
@@ -122,11 +117,15 @@ Page({
       success: function (res) {
         console.log(res)
 
-        
-        that.setData({
-          userInfo: app.globalData.userInfo,
-          hongbaoDetail: res.data.data,
-        })
+        if (res.data.code=='0'){
+          that.setData({
+            userInfo: app.globalData.userInfo,
+            hongbaoDetail: res.data.data,
+          })
+          if (that.data.hongbaoDetail.type == 1 && that.data.hongbaoDetail.hadSend == 0){
+            that.startMove()
+          }
+        }
       }
       ,
       fail: function (res) {
@@ -168,8 +167,7 @@ Page({
     console.log("getHongbao");
     var that = this
     if (that.data.hongbaoDetail.state == 1 && that.data.hongbaoDetail.hadSend == 0) {
-
-    app.checkSession({
+      app.checkSession({
       success: function () {
         that.data.userHongbao.token = app.globalData.sessionInfo
         //此处领红包
@@ -183,7 +181,7 @@ Page({
                 title: '提示',
                 content: '您领取了'+res.data.data.money
               })
-              that.sayget()
+              methods.getSound('kai1')
             }else{
               wx.showModal({
                 title: '提示',
@@ -248,6 +246,106 @@ Page({
     
 
   },
+
+  // //开始摇手机
+  // yyydata: {
+  //   lastTime: 0,
+  //   lastIndex: 0,
+  //   currentIndex: 0,
+  //   liliang: [],
+  //   saying: [],
+  // },
+  // addLiliang: function (liliang) {
+  //   var currentIndex = this.yyydata.lastIndex % 100;
+  //   this.yyydata.liliang[currentIndex] = 0 + liliang;
+  //   var newTime = (new Date()).getTime();
+  //   var sum = 0;
+  //   var count = 5
+  //   if (this.yyydata.lastIndex > 0 && (newTime - this.yyydata.lastTime) > 2000) {
+  //     this.yyydata.lastTime = newTime;
+  //     for (var i = 0; i < count; i++) {
+  //       sum += this.yyydata.liliang[(this.yyydata.lastIndex - i) % 100];
+  //     }
+  //     console.log('sum:' + sum + ';lasttime:' + this.yyydata.lastTime)
+  //     this.yyydata.saying = []
+  //     sum = sum * this.data.rate + '';
+  //     var p = /[0-9]/;
+  //     for (var i = 0; i < sum.length; i++) {
+  //       if (p.test(sum[i])) {
+  //         this.yyydata.saying[i] = 'num' + sum[i];
+  //       } else {
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   this.yyydata.lastIndex++
+  //   return sum;
+  // },
+  // sayWord: function () {
+  //   if (this.data.moving){
+  //   var fileIndex = this.yyydata.saying.shift();
+  //   if (fileIndex != undefined) {
+  //     var fileP = wx.getStorageSync(fileIndex)
+  //     console.log(fileIndex + fileP);
+  //     const innerAudioContext = wx.createInnerAudioContext()
+  //     innerAudioContext.autoplay = true
+  //     innerAudioContext.src = fileP
+  //     innerAudioContext.onPlay(() => {
+  //       console.log('开始播放')
+  //     })
+  //     innerAudioContext.onError((res) => {
+  //       console.log(res.errMsg)
+  //       console.log(res.errCode)
+  //     })
+  //   }
+  //     // wx.playVoice({
+  //     //   filePath: fileP,
+  //     // })
+  //   }
+  // },
+  // voiceContent: [],
+  // startMove: function () {
+  //   var that = this
+  //     if(!that.data.moving){
+  //     that.setData({
+  //       moving: true
+  //     })
+  //     this.yyydata.lastTime = (new Date()).getTime();
+  //     this.yyydata.lastIndex = 0;
+  //     this.yyydata.currentIndex = 0;
+  //     this.yyydata.liliang = [];
+  //     wx.startAccelerometer({
+  //       success: function (res) {
+  //         console.log("the wuli " + res)
+  //       }
+  //     })
+  //     wx.onAccelerometerChange(function (res) {
+  //       var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
+  //       if (wuli > 2 && app.globalData.accelerometer.issend==false) {
+  //         var sum = that.addLiliang(wuli) * 1;
+  //         console.log(sum)
+  //         if (sum > 10) {
+  //           that.data.userHongbao.file = ''
+  //           that.data.userHongbao.text = sum.toFixed(2)
+  //           that.setData({
+  //             userHongbao: that.data.userHongbao
+  //           })
+
+  //           var interv = 400
+  //           setTimeout(function () { methods.getSound("kai0"); }, 0);
+  //           setTimeout(function () { that.sayWord(); }, interv);
+  //           setTimeout(function () { that.sayWord(); }, interv * 2);
+  //           setTimeout(function () { that.sayWord(); }, interv * 3);
+            
+
+  //           if (sum > that.data.hongbaoDetail.content.question) {
+  //             that.getHongbao()
+  //           }
+  //         }
+  //       }
+  //     })
+  //   }
+  // },
   //开始摇手机
   startMove: function () {
     var that = this
@@ -274,7 +372,7 @@ Page({
       }
       if (wuli > that.data.hongbaoDetail.content.question){
         that.getHongbao()
-        wx.stopAccelerometer({})
+        
       }
 
 
@@ -304,9 +402,10 @@ Page({
     })
   },
   toShare:function(){
-    wx.navigateTo({
-      url: 'ShareHotMoney?id='+this.data.hongbaoID,
-    })
+     wx.navigateTo({
+       url: 'ShareHotMoney?id='+this.data.hongbaoID,
+     })
+    
   },
   gotoMine:function(){
     wx.switchTab({

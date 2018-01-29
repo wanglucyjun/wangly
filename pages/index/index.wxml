@@ -43,7 +43,7 @@
                      bindinput='NumberInput'></input>
             </view>
 
-            <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额</view>
+            <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额{{balance}}</view>
            <view
             class='VoiceBtn' bindtap='toShare'>生成摇摇武力包
             </view>

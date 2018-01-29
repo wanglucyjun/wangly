@@ -11,6 +11,7 @@ App({
     withdrawFee:[],
     hbType:[],
     balanceInfo:{},
+    accelerometer: { issend:false}
   },
   onLoad:function(){
     console.log("App onLoad")

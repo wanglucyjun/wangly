@@ -232,7 +232,13 @@ Page{
 .received-list-item-date{
   font-size:22rpx;
 }
-
+.reload-page{
+  width:750rpx;
+  background: #fff;
+  padding:15rpx;
+  text-align: center;
+  font-size:35rpx;
+}
 
 .people{
   width:700rpx;
