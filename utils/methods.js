@@ -128,18 +128,26 @@ function uploadFile(obj) {
   })
 }
 //下载服务器上的文件
-function downloadFile(netUrl){
+function downloadFile(num,netUrl){
   var that = this
   //var url = that.data.NetUrl
   console.log("download url is " + netUrl)
   wx.downloadFile({
     url: netUrl, 
     success: function (res) {
-      console.log("download return " + res.statusCode)
-      console.log("download return " + res.tempFilePath)
+     // console.log("download return " + res.statusCode)
+    //  console.log("download return " + res.tempFilePath)
       if (res.statusCode === 200) {
         console.log("download return " + res.tempFilePath)
-        return res.tempFilePath
+        wx.saveFile({
+          tempFilePath: res.tempFilePath,
+        success:function(res){
+            var filepath=res.savedFilePath
+            wx.setStorageSync(num, filepath)
+            console.log("download return key")
+        }
+        
+        })
       }
      
       // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
