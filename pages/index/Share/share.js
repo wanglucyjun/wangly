@@ -34,7 +34,7 @@ Page({
       hongbaoID: options.id,
       userHongbao: userHongbao
     })
-    
+
     if (app.globalData.userInfo.nickName) {
       console.log('index0')
       this.refersh()
@@ -94,10 +94,25 @@ Page({
   onReachBottom: function () {
   
   },
-
+  sayget:function(){
+    var fileP = wx.getStorageSync('kai1')
+    console.log("fileP")
+    console.log(fileP)
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = fileP
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
   refersh:function(){
     console.log('refersh')
     var that = this;
+    methods.downloadFile('kai1', 'https://www.chemchemchem.com/audio/num/kai1.mp3')
     wx.request({
       url: config.hongbaoDetailUrl,
       data: {
@@ -152,6 +167,8 @@ Page({
   getHongbao:function(){
     console.log("getHongbao");
     var that = this
+    if (that.data.hongbaoDetail.state == 1 && that.data.hongbaoDetail.hadSend == 0) {
+
     app.checkSession({
       success: function () {
         that.data.userHongbao.token = app.globalData.sessionInfo
@@ -166,6 +183,7 @@ Page({
                 title: '提示',
                 content: '您领取了'+res.data.data.money
               })
+              that.sayget()
             }else{
               wx.showModal({
                 title: '提示',
@@ -182,6 +200,8 @@ Page({
         })
       }
     })
+    
+    }
   },
 
   playVoice: function (obj) {
@@ -212,7 +232,7 @@ Page({
           wx.playVoice({
             filePath: res.tempFilePath,
             complete: function () {
-              if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state == 1) {
+              if (that.data.hongbaoDetail.type == 3 && that.data.hongbaoDetail.state == 1 && that.data.hongbaoDetail.hadSend == 0) {
                 that.data.userHongbao.file = ''
                 that.data.userHongbao.text = ''
                 that.getHongbao()
