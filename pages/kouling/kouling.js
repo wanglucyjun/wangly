@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 var methods = require('../../utils/methods.js')
-
+var login = require('../../utils/login.js');
 Page({
   data: {
     houBaoStyle: 1,
@@ -17,18 +17,19 @@ Page({
 
   onLoad: function () {
 
-    if (app.globalData.userInfo.nickName) {
-      console.log('index0')
-      this.initPage()
-    } else {
-      console.log('index1')
-      app.userInfoReadyCallback = res => {
-        this.initPage()
+    var that = this;
+    //检查登录状态
+    login.checkSession({
+      success: function (userInfo) {
+        console.log('发送摇摇包界面');
+        console.log(userInfo);
+        app.getBalance();
+        that.refresh();
       }
-    }
+    });
     
   },
-  initPage: function () {
+  refresh: function () {
     var that = this;
     var tipArray = methods.getModel(1).tips;
     console.log("tips length " + tipArray.length)
@@ -36,7 +37,8 @@ Page({
     var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
     console.log("random " + num)
     that.setData({
-      userInfo: app.globalData.userInfo,
+      userInfo: login.getSession().userInfo,
+      balanceInfo: app.globalData.balanceInfo,
       tips: tipArray[num],
       kouling: tipArray[num]
     })

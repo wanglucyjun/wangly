@@ -1,6 +1,7 @@
 const uploadUrl = require('../config').uploadUrl
 const hongbaoCreateUrl = require('../config').hongbaoCreateUrl
 const userinfoUrl = require('../config').userinfoUrl
+var login = require('./login');
 const app = getApp()
 var innerAudioContext = wx.createInnerAudioContext()
 
@@ -94,7 +95,7 @@ function getAccountInfo(){
   wx.request({
     url: userinfoUrl,
     data:{
-    'token': app.globalData.sessionInfo,
+      'token': login.getSession().session.token,
   },
   success:function(res){
     console.log(res.data.data);
@@ -111,7 +112,7 @@ function uploadFile(obj) {
     filePath: obj.filePath,
     name: 'recordfile',
     formData: {
-      'token': app.globalData.sessionInfo
+      'token': login.getSession().session.token
     },
     success: function (res) {
       var data = res.data
@@ -205,7 +206,7 @@ wx.request({
 
   url: hongbaoCreateUrl,
   data: {
-    token: app.globalData.sessionInfo,
+    token: login.getSession().session.token,
     type:type,
     question:question,
     power:power,

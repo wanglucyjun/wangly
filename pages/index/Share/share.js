@@ -1,6 +1,8 @@
 // pages/index/Share/ShareHotMoney.js
 var app = getApp();
 var methods = require('../../../utils/methods.js')
+var accelerometer = require('../../../utils/accelerometer.js')
+var login = require('../../../utils/login.js');
 const config = require('../../../config')
 var map=new Map();
 
@@ -14,6 +16,7 @@ Page({
     userHongbao:{},
     hongbaoDetail: {},
     hongbaoID:'123',
+    rate: 2,
     moving:false
     },
   /**
@@ -35,19 +38,15 @@ Page({
       userHongbao: userHongbao
     })
 
-    if (app.globalData.userInfo.nickName) {
-      console.log('index0')
-      this.refersh()
-    } else {
-      console.log('index1')
-      app.userInfoReadyCallback = res => {
-        this.refersh()
+    //检查登录状态
+    login.checkSession({
+      success: function (userInfo) {
+        console.log('领取红包界面');
+        console.log(userInfo);
+        that.refresh();
       }
-    }
-
-    
-
-  },
+    });
+},
   toshareChat:function(){
     
   },
@@ -63,20 +62,27 @@ Page({
    */
   onShow: function () {
     console.log("onShow")
+    var that = this;
+    if (that.data.hongbaoDetail.type == 1 && that.data.hongbaoDetail.hadSend == 0) {
+      that.startMove()
+    }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    var that = this
+    that.setData({
+      moving: false
+    })
+    accelerometer.stopMove()
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
   },
 
   /**
@@ -84,7 +90,7 @@ Page({
    */
   onPullDownRefresh: function () {
     console.log("onPullDownRefresh");
-    this.refersh()
+    this.refresh()
     wx.stopPullDownRefresh()
   },
 
@@ -94,39 +100,28 @@ Page({
   onReachBottom: function () {
   
   },
-  sayget:function(){
-    var fileP = wx.getStorageSync('kai1')
-    console.log("fileP")
-    console.log(fileP)
-    const innerAudioContext = wx.createInnerAudioContext()
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = fileP
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放')
-    })
-    innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-    })
-  },
-  refersh:function(){
-    console.log('refersh')
+  refresh:function(){
+    console.log('refresh')
     var that = this;
-    methods.downloadFile('kai1', 'https://www.chemchemchem.com/audio/num/kai1.mp3')
+    accelerometer.stopMove()
     wx.request({
       url: config.hongbaoDetailUrl,
       data: {
         id: that.data.hongbaoID,
-        token: app.globalData.sessionInfo
+        token: login.getSession().session.token
       },
       success: function (res) {
         console.log(res)
 
-        
-        that.setData({
-          userInfo: app.globalData.userInfo,
-          hongbaoDetail: res.data.data,
-        })
+        if (res.data.code=='0'){
+          that.setData({
+            userInfo: login.getSession().userInfo,
+            hongbaoDetail: res.data.data,
+          })
+          if (that.data.hongbaoDetail.type == 1 && that.data.hongbaoDetail.hadSend == 0){
+            that.startMove()
+          }
+        }
       }
       ,
       fail: function (res) {
@@ -168,10 +163,9 @@ Page({
     console.log("getHongbao");
     var that = this
     if (that.data.hongbaoDetail.state == 1 && that.data.hongbaoDetail.hadSend == 0) {
-
-    app.checkSession({
+      login.checkSession({
       success: function () {
-        that.data.userHongbao.token = app.globalData.sessionInfo
+        that.data.userHongbao.token = login.getSession().session.token
         //此处领红包
         wx.request({
           url: config.hongbaoGetUrl,
@@ -183,7 +177,7 @@ Page({
                 title: '提示',
                 content: '您领取了'+res.data.data.money
               })
-              that.sayget()
+              methods.getSound('kai1')
             }else{
               wx.showModal({
                 title: '提示',
@@ -191,7 +185,7 @@ Page({
               })
             }
             //显示领取多少红包
-            that.refersh()
+            that.refresh()
           }
           ,
           fail: function (res) {
@@ -242,11 +236,6 @@ Page({
         }
       })
     }
-
-    
-
-    
-
   },
   //开始摇手机
   startMove: function () {
@@ -254,32 +243,17 @@ Page({
     that.setData({
       moving: true
     })
-    wx.startAccelerometer({
-      success: function (res) {
-        console.log("the wuli " + res)
-      }
-    })
-    wx.onAccelerometerChange(function (res) {
-      // console.log(res.x+',')
-      // console.log(res.y + ',')
-      // console.log(res.z + ',')
-      var wuli = 0 + res.x * res.x + res.y * res.y + res.z * res.z
-      if (wuli > 10) {
-        console.log(wuli)
-        that.data.userHongbao.file = ''
-        that.data.userHongbao.text = wuli.toFixed(2)
-        that.setData({
-          userHongbao: that.data.userHongbao
-        })
-      }
-      if (wuli > that.data.hongbaoDetail.content.question){
+    accelerometer.startMove(function (sum) {
+      that.data.userHongbao.file = ''
+      that.data.userHongbao.text = sum.toFixed(2)
+      that.setData({
+        userHongbao: that.data.userHongbao
+      })
+      if (sum > that.data.hongbaoDetail.content.question) {
         that.getHongbao()
-        wx.stopAccelerometer({})
+
       }
-
-
     })
-
   },
   againSend:function(){
    
@@ -304,9 +278,10 @@ Page({
     })
   },
   toShare:function(){
-    wx.navigateTo({
-      url: 'ShareHotMoney?id='+this.data.hongbaoID,
-    })
+     wx.navigateTo({
+       url: 'ShareHotMoney?id=' + this.data.hongbaoID,
+     })
+    
   },
   gotoMine:function(){
     wx.switchTab({

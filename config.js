@@ -46,7 +46,7 @@ var config = {
     hongbaoReceivedUrl: `${host}/user/receive-list`,
 
     // 提现我的余额接口
-    hongbaoDrawUrl: `${host}/withdraw/get-money`,
+    hongbaoDrawUrl: `${host}/withdraw/submit`,
 
     // 查询问题帮助列表的接口
     hongbaoHelpUrl: `${host}/help/list`,

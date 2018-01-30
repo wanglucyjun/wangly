@@ -97,5 +97,8 @@
       </view>
       </block>
  </view>
+ <view class='reload-page' bindtap='onReachBottom'>
+        <text>点击加载下一页</text>
+ </view>
   </view>
 </view>

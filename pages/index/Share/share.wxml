@@ -18,9 +18,8 @@
             <view class='question1'>小伙伴摇摇力超过武力值<text style="font-size:50rpx">{{hongbaoDetail.content.question}}</text>即可领红包</view>
           </view>
           <view wx:if="{{hongbaoDetail.state==1}}">
-            <view wx:if="{{hongbaoDetail.hadSend==0}}">
-              <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
-              <button class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{userHongbao.text}}</button>
+            <view class='answer1' wx:if="{{hongbaoDetail.hadSend==0}}">
+              刚才最大的武力值是{{userHongbao.text}}
             </view>
             <view class='answer2ok' wx:if="{{hongbaoDetail.hadSend==1}}">已领红包</view>
           </view>

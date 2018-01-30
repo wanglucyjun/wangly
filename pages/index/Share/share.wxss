@@ -56,6 +56,17 @@ Page{
   justify-content: space-around;
   vertical-align: middle;
 }
+.answer1{
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color:#fff;
+  background: #31bd48;
+  border-radius:45rpx;
+  margin-left:50rpx;
+  margin-right:50rpx;
+  font-size:35rpx;
+}
 .question2{
   width:690rpx;
   height:136rpx;
@@ -318,4 +329,5 @@ Page{
   margin:0 auto;
 
 }
+
 .icon-kehu:before { content: "&#xe610;"; }  

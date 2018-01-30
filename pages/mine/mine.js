@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 var app = getApp();
 const config = require('../../config')
+var login = require('../../utils/login.js');
 Page({
 
   /**
@@ -18,15 +19,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo.nickName) {
-      console.log('index0')
-      this.refresh()
-    } else {
-      console.log('index1')
-      app.userInfoReadyCallback = res => {
-        this.refresh()
+    var that = this;
+    //检查登录状态
+    login.checkSession({
+      success: function (userInfo) {
+        console.log('发送摇摇包界面');
+        console.log(userInfo);
+        that.refresh();
       }
-    }
+    });
   },
   // tab 切换函数
   changeTab: function (e) {
@@ -85,13 +86,12 @@ Page({
 
   },
   getReceivedHongbao:function(){
-    
     var that = this;
     console.log(that.data.receivedHongbao.page)
     wx.request({
       url: config.hongbaoReceivedUrl,
       data: {
-        token: app.globalData.sessionInfo,
+        token: login.getSession().session.token,
         page: that.data.receivedHongbao.page + 1
       },
       success: function (res) {
@@ -127,7 +127,7 @@ Page({
     wx.request({
       url: config.hongbaoSendedUrl,
       data: {
-        token: app.globalData.sessionInfo,
+        token: login.getSession().session.token,
         page: that.data.sendedHongbao.page + 1
       },
       success: function (res) {
@@ -161,7 +161,7 @@ Page({
     var that = this;
     app.getBalance()
     that.setData({
-      userInfo: app.globalData.userInfo,
+      userInfo: login.getSession().userInfo,
       userHongbao: app.globalData.balanceInfo,
     })
     that.data.sendedHongbao.page=0
