@@ -60,6 +60,6 @@
 
         </view>
     </view>
-
+    <view class='help' bindtap='clickhelp'>常见问题</view> 
  </view>
 </view>

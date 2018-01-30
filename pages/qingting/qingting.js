@@ -192,5 +192,10 @@ Page({
      filePath: filePath,
    })
   },
+  clickhelp: function () {
+    wx.navigateTo({
+      url: '../mine/help/help',
+    })
+  }
 
 })

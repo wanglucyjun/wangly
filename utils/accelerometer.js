@@ -27,6 +27,7 @@ var addLiliang= function (liliang) {
     for (var i = 0; i < count; i++) {
       sum += yyydata.liliang[(yyydata.lastIndex - i) % 100];
     }
+    sum=sum/count
     console.log('sum:' + sum + ';lasttime:' + yyydata.lastTime)
     yyydata.saying = []
     sum = sum * accelerometer.rate + '';

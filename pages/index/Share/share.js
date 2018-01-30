@@ -163,7 +163,7 @@ Page({
     console.log("getHongbao");
     var that = this
     if (that.data.hongbaoDetail.state == 1 && that.data.hongbaoDetail.hadSend == 0) {
-      app.checkSession({
+      login.checkSession({
       success: function () {
         that.data.userHongbao.token = login.getSession().session.token
         //此处领红包
@@ -185,7 +185,7 @@ Page({
               })
             }
             //显示领取多少红包
-            that.refersh()
+            that.refresh()
           }
           ,
           fail: function (res) {
