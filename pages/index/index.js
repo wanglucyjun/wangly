@@ -8,7 +8,7 @@ Page({
   data: {
     houBaoStyle: 1,
     userInfo: [],
-    shuoming: '小伙伴摇摇超过武力值领赏金',
+    shuoming: '小伙伴摇摇力超过设置武力值领赏金',
     powerset:'60',
     Money: '',
     zhifu: '',

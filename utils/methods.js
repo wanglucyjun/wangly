@@ -227,7 +227,7 @@ success:function(res) {
     if (res.data.code == '0') {
         var hotid = res.data.data.hotid;
         var orderid=res.data.data.orderid;
-        if (res.data.data.needpay == '1'){
+        if (res.data.data.needpay == '0'){
           //不需要调取支付，直接跳转
           wx.navigateTo({
             url: '/pages/index/Share/Share?id=' + res.data.data.hotid,
