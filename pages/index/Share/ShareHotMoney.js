@@ -1,6 +1,7 @@
 // pages/index/Share/ShareHotMoney.js
 var app = getApp();
 const config = require('../../../config')
+var login = require('../../../utils/login.js');
 Page({
 
   /**
@@ -19,7 +20,7 @@ Page({
    
     console.log(options);
     that.setData({
-      hongbaoID: options.id,
+      hongbaoID: options.id
     })
     that.refersh()
   },
@@ -30,7 +31,7 @@ Page({
       url: config.hongbaoDetailUrl,
       data: {
         id: that.data.hongbaoID,
-        token: app.globalData.sessionInfo
+        token: login.getSession().session.token
       },
       success: function (res) {
         console.log(res)

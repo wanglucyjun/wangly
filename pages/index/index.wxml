@@ -7,7 +7,7 @@
     <view class="HotMoney_box">
         <view class='watchword' 
               style="">
-          <view class='header' bindtap='tomyRecord'>
+          <view class='header' >
           
           <block wx:if="{{!userInfo.avatarUrl}}" >
             <image class='header_size' src="../image/headDefault.jpg"/>

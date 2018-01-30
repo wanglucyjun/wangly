@@ -1,5 +1,7 @@
 //app.js
 const config = require('./config')
+var accelerometer = require('utils/accelerometer.js')
+var login = require('utils/login.js')
 App({
   globalData: {
     sessionInfo: '',
@@ -11,114 +13,12 @@ App({
     withdrawFee:[],
     hbType:[],
     balanceInfo:{},
-    accelerometer: { issend:false}
+    
   },
   onLoad:function(){
     console.log("App onLoad")
   },
-  checkSession: function (cb){
-    var that = this
-    var isLogin=false;
-    wx.checkSession({
-      success: function () {
-        //session 未过期，并且在本生命周期一直有效
-        that.globalData.sessionInfo = wx.getStorageSync('3rd_session') || []
-        console.log("sessioninfo is "+that.globalData.sessionInfo)
-        if (that.globalData.sessionInfo && that.globalData.sessionInfo !=''){
-          isLogin=true
-          that.getUserInfo()
-          cb&&typeof cb.success == "function" && cb.success()
-        }
-      },
-      fail: function () {
-        //登录态过期
-        isLogin=false
-      },
-      complete:function(){
-        if (!isLogin){
-          //重新登录
-          // 登录
-          wx.login({
-            success: res => {
-              // 发送 res.code 到后台换取 openId, sessionKey, unionId
-              if (res.code) {
-                //发起网络请求
-                wx.request({
-                  url: config.loginUrl,
-                  data: {
-                    code: res.code
-                  },
-                  success: function (res) {
-                    console.log(res.data)
-                    if (res.data.code == '0') {
-                      isLogin = true
-                      console.log(res.data.data)
-                      that.globalData.sessionInfo = res.data.data.token
-                      that.globalData.needInfo = res.data.data.needInfo
-                      that.getUserInfo()
-                      wx.setStorageSync('3rd_session', res.data.data.token)
-                      cb && typeof cb.success == "function" && cb.success()
-                    } else {
-                      wx.showModal({
-                        title: '提示',
-                        content: '登录失败1'
-                      })
-                    }
-                  }
-                  ,
-                  fail: function (res) {
-                    wx.showModal({
-                      title: '提示',
-                      content: '登录失败2' + res.errMsg + loginUrl
-                    })
-                  }
-                })
-              } else {
-                //console.log('获取用户登录态失败！' + res.errMsg)
-                wx.showModal({
-                  title: '提示',
-                  content: '登录失败3'
-                })
-              }
-            }
-          })
-        }
-
-      }
-    })
-    console.log(isLogin)
-  },
-  getUserInfo:function(){
-    var that=this
-    wx.getUserInfo({
-      success: function (user) {
-        if (that.globalData.needInfo == 1) {
-          var userInfo = user.userInfo
-          userInfo.token = that.globalData.sessionInfo
-          wx.request({
-            url: config.updateUrl,
-            data: userInfo,
-            success: function (res) {
-
-            }
-            ,
-            fail: function (res) {
-              wx.showModal({
-                title: '提示',
-                content: '登录失败'
-              })
-            }
-          })
-        }
-        that.getBalance()
-        that.globalData.userInfo = user.userInfo
-        if (that.userInfoReadyCallback) {
-          console.log(user.userInfo)
-          that.userInfoReadyCallback()
-        }
-      }
-    })
-  },
+ 
   analyzeData:function(res){
     for (var idx in that.globalData.hbType.subjects){
         var subject=hyType.subjects[idx];
@@ -146,12 +46,14 @@ App({
       },
     })
     
-    //检查登录状态
-    that.checkSession({success:function(){
-      console.log('获取用户登录态成功！' + that.globalData.sessionInfo)
-    }})
+    ////检查登录状态
+    // login.checkSession({
+    //   success: function (userInfo){
+    //   console.log('获取用户登录态成功！')
+    //   console.log(userInfo)
+    // }})
     //请求成功
-
+    accelerometer.init()
   },
   //获取提现初始值
   getBalance: function () {
@@ -159,19 +61,17 @@ App({
     wx.request({
       url: config.hongbaoGetBalanceUrl,
       data: {
-        token: that.globalData.sessionInfo
+        token: login.getSession().session.token
       },
       success: function (res) {
         console.log(res.data)
         if(res.data.code=="0"){
-          that.globalData.balanceInfo = res.data.data
+           that.globalData.balanceInfo = res.data.data
         }
       },
       fail: function (res) {
         console.log(res.data)
       },
     })
-  }
-  
-
+  },
 })
