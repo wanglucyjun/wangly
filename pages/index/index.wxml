@@ -12,7 +12,7 @@
           <block wx:if="{{!userInfo.avatarUrl}}" >
             <image class='header_size' src="../image/headDefault.jpg"/>
             </block>
-         <block  wx:else>
+         <block  wx:if="{{userInfo.avatarUrl}}">
           <image src="{{userInfo.avatarUrl}}" class='header_size'></image>
           </block>
 
