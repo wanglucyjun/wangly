@@ -63,9 +63,9 @@ var sayWord=function () {
 
 var startMove=function (func) {
   yyydata.lastTime = (new Date()).getTime();
-  yyydata.lastIndex = 0;
+  yyydata.lastIndex = 5;
   yyydata.currentIndex = 0;
-  yyydata.liliang = [];
+  yyydata.liliang = [10, 23, Math.random() * 20,34,Math.random()*50];
   accelerometer.func = func
   wx.startAccelerometer({
     success: function (res) {
