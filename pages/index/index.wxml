@@ -52,6 +52,7 @@
 
         </view>
     </view>
-    <view class='help' bindtap='clickhelp'>常见问题</view>
+    <view class='exmple fl' bindtap='clickexample'>查看示例</view>
+    <view class='help fr' bindtap='clickhelp'>常见问题</view>
  </view>
 </view>
