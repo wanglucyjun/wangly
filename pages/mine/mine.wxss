@@ -178,6 +178,7 @@ Page{
 }
 .sended-list-item-right{
   height:85rpx;
+  text-align:right;
 }
 .sended-list-item-logo{
   width:80rpx;
@@ -216,6 +217,7 @@ Page{
 }
 .received-list-item-right{
   height:90rpx;
+  
 }
 .received-list-item-logo{
   width:80rpx;

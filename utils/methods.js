@@ -246,7 +246,9 @@ success:function(res) {
             'signType': 'MD5',
             'paySign': 'MD5(sign)',
             'success': function (res) {
-              console.log(res.data)
+              wx.navigateTo({
+                url: '/pages/index/Share/Share?id=' + res.data.data.hotid,
+              })
             },
             'fail': function (res) {
             }

@@ -119,6 +119,12 @@ Page({
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
      
     }
+  },
+    clickhelp: function () {
+    wx.navigateTo({
+      url: '../mine/help/help',
+    })
   }
+
 
 })

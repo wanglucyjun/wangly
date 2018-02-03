@@ -74,7 +74,7 @@
 </view>
     <view class='hotMoneyNum'>
         <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.sendNum}}/{{hongbaoDetail.allNum}}个</view>
-        <view class='fr'></view>
+        <view class='fr'><navigator class='accuse' url='/pages/mine/accuse/accuse?id={{hongbaoID}}'>投诉</navigator></view>
     </view>
     <block wx:for="{{hongbaoDetail.list}}" wx:key="url" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='peopleMoney'>

@@ -52,7 +52,9 @@ var config = {
     hongbaoHelpUrl: `${host}/help/list`,
 
     //获取用户信息接口
-    userinfoUrl: `${host}/user/info`
+    userinfoUrl: `${host}/user/info`,
+    //获取用户信息接口
+    accuseUrl: `${host}/help/feed-back`
 };
 
 module.exports = config

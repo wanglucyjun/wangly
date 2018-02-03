@@ -14,5 +14,6 @@
  </view>
 <view>
   <button class='contact' open-type="contact">进入客服会话</button>
+  <navigator class='accuse' url='/pages/mine/accuse/accuse'>投诉</navigator>
 </view>
 </view>
