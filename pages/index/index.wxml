@@ -20,19 +20,18 @@
           <view class="setHotMoney">
           <!--摇摇红包  -->
             <view class='setHotMoney_detail' >
-              <view class='setHotMoney_name fl' >设置武力值</view>
-              <input type='text' placeholder='60' class='hotInput1 fr'      bindinput='powerInput'></input>
+              <view class='setHotMoney_name fl' >设置武力</view>
+              <input type='text' placeholder="{{power?power:'摇一摇设置值'}}" class='hotInput fr'      bindinput='powerInput'></input>
             </view>
 
             <view class='shuoming'>
               <text>{{shuoming}}</text>
-              <text>?</text>
             </view>
             
-            <view class='try'>
+            <!-- <view class='try'>
               <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
               <text class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{power}}</text>
-            </view>
+            </view> -->
             <view class='setHotMoney_detail'>
               <view class='setHotMoney_name fl' >赏金（元）</view>
               <input type='digit' placeholder='填写金额' class='hotInput fr'

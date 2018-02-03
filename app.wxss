@@ -86,20 +86,22 @@
   padding-top:70rpx;
 }
 .setHotMoney_detail{
-  height:70rpx;
-  line-height:70rpx;
-  font-weight:bold;
-  font-size:28rpx;
+  height:80rpx;
+  line-height:80rpx;
+  font-size:32rpx;
+}
+.setHotMoney_name{
+ font-weight:bold;
 }
 .hotInput{
-  width:450rpx;
   border-bottom:1px solid #ccc;
-  margin-top:2rpx;
+  margin-top:12rpx;
+  width:70%;
 }
 .shuoming{
   height:50rpx;
   line-height: 50rpx;
-  font-size:24rpx;
+  font-size:26rpx;
   color:#999;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
@@ -110,7 +112,7 @@
   line-height: 80rpx;
   color:#999;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 .VoiceBtn{
   width:600rpx;
@@ -130,6 +132,17 @@
   border-radius:50%;
 }
 
+.try{
+  width: 450rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+  font-family:PingFang SC Medium,"微软雅黑";
+  font-size:12px;
+  text-align: center;
+  margin-bottom: 20rpx;
+  margin-left: 45rpx;
+}
 .marginAuto{
   margin: 0 auto;
 }

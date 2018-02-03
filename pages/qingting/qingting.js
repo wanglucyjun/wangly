@@ -9,7 +9,7 @@ Page({
     houBaoStyle:1,
     userInfo:[],
     hbType: [],
-    shuoming: '好友听完你说的话就能领取赏金',
+    shuoming: '小伙伴听完你说的话就能领取赏金',
     Money:'',
     zhifu:'',
     balance:'0.0',
@@ -21,7 +21,7 @@ Page({
     tempFilePath:'',
     rate:0.01,
     minVal:0.01,
-    tips:'长按输入你想说的内容',
+    tips:'录音你想说的内容',
     serverFilePath:''
   },
   

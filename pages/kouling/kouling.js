@@ -13,7 +13,7 @@ Page({
     balance: '0.0',
     Money: '',
     Number: '',
-    fuwufee: 0.0,
+    fuwufee: '0.0',
     tips:"新的一年大吉大利"
   },
 

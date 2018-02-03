@@ -14,29 +14,16 @@
         </view>
           <view class="setHotMoney">
           <!--倾听红包  -->
-          <block wx:if="{{recording === false }}">
-            <view class='setHotMoney_detail1' >
 
-     
-               <button class='qingting'
+            <view class='setHotMoney_detail' >
+              <button wx:if="{{hasRecord === true}}" class="playVoice fr iconfont icon-bofang" 
+              bindtap='playVoice'></button>
+               <button wx:if="{{recording === false }}" class='qingting '
                 bindtap='startRecord'>{{tips}}</button>
-
-            </view>
-            </block>
-          <block wx:if="{{recording === true}}">
-            <view class='setHotMoney_detail1' >
-
-               <button class="qingting iconfont icon-huatong" 
+               <button wx:if="{{recording === true}}" class="qingting  iconfont icon-huatong" 
                 bindtap='stopRecord'>停止录音</button>
-
-            </view>
-            </block>
-             <block wx:if="{{hasRecord === true}}">
-            
-              <button class="playVoice" 
-              bindtap='playVoice'>播放录音</button>
               
-            </block>
+            </view>
 
             <view class='shuoming'>
               {{shuoming}}

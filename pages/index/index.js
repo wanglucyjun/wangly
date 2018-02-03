@@ -26,6 +26,11 @@ Page({
      */
   onShow: function () {
     console.log("onShow");
+    var that=this;
+    that.setData({
+      moving:true
+    });
+    that.startMove();
   },
 
   /**
@@ -65,15 +70,14 @@ Page({
     console.log(login.getSession().userInfo)
   },
   startMove: function () {
-      var that=this
-      that.setData({
-        moving:true
-      })
+    var that=this;
       accelerometer.startMove(function(sum){
+        console.log("sum");
+        console.log(sum);
       that.setData({
           power: sum.toFixed(2)
-      })
-    })
+      });
+    });
   },
   // 获取页面填入的值
   powerInput: function (e) {

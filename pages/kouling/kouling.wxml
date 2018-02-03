@@ -22,7 +22,7 @@
             <view class='setHotMoney_detail' 
                 >
                   
-              <view class='setHotMoney_name1 fl' >设置口令</view>
+              <view class='setHotMoney_name fl' >设置口令</view>
               <input type='text' placeholder='{{tips}}' class='hotInput fr' bindinput='koulingInput'></input>
             </view>
          
