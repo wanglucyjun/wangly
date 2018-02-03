@@ -24,6 +24,7 @@
             </view>
             <view class='answer2ok' wx:if="{{hongbaoDetail.hadSend==1}}">已领红包</view>
           </view>
+           <view class='answer2ok' wx:if="{{hongbaoDetail.state==2}}">活动已完毕</view>
         </view>
        <!--按住说出以上口令领取赏金-->
         <view wx:if="{{hongbaoDetail.type==2}}">
@@ -43,8 +44,7 @@
           
           </view>
            <view class="{{hongbaoDetail.hadSend==0?'question3':'question3ok'}}"  bindtap='playVoice'  data-url='{{hongbaoDetail.content.question}}' >
-              <text class="iconfont3 icon-bofang"  wx:if="{{hongbaoDetail.state==1}}">点击收听真心话{{hongbaoDetail.hadSend==0?'领取赏金':''}}</text>
-              <text class="iconfont3 icon-bofang"  wx:if="{{hongbaoDetail.state==2}}">活动已完毕</text>
+              <text class="iconfont3 icon-bofang" >点击收听真心话{{hongbaoDetail.hadSend==0?'领取赏金':''}}</text>
             </view>
           <view class='share_box_ju'>
             <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 

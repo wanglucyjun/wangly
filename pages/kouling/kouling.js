@@ -9,6 +9,8 @@ Page({
     userInfo: [],
     shuoming1: '小伙伴们说对口令就能获得随机赏金',
     kouling: '',
+    zhifu: '',
+    balance: '0.0',
     Money: '',
     Number: '',
     fuwufee: 0.0,
@@ -70,6 +72,34 @@ Page({
     that.setData({
       fuwufee: methods.getSendFee(1, that.data.Money).toFixed(2),
     })
+
+    var that = this;
+    console.log(e.detail.value)
+    that.setData({
+      Money: e.detail.value,
+    })
+    console.log(app.globalData.balanceInfo)
+    console.log("acountbalance is " + app.globalData.balanceInfo.allMoney)
+    console.log("now money is " + that.data.Money)
+    var sendfee = methods.getSendFee(1, that.data.Money)
+    console.log(sendfee)
+    var chargefee = methods.getChargeFee(1, (that.data.Money - app.globalData.balanceInfo.allMoney))
+    if (chargefee < 0) {
+      chargefee = 0
+    }
+    console.log("chargefee is " + chargefee)
+    var fee = (sendfee + chargefee).toFixed(2);
+    var balance = that.data.Money * 1 + fee * 1
+    if (balance > app.globalData.balanceInfo.allMoney) {
+      balance = app.globalData.balanceInfo.allMoney
+    }
+    that.setData({
+      fuwufee: fee,
+      balance: balance,
+      zhifu: that.data.Money + fee - balance
+    })
+    console.log("now fuwufee is" + that.data.fuwufee)
+
   },
   NumberInput: function (e) {
     var that = this;
