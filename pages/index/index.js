@@ -159,7 +159,11 @@ Page({
       console.log(e.detail.value);
     }
   },
-
+  clickexample:function(){
+    wx.navigateTo({
+      url: '/pages/index/Share/Share?id=344',
+    })
+  },
   clickhelp:function(){
     wx.navigateTo({
       url: '../mine/help/help',

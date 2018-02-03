@@ -192,6 +192,11 @@ Page({
      filePath: filePath,
    })
   },
+  clickexample: function () {
+    wx.navigateTo({
+      url: '/pages/index/Share/Share?id=347',
+    })
+  },
   clickhelp: function () {
     wx.navigateTo({
       url: '../mine/help/help',

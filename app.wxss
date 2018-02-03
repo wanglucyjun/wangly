@@ -134,11 +134,19 @@
   margin: 0 auto;
 }
 .help{
+  margin-right: 200rpx;
    margin-top: 40rpx;
-   text-align: center;
    font-size: 25rpx;
-   color:blue;
+  color:#999;
+ 
 }
+.exmple{
+  margin-left: 200rpx;
+   margin-top: 40rpx;
+   font-size: 25rpx;
+  color:#999;
+}
+
 .accuse{
    text-align: center;
    font-size: 25rpx;

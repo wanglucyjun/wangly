@@ -150,6 +150,11 @@ Page({
      
     }
   },
+  clickexample: function () {
+    wx.navigateTo({
+      url: '/pages/index/Share/Share?id=346',
+    })
+  },
     clickhelp: function () {
     wx.navigateTo({
       url: '../mine/help/help',
