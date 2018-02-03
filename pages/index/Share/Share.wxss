@@ -295,7 +295,7 @@ Page{
   text-align: right;
   line-height:35rpx;
   padding-right:15rpx;
-  margin-top:65rpx;
+  margin-top:30rpx;
 }
 .right_Num{
   line-height: 35rpx;

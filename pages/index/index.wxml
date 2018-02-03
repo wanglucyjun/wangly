@@ -26,8 +26,10 @@
             </view>
 
             <view class='shuoming'>
-              {{shuoming}}
+              <text>{{shuoming}}</text>
+              <text>?</text>
             </view>
+            
             <view class='try'>
             <button class='try' wx:if="{{moving===false}}" bindtap='startMove'>试一下？点我，摇手机</button>
             <text class='try'wx:if="{{moving===true}}">刚才最大的武力值是{{power}}</text>
@@ -43,7 +45,7 @@
                      bindinput='NumberInput'></input>
             </view>
 
-            <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额{{balance}}</view>
+            <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
            <view
             class='VoiceBtn' bindtap='toShare'>生成摇摇武力包
             </view>

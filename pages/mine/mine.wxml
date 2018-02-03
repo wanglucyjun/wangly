@@ -68,7 +68,7 @@
           </view>
           <view class='sended-list-item-right fr'>
             <view class='sended-list-item-money'>{{item.allMoney}}元</view>
-            <text >{{item.allNum-item.leftNum}}/{{item.allNum}}</text>
+            <text style="align='right'">{{item.allNum-item.leftNum}}/{{item.allNum}}</text>
           </view>
         </view>
       </view>
