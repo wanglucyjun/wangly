@@ -29,22 +29,22 @@ App({
   onLaunch: function () {
     var that = this
     console.log("App OnLaunch")
-    wx.request({
-      url:config.initUrl,
-      success: function (res) {
-        console.log(res.data)
-        if(res.data.data){
-          that.globalData.chargeFee = res.data.data.chargeFee,
-          that.globalData.sendFee = res.data.data.sendFee,
-          that.globalData.receiveFee = res.data.receiveFee,
-          that.globalData.withdrawFee = res.data.data.withdrawFee,
-          that.globalData.hbType = res.data.data.hbType
-        }
-      },
-      fail: function (res) {
-        console.log(res.data)
-      },
-    })
+    // wx.request({
+    //   url:config.initUrl,
+    //   success: function (res) {
+    //     console.log(res.data)
+    //     if(res.data.data){
+    //       that.globalData.chargeFee = res.data.data.chargeFee,
+    //       that.globalData.sendFee = res.data.data.sendFee,
+    //       that.globalData.receiveFee = res.data.receiveFee,
+    //       that.globalData.withdrawFee = res.data.data.withdrawFee,
+    //       that.globalData.hbType = res.data.data.hbType
+    //     }
+    //   },
+    //   fail: function (res) {
+    //     console.log(res.data)
+    //   },
+    // })
     
     ////检查登录状态
     // login.checkSession({

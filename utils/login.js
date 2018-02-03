@@ -1,5 +1,6 @@
 const config = require('../config')
 var utils = require('./util');
+var init = require('./init');
 /***
  * @class
  * 表示登录过程中发生的异常
@@ -162,25 +163,31 @@ var Session = {
 var checkSession = function (options){
   console.log('checkSession')
   options = utils.extend({}, defaultOptions, options);
-  var session = Session.get();
-  if (session) {
+  
+  init.checkInitData({
+    success: function (data) {
+      var session = Session.get();
+      if (session) {
         wx.checkSession({
-            success: function () {
-                options.success(session);
-            },
+          success: function () {
+            options.success(session);
+          },
 
-            fail: function () {
-                Session.clear();
-                login(options);
-            },
+          fail: function () {
+            Session.clear();
+            login(options);
+          },
         });
-  } else {
-    login(options);
-  }
+      } else {
+        login(options);
+      }
+    }
+  });
 };
 module.exports = {
   LoginError: LoginError,
   login: login,
   checkSession: checkSession,
   getSession: Session.get,
+  getInitData: init.getInitData
 };

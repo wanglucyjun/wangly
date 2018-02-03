@@ -59,10 +59,9 @@ Page({
   },
   refresh:function(){
     var that = this;
-    var tipArray = app.globalData.hbType[0].tips;
+    var tipArray = methods.getModel(0).tips;
     var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
-    
-    that.setData({
+     that.setData({
       tips: tipArray[num],
       userInfo: login.getSession().userInfo,
       balanceInfo: app.globalData.balanceInfo,
@@ -75,7 +74,8 @@ Page({
         console.log("sum");
         console.log(sum);
       that.setData({
-          power: sum.toFixed(2)
+          power: sum.toFixed(2),
+          powerset:sum.toFixed(2)
       });
     });
   },

@@ -132,17 +132,6 @@
   border-radius:50%;
 }
 
-.try{
-  width: 450rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  margin-top: 20rpx;
-  font-family:PingFang SC Medium,"微软雅黑";
-  font-size:12px;
-  text-align: center;
-  margin-bottom: 20rpx;
-  margin-left: 45rpx;
-}
 .marginAuto{
   margin: 0 auto;
 }

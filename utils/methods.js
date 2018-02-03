@@ -8,14 +8,14 @@ var innerAudioContext = wx.createInnerAudioContext()
 //获取返回红包类型的模版
 function getModel(type) {
   var that = this
-  var temdata = app.globalData.hbType[type]
+  var temdata = login.getInitData().hbType[type]
    return temdata
  
 }
 //费用相关,得到生成红包时返回的服务费
 function getSendFee(type,money) {
   var that = this
-  var tempparam = app.globalData.sendFee[getModel(type).sendParam]
+  var tempparam = login.getInitData().sendFee[getModel(type).sendParam]
 
   if (tempparam.isFee == "0") {
     var fuwufee=0.0
@@ -35,7 +35,7 @@ function getSendFee(type,money) {
 //费用相关,得到充值是需要的服务费
 function getChargeFee(type,money) {
   var that = this
-  var tempparam = app.globalData.chargeFee[getModel(type).chargeParam]
+  var tempparam = login.getInitData().chargeFee[getModel(type).chargeParam]
 
   if (tempparam.isFee == "0") {
     var fuwufee = 0.0
@@ -52,7 +52,7 @@ function getChargeFee(type,money) {
 //费用相关,领取红包需要的服务费
 function getReceiveFee(type, money) {
   var that = this
-  var tempparam = app.globalData.receiveFee[getModel(type).receiveParam]
+  var tempparam = login.getInitData().receiveFee[getModel(type).receiveParam]
 
   if (tempparam.isFee == "0") {
     var fuwufee = 0.0
@@ -70,7 +70,7 @@ function getReceiveFee(type, money) {
 //费用相关,体现需要的服务费
 function getWithdrawFee(type, money) {
   var that = this
-  var tempparam = app.globalData.withdrawFee[getModel(type).withdrawParam]
+  var tempparam = login.getInitData().withdrawFee[getModel(type).withdrawParam]
 
   if (tempparam.isFee == "0") {
     var fuwufee = 0.0
