@@ -76,7 +76,11 @@ Page({
           data: that.data.feedback,
           success: function (res) {
             console.log(res)
-            
+            wx.showToast({
+              title: '提交投诉成功！',
+            });
+
+            setTimeout(function(){wx.navigateBack();},1000);
           }
           ,
           fail: function (res) {
