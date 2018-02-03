@@ -162,14 +162,57 @@ Page({
       recording:true
     })
     console.log(this.data.recording);
-
-   wx.startRecord({
+   
+   //先去check是否有权限
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.record']) {
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              wx.startRecord({
+                success: function (res) {
+                  that.setData({
+                    tempFilePath: res.tempFilePath
+                  })
+                }
+              })
+            },
+            fail(){
+                wx.showModal({
+                  title: '申请权限',
+                  content: '需要开通录音权限哦',
+                  success: function (res) {
+                    if (res.confirm) {
+                      console.log('用户点击确定')
+                      wx.openSetting({
+                        
+                      })
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                      wx.showToast({
+                        title: '需要开通权限哦',
+                      })
+                    }
+                  }
+                })
+               
+            }
+          })
+        }
+        else{
+          wx.startRecord({
      success: function (res) {
        that.setData({
        tempFilePath:res.tempFilePath
      })
      }
-   })
+  })
+        }
+      }
+    })
+
 
   },
  stopRecord:function(){

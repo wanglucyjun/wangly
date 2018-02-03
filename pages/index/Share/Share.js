@@ -132,21 +132,67 @@ Page({
   startRecord: function () {
     var that = this
     console.log("stat record");
-    wx.startRecord({
-      success: function (res) {
-        that.data.userHongbao.file = res.tempFilePath
-        console.log(that.data.userHongbao.file);
-        that.data.userHongbao.text=''
+    //先去check权限
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.record']) {
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+                 wx.startRecord({
+                     success: function (res) {
+                    that.data.userHongbao.file = res.tempFilePath
+                     console.log(that.data.userHongbao.file);
+                      that.data.userHongbao.text=''
 
-        methods.uploadFile({
-          filePath: that.data.userHongbao.file, success: function (file) {
-            that.data.userHongbao.file = file
-            that.getHongbao()
-          }
-        })
+                     methods.uploadFile({
+                     filePath: that.data.userHongbao.file, success: function (file) {
+                     that.data.userHongbao.file = file
+                      that.getHongbao()
+                   }
+                 })
+                 }
+                 })
+             },
+            fail() {
+              wx.showModal({
+                title: '申请权限',
+                content: '需要开通录音权限哦',
+                success: function (res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                    wx.openSetting({
+
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                    wx.showToast({
+                      title: '需要开通权限哦',
+                    })
+                  }
+                }
+              })
+            },
+          })
+        }
+        else{
+          wx.startRecord({
+            success: function (res) {
+              that.data.userHongbao.file = res.tempFilePath
+              console.log(that.data.userHongbao.file);
+              that.data.userHongbao.text = ''
+
+              methods.uploadFile({
+                filePath: that.data.userHongbao.file, success: function (file) {
+                  that.data.userHongbao.file = file
+                  that.getHongbao()
+                }
+              })
+            }
+          })
+        }
       }
     })
-
   },
   stopRecord: function () {
     var that = this
