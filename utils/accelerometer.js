@@ -22,7 +22,7 @@ var addLiliang= function (liliang) {
   var newTime = (new Date()).getTime();
   var sum = 0;
   var count = 5
-  if (yyydata.lastIndex > 0 && (newTime - yyydata.lastTime) > 2000) {
+  if (yyydata.lastIndex > 5 && (newTime - yyydata.lastTime) > 2000) {
     yyydata.lastTime = newTime;
     for (var i = 0; i < count; i++) {
       sum += yyydata.liliang[(yyydata.lastIndex - i) % 100];
