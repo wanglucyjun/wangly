@@ -9,7 +9,7 @@ Page({
     houBaoStyle:1,
     userInfo:[],
     hbType: [],
-    shuoming: '小伙伴听完你说的话就能领取赏金',
+    shuoming: '小伙伴们听完你说的话就能领取赏金',
     Money:'',
     zhifu:'',
     balance:'0.0',
