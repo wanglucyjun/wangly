@@ -25,6 +25,7 @@ Page({
     serverFilePath:'',
     j: 1,//帧动画初始图片 
     recordTime: 0,
+    advancedSetting: false
   },
   
   //事件处理函数
@@ -273,7 +274,21 @@ Page({
       })
     }, 300);
   },
-  
+  clicksetting: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    if (e.detail.value == true) {
+      that.setData({
+        advancedSetting: true
+      })
+    }
+    else {
+      that.setData({
+        advancedSetting: false
+      })
+    }
+
+  },
 
   clickexample: function () {
     wx.navigateTo({

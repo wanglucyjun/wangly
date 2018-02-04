@@ -44,7 +44,10 @@
               <input type='number' placeholder='填写数量' class='hotInput fr'
                      bindinput='NumberInput'></input>
             </view>
-
+            <view class='setSwitch_detail'>
+               <switch class='fl'>投放广场</switch>
+                <switch class='.setting fr' bindchange='clicksetting' >高级设置</switch>
+           </view>
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
             <view 
             class='VoiceBtn' bindtap='toShare'>生成语音倾听包</view>
@@ -52,6 +55,28 @@
 
 
         </view>
+    </view>
+     <view>
+     <block wx:if="{{advancedSetting}}" >
+            <view class='settingAll'>
+             <view class=' fl' >设置转发标题</view>
+              <input placeholder='不服来战' class='hotInput fr'
+                     bindinput='MoneyInput'></input>
+            </view>
+           
+            <view class='settingAll'>
+            <text class='fl'>红包领取时限</text>
+             <input placeholder='10s' class='hotInput fr'
+                     ></input>
+              </view>
+          <view class='settingAll'>
+            <text class='fl'>奖励分配方案</text>
+            <view class='checkbox fr'>
+            <checkbox>均分</checkbox>
+            <checkbox>随机</checkbox>
+            </view>
+            </view>
+      </block>
     </view>
      <view class='exmple fl' bindtap='clickexample'>查看示例</view>
     <view class='help fr' bindtap='clickhelp'>常见问题</view>

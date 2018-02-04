@@ -20,6 +20,7 @@ Page({
     rate:2,
     //balanceInfo: {},
     accountBalance:'',
+    advancedSetting: false
   },
   /**
      * 生命周期函数--监听页面显示
@@ -162,6 +163,21 @@ Page({
      
       console.log(e.detail.value);
     }
+  },
+  clicksetting: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    if (e.detail.value == true) {
+      that.setData({
+        advancedSetting: true
+      })
+    }
+    else {
+      that.setData({
+        advancedSetting: false
+      })
+    }
+
   },
   clickexample:function(){
     wx.navigateTo({

@@ -14,7 +14,8 @@ Page({
     Money: '',
     Number: '',
     fuwufee: '0.0',
-    tips:"新的一年大吉大利"
+    tips:"新的一年大吉大利",
+    advancedSetting:false
   },
 
   onLoad: function () {
@@ -149,6 +150,21 @@ Page({
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
      
     }
+  },
+  clicksetting:function(e){
+      var that=this
+      console.log("switch is "+e.detail.value)
+      if(e.detail.value==true){
+      that.setData({
+        advancedSetting:true
+      })
+      }
+      else{
+        that.setData({
+          advancedSetting: false
+        })
+      }
+
   },
   clickexample: function () {
     wx.navigateTo({
