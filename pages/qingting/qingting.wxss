@@ -35,3 +35,27 @@ Page{
   font-size:35rpx;
   
 }
+/* 录音 */
+.speak-style{ 
+  position: fixed;/*悬停*/
+  top: 300rpx;  
+  left: 250rpx;   
+  z-index: 999; 
+    height: 240rpx; 
+    width: 240rpx; 
+    border-radius: 20rpx; 
+    margin: 0 auto; 
+    background: #bbb; 
+} 
+.sound-style{ 
+  position: fixed;/*悬停*/
+   top: 300rpx;  
+  left: 250rpx;  
+  z-index: 999; 
+  width: 74rpx; 
+  height:150rpx; 
+  margin-top: 45rpx; 
+  margin-left: 83rpx; 
+} 
+
+

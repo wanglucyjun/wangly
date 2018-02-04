@@ -22,7 +22,9 @@ Page({
     rate:0.01,
     minVal:0.01,
     tips:'录音你想说的内容',
-    serverFilePath:''
+    serverFilePath:'',
+    j: 1,//帧动画初始图片 
+   
   },
   
   //事件处理函数
@@ -202,6 +204,10 @@ Page({
           })
         }
         else{
+          that.setData({
+            recording:true
+          })
+          that.speaking();
           wx.startRecord({
      success: function (res) {
        that.setData({
@@ -216,14 +222,19 @@ Page({
 
   },
  stopRecord:function(){
-   var that=this
-   console.log("stop record");
-   this.setData({recording: false})
-    wx.stopRecord({
-
-    })
+     var that=this
+     console.log("recording is"+that.data.recording)
+     setTimeout(function(){
+     wx.stopRecord({
+        success:function(){
+        console.log("stop record")
+      }
+     })
+ 
+     }, 500)
     that.setData({
-      hasRecord:true
+      hasRecord:true,
+      recording: false
     })
  },
 
@@ -235,6 +246,21 @@ Page({
      filePath: filePath,
    })
   },
+  //麦克风帧动画 
+  speaking:function() {
+    var _this = this;
+    //话筒帧动画 
+    var i = 1;
+    this.timer = setInterval(function () {
+      i++;
+      i = i % 5;
+      _this.setData({
+        j: i
+      })
+    }, 300);
+  },
+  
+
   clickexample: function () {
     wx.navigateTo({
       url: '/pages/index/Share/Share?id=347',

@@ -16,12 +16,18 @@
           <!--倾听红包  -->
 
             <view class='setHotMoney_detail' >
+            <view  wx:if="{{recording}}"  class="speak-style">
+                 <image class="sound-style" src="../image/voice_icon_speech_sound_1.png" ></image>
+               <image wx:if="{{j==2}}" class="sound-style" src="../image/voice_icon_speech_sound_2.png" ></image>
+                <image wx:if="{{j==3}}" class="sound-style" src="../image/voice_icon_speech_sound_3.png" ></image>
+               <image wx:if="{{j==4}}" class="sound-style" src="../image/voice_icon_speech_sound_4.png" ></image>
+               <image wx:if="{{j==5}}"class="sound-style" src="../image/voice_icon_speech_sound_5.png" ></image>
+            </view>
               <button wx:if="{{hasRecord === true}}" class="playVoice fr iconfont icon-bofang" 
               bindtap='playVoice'></button>
-               <button wx:if="{{recording === false }}" class='qingting '
-                bindtap='startRecord'>{{tips}}</button>
-               <button wx:if="{{recording === true}}" class="qingting  iconfont icon-huatong" 
-                bindtap='stopRecord'>停止录音</button>
+               <button class='qingting ' bindtouchstart="startRecord" bindtouchend="stopRecord">{{tips}}</button>
+             <!--<button wx:if="{{recording === true}}" class="qingting  iconfont icon-huatong" 
+                bindtap='stopRecord'>停止录音</button> -->
               
             </view>
 
