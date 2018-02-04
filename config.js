@@ -54,7 +54,9 @@ var config = {
     //获取用户信息接口
     userinfoUrl: `${host}/user/info`,
     //获取用户信息接口
-    accuseUrl: `${host}/help/feed-back`
+    accuseUrl: `${host}/help/feed-back`,
+    //
+    publicHongbaoUrl: `${host}/hongbao/public-list`
 };
 
 module.exports = config
