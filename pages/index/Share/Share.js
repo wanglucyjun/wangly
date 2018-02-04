@@ -5,7 +5,7 @@ var accelerometer = require('../../../utils/accelerometer.js')
 var login = require('../../../utils/login.js');
 const config = require('../../../config')
 var map=new Map();
-
+var recordTimeInterval
 
 Page({
   /**
@@ -17,7 +17,10 @@ Page({
     hongbaoDetail: {},
     hongbaoID:'123',
     rate: 2,
-    moving:false
+    moving:false,
+    j: 1,//帧动画初始图片 
+    recordTime: 0,
+    isspeaking:false
     },
   /**
    * 生命周期函数--监听页面加载
@@ -30,6 +33,7 @@ Page({
     var userHongbao = {}
     userHongbao.id = options.id
     userHongbao.text = 0
+    userHongbao.voiceLength=0
     //临时数据
     that.setData({
       userInfo: app.globalData.userInfo,
@@ -132,13 +136,26 @@ Page({
   startRecord: function () {
     var that = this
     console.log("stat record");
-    //先去check权限
+
+    this.setData({
+      isspeaking: true,
+      recordTime: 0
+    })
+    //读秒记时
+    recordTimeInterval = setInterval(function () {
+      var recordTime = that.data.recordTime += 1
+      that.setData({
+        recordTime: recordTime
+      })
+    }, 1000)
+//先去check权限
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.record']) {
           wx.authorize({
             scope: 'scope.record',
             success() {
+              that.speaking();
                  wx.startRecord({
                      success: function (res) {
                     that.data.userHongbao.file = res.tempFilePath
@@ -151,7 +168,10 @@ Page({
                       that.getHongbao()
                    }
                  })
-                 }
+                 },
+                     complete: function () {
+                       clearInterval(recordTimeInterval)
+                     }
                  })
              },
             fail() {
@@ -176,6 +196,7 @@ Page({
           })
         }
         else{
+          that.speaking();
           wx.startRecord({
             success: function (res) {
               that.data.userHongbao.file = res.tempFilePath
@@ -188,6 +209,9 @@ Page({
                   that.getHongbao()
                 }
               })
+            },
+            complete: function () {
+              clearInterval(recordTimeInterval)
             }
           })
         }
@@ -197,14 +221,36 @@ Page({
   stopRecord: function () {
     var that = this
      console.log("stop record");
+     setTimeout(function () {
      wx.stopRecord({
       success: function (res) {
         console.log(that.data.userHongbao.file);
-       
-        
+      },
+      complete: function () {
+        clearInterval(recordTimeInterval)
       }
     })
+     }, 500)
+     that.setData({
+       isspeaking: false,
+     })
+     that.data.userHongbao.voiceLength=that.data.recordTime;
+     console.log("now the time is " + that.data.recordTime)
   },
+  //麦克风帧动画 
+  speaking: function () {
+    var _this = this;
+    //话筒帧动画 
+    var i = 1;
+    this.timer = setInterval(function () {
+      i++;
+      i = i % 5;
+      _this.setData({
+        j: i
+      })
+    }, 300);
+  },
+
   getHongbao:function(){
     console.log("getHongbao");
     var that = this

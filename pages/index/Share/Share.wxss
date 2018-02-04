@@ -329,6 +329,28 @@ Page{
   margin:0 auto;
 
 }
-
+/* 录音 */
+.speak-style{ 
+  position: fixed;/*悬停*/
+  top: 50rpx;  
+  left: 250rpx;   
+  z-index: 999; 
+    height: 240rpx; 
+    width: 240rpx; 
+    border-radius: 20rpx; 
+    margin: 0 auto; 
+    background: #999; 
+    opacity:0.5;
+} 
+.sound-style{ 
+  position: fixed;/*悬停*/
+   top: 50rpx;  
+  left: 250rpx;  
+  z-index: 999; 
+  width: 74rpx; 
+  height:150rpx; 
+  margin-top: 45rpx; 
+  margin-left: 83rpx; 
+} 
 
 .icon-kehu:before { content: "&#xe610;"; }  

@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var recordTimeInterval
 var methods = require('../../utils/methods.js')
 var login = require('../../utils/login.js');
 Page({
@@ -24,7 +24,7 @@ Page({
     tips:'录音你想说的内容',
     serverFilePath:'',
     j: 1,//帧动画初始图片 
-   
+    recordTime: 0,
   },
   
   //事件处理函数
@@ -148,7 +148,7 @@ Page({
         var value = obj
         //console.log()
         console.log("server file path is " + value)
-        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value)
+        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value,that.data.recordTime)
       }})
 
 
@@ -161,10 +161,17 @@ Page({
     var that = this
     console.log("stat record");
     this.setData({
-      recording:true
+      recording:true,
+      recordTime:0
     })
     console.log(this.data.recording);
-   
+    //读秒记时
+    recordTimeInterval = setInterval(function () {
+      var recordTime = that.data.recordTime += 1
+      that.setData({
+        recordTime: recordTime
+      })
+    }, 1000)
    //先去check是否有权限
     wx.getSetting({
       success(res) {
@@ -173,11 +180,15 @@ Page({
             scope: 'scope.record',
             success() {
               // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              that.speaking();
               wx.startRecord({
                 success: function (res) {
                   that.setData({
                     tempFilePath: res.tempFilePath
                   })
+                },
+                complete: function () {
+                  clearInterval(recordTimeInterval)
                 }
               })
             },
@@ -204,17 +215,17 @@ Page({
           })
         }
         else{
-          that.setData({
-            recording:true
-          })
           that.speaking();
-          wx.startRecord({
-     success: function (res) {
-       that.setData({
-       tempFilePath:res.tempFilePath
-     })
-     }
-  })
+        wx.startRecord({
+         success: function (res) {
+            that.setData({
+            tempFilePath:res.tempFilePath
+             })
+           },
+            complete: function () {
+           clearInterval(recordTimeInterval)
+         }
+         })
         }
       }
     })
@@ -232,10 +243,13 @@ Page({
      })
  
      }, 500)
+     console.log('stop record success')
+     clearInterval(recordTimeInterval)
     that.setData({
       hasRecord:true,
       recording: false
     })
+    console.log("now the time is " + that.data.recordTime)
  },
 
   playVoice: function () {

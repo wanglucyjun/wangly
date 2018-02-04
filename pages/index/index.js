@@ -158,7 +158,7 @@ Page({
       //停止监听武力值
       wx.stopAccelerometer({})
 
-      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'',1)
+      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'','')
      
       console.log(e.detail.value);
     }

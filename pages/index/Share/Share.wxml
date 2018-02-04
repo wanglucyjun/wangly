@@ -25,6 +25,13 @@
           </view>
            <view class='answer2ok' wx:if="{{hongbaoDetail.state==2}}">活动已完毕</view>
         </view>
+        <view  wx:if="{{isspeaking}}"  class="speak-style">
+            <image class="sound-style" src="../../image/voice_icon_speech_sound_1.png" ></image>
+            <image wx:if="{{j==2}}" class="sound-style" src="../../image/voice_icon_speech_sound_2.png" ></image>
+                <image wx:if="{{j==3}}" class="sound-style" src="../../image/voice_icon_speech_sound_3.png" ></image>
+               <image wx:if="{{j==4}}" class="sound-style" src="../../image/voice_icon_speech_sound_4.png" ></image>
+               <image wx:if="{{j==5}}"class="sound-style" src="../../image/voice_icon_speech_sound_5.png" ></image>
+            </view>
        <!--按住说出以上口令领取赏金-->
         <view wx:if="{{hongbaoDetail.type==2}}">
           <view class="share_box" >
@@ -83,8 +90,8 @@
       <view class='peopleMoney_center fl'>
         <text class='people_NickName'>{{item.name}}</text>
         <icon></icon>
-        <view wx:if="{{hongbaoDetail.type==1}}">武力值{{item.length}}</view>
-        <view class='yuying_time' bindtap='playVoice' data-url='{{item.url}}' wx:if="{{hongbaoDetail.type==2}}">{{item.length}}"</view>
+        <view wx:if="{{hongbaoDetail.type==1}}">武力值{{item.answer}}</view>
+        <view class='yuying_time' bindtap='playVoice' data-url='{{item.answer}}' wx:if="{{hongbaoDetail.type==2}}">{{item.answer_extral}}"</view>
         <view  wx:if="{{hongbaoDetail.type==3}}"></view>
         <view class='yuying_time' wx:if="{{hongbaoDetail.type==4}}"></view>
       </view>

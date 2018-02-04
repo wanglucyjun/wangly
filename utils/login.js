@@ -23,6 +23,32 @@ var getWxLoginResult = function getLoginCode(callback) {
   console.log('getWxLoginResult')
   wx.login({
     success: function (loginResult) {
+      
+        // wx.authorize({
+        //   scope: 'userInfo',
+        //   success:function(){
+            
+        //   },
+        //   fail:function(){
+        //     wx.showModal({
+        //       title: '申请权限',
+        //       content: '开通用户信息权限才可以使用哦',
+        //       success: function (res) {
+        //         if (res.confirm) {
+        //           console.log('用户点击确定')
+        //           wx.openSetting({
+
+        //           })
+        //         } else if (res.cancel) {
+        //           console.log('用户点击取消')
+        //           wx.showToast({
+        //             title: '需要开通权限哦',
+        //           })
+        //         }
+        //       }
+        //     })
+        //   }
+        // })
       wx.getUserInfo({
         success: function (userResult) {
           callback(null, {
@@ -100,7 +126,7 @@ var login = function login(options) {
           if (data.code == '0') {
             //上传
             if (data.data.needInfo == 1) {
-              userInfo.token = data.data.sessionInfo
+              userInfo.token = data.data.token
               wx.request({
                 url: config.updateUrl,
                 data: userInfo,

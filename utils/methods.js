@@ -119,10 +119,10 @@ function uploadFile(obj) {
       data = JSON.parse(data);
       serverFilePath=data.data
       //console.log("upload return is " + serverFilePath)
-      wx.setStorageSync({
-        key: "voiceTempFile",
-        data: serverFilePath
-      })
+      // wx.setStorageSync({
+      //   key: "voiceTempFile",
+      //   data: serverFilePath
+      // })
       obj.success(serverFilePath)
       console.log("upload return is " + serverFilePath)
     }
@@ -200,7 +200,7 @@ function makeSign(){
 
 }
 //创建红包接口请求
-function hongbaoCreate(type,question,power,Money,num,fee,filePath){
+function hongbaoCreate(type,question,power,Money,num,fee,filePath,voiceLength){
   var that = this
 wx.request({
 
@@ -214,6 +214,7 @@ wx.request({
     num: num,
     fee:fee,
     filePath:filePath,
+    voiceLength: voiceLength,
     usebalance:get_Use_Balance(type),
   },
 

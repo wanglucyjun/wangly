@@ -45,7 +45,8 @@ Page{
     width: 240rpx; 
     border-radius: 20rpx; 
     margin: 0 auto; 
-    background: #bbb; 
+    background: #bbb;
+    opacity:0.4;
 } 
 .sound-style{ 
   position: fixed;/*悬停*/
