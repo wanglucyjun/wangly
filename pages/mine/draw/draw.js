@@ -70,8 +70,10 @@ Page({
         title: '提示',
         content: '提现金额不能大于可用余额'
     })
-    return ''
-    }else{
+   
+    } 
+  
+    else{
       
       var drawfee = methods.getWithdrawFee(0, e.detail.value)*1
       var actualfee = e.detail.value * 1
@@ -98,7 +100,24 @@ Page({
 
   getMoney: function () {
     var that = this;
-    app.checkSession({
+    console.log("money is "+that.data.money)
+    console.log(that.data.userHongbao.oneTimesLimit)
+    if (that.data.money - that.data.userHongbao.minWithdrawMoney<0){
+      wx.showModal({
+        title: '提示',
+        // content: '账号余额大于可以提现哦',
+        content: '最小提现金额为' + that.data.userHongbao.minWithdrawMoney+'元',
+      })
+    }
+    else if ((that.data.money-that.data.userHongbao.oneTimesLimit)<=0){
+     wx.showModal({
+       title: '提示',
+      // content: '账号余额大于可以提现哦',
+       content: '账号余额大于' + that.data.userHongbao.oneTimesLimit+'元才可以提现哦',
+     })
+  }
+  else{
+    login.checkSession({
       success: function () {
         wx.request({
           url: config.hongbaoDrawUrl,
@@ -108,14 +127,28 @@ Page({
           },
           success: function (res) {
             console.log(res)
-            
+            if(res.data.code='0'){
+            wx.showModal({
+              title: '提示',
+              content: '提现申请成功，1～5个工作日到账',
+            })
+            }
+            else{
+              wx.showModal({
+                title: '提示',
+                content: res.data.message,
+              })
+            }
           }
           ,
           fail: function (res) {
-
+              wx.showToast({
+                title: '提现失败，请稍后再试',
+              })
           }
         })
       }
     })
+  }
   }
 })
