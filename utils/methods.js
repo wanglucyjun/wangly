@@ -235,23 +235,26 @@ success:function(res) {
           })
         }
         else{
+          var data = res.data.data;
           //调起微信支付
-          var timeStamp=new Date().getTime()+"";
-          var nonceStr = getRandom();
-          var sign ='appId = wx2fa05e7b28426662 & nonceStr='+nonceStr+'& package =prepay_id ='+ orderid+'& signType=MD5 & timeStamp='+timeStamp+' & key=qazwsxedcrfvtgbyhnujmikolp111111';
-
+      
           wx.requestPayment({
-            'timeStamp': timeStamp,
-            'nonceStr': nonceStr,
-            'package': 'prepay_id='+orderid,
-            'signType': 'MD5',
-            'paySign': 'MD5(sign)',
+            'timeStamp': data.timeStamp,
+            'nonceStr': data.nonceStr,
+            'package': data.package,
+            'signType': data.signType,
+            'paySign': data.paySign,
             'success': function (res) {
+              console.log(res);
               wx.navigateTo({
-                url: '/pages/index/Share/Share?id=' + res.data.data.hotid,
-              })
+                url: '/pages/index/Share/Share?id=' + data.hotid,
+              });
             },
             'fail': function (res) {
+               console.log(res);
+            },
+            'complete':function(res){
+               console.log(res);
             }
           })
 
