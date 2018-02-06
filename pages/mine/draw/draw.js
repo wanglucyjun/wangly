@@ -68,7 +68,8 @@ Page({
     if (e.detail.value > that.data.userHongbao.withdrawableMoney){
       wx.showModal({
         title: '提示',
-        content: '提现金额不能大于可用余额'
+        content: '提现金额不能大于可用余额',
+        showCancel: false,
     })
    
     } 
@@ -104,16 +105,18 @@ Page({
     console.log(that.data.userHongbao.oneTimesLimit)
     if (that.data.money - that.data.userHongbao.minWithdrawMoney<0){
       wx.showModal({
-        title: '提示',
+        title: '提现失败',
         // content: '账号余额大于可以提现哦',
         content: '最小提现金额为' + that.data.userHongbao.minWithdrawMoney+'元',
+        showCancel:false,
       })
     }
     else if ((that.data.money-that.data.userHongbao.oneTimesLimit)<=0){
      wx.showModal({
-       title: '提示',
+       title: '提现失败',
       // content: '账号余额大于可以提现哦',
        content: '账号余额大于' + that.data.userHongbao.oneTimesLimit+'元才可以提现哦',
+       showCancel: false,
      })
   }
   else{
@@ -131,12 +134,14 @@ Page({
             wx.showModal({
               title: '提示',
               content: '提现申请成功，1～5个工作日到账',
+              showCancel: false,
             })
             }
             else{
               wx.showModal({
                 title: '提示',
                 content: res.data.message,
+                showCancel: false,
               })
             }
           }
@@ -144,6 +149,7 @@ Page({
           fail: function (res) {
               wx.showToast({
                 title: '提现失败，请稍后再试',
+                showCancel: false,
               })
           }
         })
