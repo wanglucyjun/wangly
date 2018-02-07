@@ -45,6 +45,9 @@ var config = {
     // 查询我收到的红包记录接口
     hongbaoReceivedUrl: `${host}/user/receive-list`,
 
+    // 查询提现记录接口
+    drawListUrl: `${host}/withdraw/get-list`,
+
     // 提现我的余额接口
     hongbaoDrawUrl: `${host}/withdraw/submit`,
 

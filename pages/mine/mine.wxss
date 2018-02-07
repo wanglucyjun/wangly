@@ -259,3 +259,39 @@ Page{
   margin-top:30rpx;
   margin-right:20rpx;
 }
+.draw-list-item{
+  width:750rpx;
+  height:130rpx;
+  background: #fff;
+  margin-bottom:5rpx;
+}
+.draw-list-item-box{
+  width:700rpx;
+  margin:0 auto;
+  overflow:hidden;
+}
+.draw-list-item-left{
+  width:300rpx;
+  margin: 10rpx;
+
+}
+.draw-list-item-center{
+  width:300rpx;
+  height:90rpx;
+}
+.draw-list-item-right{
+  
+  margin: 10rpx;
+}
+.draw-list-item-text{
+  font-size:30rpx;
+  margin-bottom: 5rpx;
+}
+.draw-list-item-money{
+  font-size:30rpx;
+  color:#e73b58;
+}
+.draw-list-item-date{
+  font-size:22rpx;
+  height: 38rpx;
+}

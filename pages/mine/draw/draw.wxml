@@ -11,11 +11,47 @@
   <view class='draw_text'>提现金额</view>
   <view class='setHotMoney_detail' >
     <view class='setHotMoney_name fl' >￥</view>
-    <input type='digit' placeholder='' class='hotInput'
-                     bindinput='MoneyInput'></input>
+    <input type='digit' placeholder='{{money}} ' class='hotInput'
+                     bindinput='MoneyInput'wx:if="{{userHongbao.dayCanDraw==1}}"></input>
+    <view class='setHotMoney_name' wx:if="{{userHongbao.dayCanDraw==0}}" ><text class='draw_text4'>今天不可以提现</text></view>
   </view>
-  <view  class='draw_text2'>手续费{{drawfee}},实际到账{{actualfee}},<text>全部提现</text></view>
-  <view class='draw' bindtap="getMoney">提现</view>
+  <view  class='draw_text2'>手续费{{drawfee}}，实际到账{{actualfee}}，<text>全部提现</text></view>
+
+  <view  class='draw_text5'>今日还可提现{{userHongbao.dayLimit-userHongbao.dayDrawNum}}次，一次提现最小为{{userHongbao.minWithdrawMoney}}元，最大为{{userHongbao.oneTimesLimit}}元，由于微信支付规则调整，暂时不支持提现到零钱</view>
+  <view class='draw_text'>提现方式</view>
+   <radio-group bindchange="radioChange">
+        <view class="draw-item">
+        <radio value="1" 
+         checked='true'>收款码</radio>
+    <view class='qcode fr' wx:if="{{drawdata.type==1&&userHongbao.needQCode==1}}" >
+      <view class='qcode-select ' bindtap='chooseImage' >选择收款码</view>
+    </view>
+        </view>
+        <view class="draw-item">
+        <radio value="2" >微信转账</radio>
+          
+        </view>
+        <view class="draw-item">
+        <radio value="3" disabled="true">提现到零钱</radio>
+        </view>
+  </radio-group>
+
+  <view class='account' wx:if="{{drawdata.type==2&&userHongbao.needAccount==1}}">
+    <view class='account-name fl' >微信号：</view>
+    <input  type='text' placeholder='请输入微信号' class='account-value'
+                     bindinput='accountInput' ></input>
+  </view>
+  <view class='account' wx:if="{{drawdata.type==1}}">
+    <text  class='draw_text4'>客服扫描收款码后支付</text>
+  </view>
+  <view class='account' wx:if="{{drawdata.type==2&&userHongbao.needAccount==0}}">
+    <text  class='draw_text4'>客服加好友{{drawdata.account}}转账</text>
+  </view>
+  <view class='account' wx:if="{{drawdata.type!=1&&drawdata.type!=2}}">
+    <text  class='draw_text4'>暂时不支持直接提现到零钱</text>
+  </view>
+  <view class='disdraw' wx:if="{{!canDraw}}" >申请提现</view>
+  <view class='draw' bindtap="applyGetMoney" wx:if="{{canDraw}}">申请提现</view>
   <view  class='draw_text3'>1-5个工作日到账</view>
 </view>
 </view>

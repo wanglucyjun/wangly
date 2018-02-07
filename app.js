@@ -66,7 +66,16 @@ App({
       success: function (res) {
         console.log(res.data)
         if(res.data.code=="0"){
-           that.globalData.balanceInfo = res.data.data
+           var redata = res.data.data;
+           redata.needQCode=1;
+           redata.needAccount=1;
+           if (redata.qCode!=""){
+             redata.needQCode = 0;
+           }
+           if (redata.account != "") {
+             redata.needAccount = 0;
+           }
+           that.globalData.balanceInfo = redata;
         }
       },
       fail: function (res) {
