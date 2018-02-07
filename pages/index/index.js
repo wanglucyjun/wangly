@@ -20,6 +20,13 @@ Page({
     rate:2,
     //balanceInfo: {},
     accountBalance:'',
+    advancedSetting: false,
+    shareWords:'不服来战',
+    items: [
+      { name: 'AVG', value: '均分' },
+      { name: 'RANDOM', value: '随机', checked: 'true' },
+    ],
+    moneyType:'RANDOM'
   },
   /**
      * 生命周期函数--监听页面显示
@@ -158,10 +165,40 @@ Page({
       //停止监听武力值
       wx.stopAccelerometer({})
 
-      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee,'','')
+      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType)
      
       console.log(e.detail.value);
     }
+  },
+  clicksetting: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    if (e.detail.value == true) {
+      that.setData({
+        advancedSetting: true
+      })
+    }
+    else {
+      that.setData({
+        advancedSetting: false
+      })
+    }
+
+  },
+  shareInput:function(e){
+    //var that = this;
+    // that.setData({
+    //   shareWords: e.detail.value,
+    // })
+    app.globalData.shareWords=e.detail.value
+
+  },
+  radioChange:function(e){
+    var that=this;
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    that.setData({
+      moneyType: e.detail.value
+    })
   },
   clickexample:function(){
     wx.navigateTo({

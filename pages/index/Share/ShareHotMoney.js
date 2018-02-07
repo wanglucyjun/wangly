@@ -9,7 +9,8 @@ Page({
    */
   data: {
     hongbaoID: '123',
-    hongbaoDetail:{}
+    hongbaoDetail:{},
+    shareWords:'包包乐翻天'
   },
 
   /**
@@ -17,10 +18,11 @@ Page({
    */
   onLoad: function (options) {
     var that  = this;
-   
+    
     console.log(options);
     that.setData({
-      hongbaoID: options.id
+      hongbaoID: options.id,
+      shareWords:app.globalData.shareWords
     })
     that.refersh()
   },
@@ -82,7 +84,7 @@ Page({
    */
   onShareAppMessage: function () {
     var Object = []
-    Object.title = "包包乐翻天"
+    Object.title = shareWords
     Object.desc = "新年快乐"
     Object.path = "pages/index/Share/Share?id=" + this.data.hongbaoID
     return Object

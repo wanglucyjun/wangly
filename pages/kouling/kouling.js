@@ -14,7 +14,14 @@ Page({
     Money: '',
     Number: '',
     fuwufee: '0.0',
-    tips:"新的一年大吉大利"
+    tips:"新的一年大吉大利",
+    advancedSetting:false,
+    shareWords: '不服来战',
+    items: [
+      { name: 'AVG', value: '均分' },
+      { name: 'RANDOM', value: '随机', checked: 'true' },
+    ],
+    moneyType: 'RANDOM'
   },
 
   onLoad: function () {
@@ -149,6 +156,36 @@ Page({
       methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
      
     }
+  },
+  clicksetting:function(e){
+      var that=this
+      console.log("switch is "+e.detail.value)
+      if(e.detail.value==true){
+      that.setData({
+        advancedSetting:true
+      })
+      }
+      else{
+        that.setData({
+          advancedSetting: false
+        })
+      }
+
+  },
+  shareInput: function (e) {
+    //var that = this;
+    // that.setData({
+    //   shareWords: e.detail.value,
+    // })
+    app.globalData.shareWords = e.detail.value
+
+  },
+  radioChange: function (e) {
+    var that = this;
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    that.setData({
+      moneyType: e.detail.value
+    })
   },
   clickexample: function () {
     wx.navigateTo({

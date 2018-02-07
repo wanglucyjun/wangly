@@ -13,7 +13,7 @@ App({
     withdrawFee:[],
     hbType:[],
     balanceInfo:{},
-    
+    shareWords:'包包乐翻天'
   },
   onLoad:function(){
     console.log("App onLoad")
