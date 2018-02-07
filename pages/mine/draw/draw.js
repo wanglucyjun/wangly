@@ -203,26 +203,31 @@ Page({
             console.log(res.data)
             if (res.data ){
               if (res.data.code == "0"){
-                wx.showToast({
-                  title: "申请成功！",
-                })
-                that.refresh()
+                wx.showModal({
+                  title: '提示',
+                  content: '提现申请成功，1～5个工作日到账',
+                  showCancel: false,
+                });
+                that.refresh();
               }else{
                 wx.showToast({
                   title: res.data.message,
                 })
               }
             }else{
-              wx.showToast({
-                title: "申请失败！",
+              wx.showModal({
+                title: '提示',
+                content: res.data.message,
+                showCancel: false,
               })
             }
          }
           ,
           fail: function (res) {
-            wx.showToast({
-              title: "申请失败！",
-            })
+              wx.showToast({
+                title: '提现失败，请稍后再试',
+                showCancel: false,
+              })
           }
         })
       }
