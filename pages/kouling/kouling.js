@@ -18,10 +18,11 @@ Page({
     advancedSetting:false,
     shareWords: '不服来战',
     items: [
-      { name: 'AVG', value: '均分' },
-      { name: 'RANDOM', value: '随机', checked: 'true' },
+      { name: '0', value: '均分' },
+      { name: '1', value: '随机', checked: 'true' },
+      { name: '2', value: '先到多得'},
     ],
-    moneyType: 'RANDOM'
+    moneyType: '1'
   },
 
   onLoad: function () {
@@ -153,7 +154,7 @@ Page({
         that.data.kouling = that.data.tips
       }
       console.log(that.data.kouling);
-      methods.hongbaoCreate(2,that.data.kouling,'',that.data.Money, that.data.Number, that.data.fuwufee,'','')
+      methods.hongbaoCreate(2, that.data.kouling, '', that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType)
      
     }
   },

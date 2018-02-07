@@ -23,10 +23,11 @@ Page({
     advancedSetting: false,
     shareWords:'不服来战',
     items: [
-      { name: 'AVG', value: '均分' },
-      { name: 'RANDOM', value: '随机', checked: 'true' },
+      { name: '0', value: '均分' },
+      { name: '1', value: '随机', checked: 'true' },
+      { name: '2', value: '先到多得' },
     ],
-    moneyType:'RANDOM'
+    moneyType:'1'
   },
   /**
      * 生命周期函数--监听页面显示
