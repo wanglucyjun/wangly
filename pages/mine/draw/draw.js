@@ -48,6 +48,7 @@ Page({
       drawdata: that.data.drawdata,
       money: 0.00
     })
+    console.log("this.data.drawdata");
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -173,10 +174,11 @@ Page({
      }
    } else if (drawdata.type==2){
       console.log('2');
-      if (!userHongbao.needAccount==1){
+      console.log(that.data.drawdata.content);
+      if (userHongbao.needAccount==0){
         that.data.drawdata.content = userHongbao.account;
       }
-      if (!that.data.drawdata.content){
+      if (!that.data.drawdata.content||that.data.drawdata.content==""){
         wx.showToast({
           title: "请输入微信号！",
         })
@@ -236,7 +238,7 @@ Page({
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     this.data.drawdata.type = e.detail.value;
-    
+    this.data.drawdata.content='';
     this.setData({
       drawdata: this.data.drawdata
     })
