@@ -57,7 +57,7 @@
      <view>
      <block wx:if="{{advancedSetting}}" >
             <view class='settingAll'>
-             <view class=' fl' >设置转发标题</view>
+             <!--<view class=' fl' >设置转发标题</view>-->
               <input placeholder='新年快乐大吉大利' class='hotInput fr'
                      bindinput='shareInput'></input>
             </view>
