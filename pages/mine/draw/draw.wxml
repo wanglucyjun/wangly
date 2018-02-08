@@ -12,7 +12,7 @@
   <view class='setHotMoney_detail' >
     <view class='setHotMoney_name fl' >￥</view>
     <input type='digit'  class='hotInput'
-                     bindinput='MoneyInput'wx:if="{{userHongbao.dayCanDraw==1}}" value='{{money}}'></input>
+                     bindblur='MoneyInput'wx:if="{{userHongbao.dayCanDraw==1}}" value='{{money}}'></input>
     <view class='setHotMoney_name' wx:if="{{userHongbao.dayCanDraw==0}}" ><text class='draw_text4'>今天不可以提现</text></view>
   </view>
   <view  class='draw_text2'>手续费{{drawfee}}，实际到账{{actualfee}}，<text>全部提现</text></view>

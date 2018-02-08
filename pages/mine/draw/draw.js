@@ -30,7 +30,7 @@ Page({
     login.checkSession({
       success: function (userInfo) {
         console.log('领取红包界面');
-        console.log(userInfo);
+        //console.log(userInfo);
         that.refresh();
       }
     });

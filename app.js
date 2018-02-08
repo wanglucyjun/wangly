@@ -64,7 +64,7 @@ App({
         token: login.getSession().session.token
       },
       success: function (res) {
-        console.log(res.data)
+        //console.log(res.data)
         if(res.data.code=="0"){
            var redata = res.data.data;
            redata.needQCode=1;
