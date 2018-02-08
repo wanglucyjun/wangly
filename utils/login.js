@@ -113,6 +113,7 @@ var login = function login(options) {
       method: options.method,
       data: {
         code: code,
+        appid:'wx2fa05e7b28426662'
         //raw_data: rawData,
         //signature: signature,
       },
