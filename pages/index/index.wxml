@@ -43,11 +43,6 @@
                      bindinput='NumberInput'></input>
             </view>
            <view class='setSwitch_detail'>
-<<<<<<< HEAD
-                <!--<switch  bindchange='clickpublic'>投放广场</switch>-->
-=======
-                <!-- <switch  bindchange='clickpublic'>投放广场</switch> -->
->>>>>>> 6ce58f624cb27f6b625813d03cdb8a653b3c9e98
                 <switch class='setting' bindchange='clicksetting' >高级设置</switch>
            </view>
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
