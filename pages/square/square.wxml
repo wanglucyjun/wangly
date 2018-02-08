@@ -1,0 +1,49 @@
+<view class="container">
+<view class='head'>
+  <view class='head_content'>
+    <view class='Money_Number fl'> 
+          <view class='Money_name'>我的豆豆</view>
+          <view class='money_num'>{{userHongbao.yaoyaodou}}</view>
+    </view>
+    <view class='Money_Number fl'>
+          <view class='Money_name'>今日人次</view>
+          <view class='money_num'>{{receivedHongbao.todayPeople}}</view>
+    </view>
+    <view class='Money_Number fl'>
+          <view class='Money_name'>今日个数</view>
+          <view class='money_num'>{{receivedHongbao.todayActive}}</view>
+    </view>
+    <view class='Money_Number fr'>
+          <view class='Money_name'>今日赏金</view>
+          <view class='money_num'>{{receivedHongbao.todayMoney}}</view>
+    </view>
+  </view>
+</view>
+<view class='body'>
+<block wx:for="{{receivedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
+      <view class='received-list-item' >
+        <view class='received-list-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='received-list-item-left fl'>
+          <image src='{{item.icon}}' mode='widthFix' class='received-list-item-logo'></image>
+          </view>
+          <view class='received-list-item-center fl'>
+            <view class='received-list-item-text'>{{item.name}}</view>
+            <text class='received-list-item-money' wx:if="{{item.type==1}}">摇摇包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==2}}">口令包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==3}}">倾听包</text>
+            <text class='received-list-item-money' wx:if="{{item.type==4}}">猜谜包</text>
+            <text class='received-list-item-text'>  {{item.title}}</text>
+          </view>
+          <view class='received-list-item-right fr'>
+            <view class='received-list-item-money'>{{item.money}}元</view>
+            <text class='received-list-item-text' style="align='right'">{{item.num-item.left_num}}/{{item.num}}</text>
+            <view class='received-list-item-date'>{{item.date}}</view>
+          </view>
+        </view>
+      </view>
+      </block>
+  <view class='reload-page' bindtap='onReachBottom'>
+        <text>点击加载下一页</text>
+ </view>
+</view>
+</view>

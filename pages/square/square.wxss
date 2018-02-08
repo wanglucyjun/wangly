@@ -1,0 +1,78 @@
+/* pages/square/square.wxss */
+Page{
+  background: #f3f5fa;
+}
+.head{
+  width:100%;
+  background: #D95940;
+  color:#fff;
+  margin:0 auto;
+}
+.head_content{
+  width:700rpx;
+  height: 170rpx;
+  background: #D95940;
+  color:#fff;
+}
+.body{
+  margin-top:18rpx;
+}
+.Money_Number{
+  width:25%;
+  height:100rpx;
+  padding-top:40rpx;
+  text-align: center;
+  font-size:32rpx;
+}
+.money_num{
+  line-height: 60rpx;
+  font-size:38rpx;
+  font-weight:bold;
+}
+
+.received-list-item{
+  width:750rpx;
+  height:110rpx;
+  background: #fff;
+  margin-bottom:6rpx;
+}
+.received-list-item-box{
+  width:700rpx;
+  margin:0 auto;
+  overflow:hidden;
+}
+.received-list-item-left{
+  width:90rpx;
+  height:110rpx;
+
+}
+.received-list-item-center{
+  width:300rpx;
+  height:110rpx;
+}
+.received-list-item-right{
+  height:110rpx;
+  
+}
+.received-list-item-logo{
+  width:80rpx;
+  height:80rpx;
+  border-radius:15rpx;
+}
+.received-list-item-text{
+  font-size:25rpx;
+}
+.received-list-item-money{
+  font-size:30rpx;
+  color:#e73b58;
+}
+.received-list-item-date{
+  font-size:22rpx;
+}
+.reload-page{
+  width:750rpx;
+  background: #fff;
+  padding:15rpx;
+  text-align: center;
+  font-size:35rpx;
+}
