@@ -3,9 +3,6 @@
     "pages/index/index",
     "pages/index/Share/ShareHotMoney",
     "pages/index/Share/Share",
-    "pages/square/square",
-    "pages/kouling/kouling",
-    "pages/qingting/qingting",
     "pages/mine/mine",
     "pages/mine/draw/draw",
     "pages/mine/help/help",
@@ -14,7 +11,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#D95940",
-    "navigationBarTitleText": "摇摇听-包包乐翻天",
+    "navigationBarTitleText": "包摇摇-包包乐翻天",
     "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
@@ -25,13 +22,7 @@
         "iconPath": "pages/image/1.png",
         "selectedIconPath": "pages/image/2.png",
         "pagePath": "pages/index/index",
-        "text": "摇摇包"
-      },
-      {
-        "iconPath": "pages/image/9.png",
-        "selectedIconPath": "pages/image/10.png",
-        "pagePath": "pages/square/square",
-        "text": "广场"
+        "text": "包摇摇"
       },
       {
         "iconPath": "pages/image/5.png",
