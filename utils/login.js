@@ -113,6 +113,7 @@ var login = function login(options) {
       method: options.method,
       data: {
         code: code,
+        appid:'wx04672e8418721192'
         //raw_data: rawData,
         //signature: signature,
       },
@@ -171,7 +172,7 @@ var login = function login(options) {
 
   doLogin();
 };
-var SESSION_KEY = 'weapp_session_' + 'wx2fa05e7b28426662';    //WX_SESSION_MAGIC_ID
+var SESSION_KEY = 'weapp_session_' + 'wx04672e8418721192';    //WX_SESSION_MAGIC_ID
 
 var Session = {
   get: function () {

@@ -1,7 +1,7 @@
 const config = require('../config')
 var utils = require('./util');
 
-var InitData_KEY = 'weapp_init_' + 'wx2fa05e7b28426662';    //WX_SESSION_MAGIC_ID
+var InitData_KEY = 'weapp_init_' + 'wx04672e8418721192';    //WX_SESSION_MAGIC_ID
 var noop = function noop() { };
 var defaultOptions = {
   method: 'GET',
