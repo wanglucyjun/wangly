@@ -84,7 +84,7 @@ Page({
    */
   onShareAppMessage: function () {
     var Object = []
-    Object.title = shareWords
+    Object.title = this.data.shareWords
     Object.desc = "新年快乐"
     Object.path = "pages/index/Share/Share?id=" + this.data.hongbaoID
     return Object

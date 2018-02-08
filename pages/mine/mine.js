@@ -12,6 +12,7 @@ Page({
     userHongbao:{},//用户红包信息
     sendedHongbao:{},//发送的红包信息
     receivedHongbao:{},//接受的红包信息
+    drawlist:{},//提现记录
     mineRecod:1
   },
 
@@ -83,7 +84,47 @@ Page({
     } else if (this.data.mineRecod == 2){
       this.getReceivedHongbao();
     }
+    else if (this.data.mineRecod == 3) {
+      this.getDrawlist();
+    }
 
+  },
+  getDrawlist: function () {
+    var that = this;
+    console.log(that.data.drawlist)
+    wx.request({
+      url: config.drawListUrl,
+      data: {
+        token: login.getSession().session.token,
+        page: that.data.drawlist.page + 1
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.data && res.data.data.list.length > 0) {
+
+          that.data.drawlist.page = that.data.drawlist.page + 1
+          if (that.data.drawlist.page == 1) {
+            //res.data.data.page = that.data.sendedHongbao.page + 1
+            that.setData({
+              drawlist: res.data.data
+            })
+          } else {
+            var list = that.data.drawlist.list
+            console.log(that.data.drawlist)
+            that.data.drawlist.list = list.concat(res.data.data.list)
+
+            that.setData({
+              drawlist: that.data.drawlist
+            })
+          }
+        }
+
+      }
+      ,
+      fail: function (res) {
+
+      }
+    })
   },
   getReceivedHongbao:function(){
     var that = this;
@@ -167,10 +208,12 @@ Page({
     that.data.sendedHongbao.page=0
     console.log("that.data.receivedHongbao.page")
     that.data.receivedHongbao.page=0
+    that.data.drawlist.page = 0
     
     console.log(that.data.receivedHongbao.page)
     this.getReceivedHongbao()
     this.getSendedHongbao()
+    this.getDrawlist()
   },
   toShare:function(obj){
     var that = this

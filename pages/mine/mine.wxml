@@ -26,6 +26,7 @@
     <view class='nav'>
       <text class="nav_con {{mineRecod==1? 'on':''}}" data-num="1" bindtap='changeTab'>我发出的</text>
       <text class="nav_con {{mineRecod==2? 'on':''}}" data-num="2" bindtap='changeTab'>我收到的</text>
+      <text class="nav_con {{mineRecod==3? 'on':''}}" data-num="3" bindtap='changeTab'>我提现的</text>
     </view>
     <view class='content'>
     <view class='content_bottom'  wx:if="{{mineRecod==1}}"  >
@@ -48,6 +49,18 @@
         <view class='Money_Number fl'>
           <view class='Money_name'>数量（个）</view>
           <view class='money_num'>{{receivedHongbao.receivedNum}}</view>
+        </view>
+    
+    </view>
+
+<view class='content_bottom'  wx:if="{{mineRecod==3}}" >
+        <view class='Money_Number fl'>
+          <view class='Money_name'>今日次数</view>
+          <view class='money_num'>{{userHongbao.dayDrawNum}}</view>
+        </view>
+        <view class='Money_Number fl'>
+          <view class='Money_name'>可提次数</view>
+          <view class='money_num'>{{userHongbao.dayLimit-userHongbao.dayDrawNum}}</view>
         </view>
     
     </view>
@@ -92,6 +105,29 @@
           <view class='received-list-item-right fr'>
             <view class='received-list-item-money'>{{item.money}}元</view>
             <view class='received-list-item-date'>{{item.date}}</view>
+          </view>
+        </view>
+      </view>
+      </block>
+ </view>
+<view  wx:if="{{mineRecod==3}}" >
+
+  <block wx:for="{{drawlist.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
+     
+      <view class='draw-list-item' >
+        <view class='draw-list-item-box' >
+          <view class='draw-list-item-left fl'>
+           <view class='draw-list-item-text'>状态：{{item.status_name}}</view>
+           <view class='draw-list-item-date'>申请时间：{{item.created_at}}</view>
+           <view class='draw-list-item-date'>处理时间：{{item.updated_at}}</view>
+          </view>
+          <!-- <view class='draw-list-item-center fl'>
+            <text class='draw-list-item-text'> {{item.title}}</text>
+          </view> -->
+          <view class='draw-list-item-right fr'>
+            <view class='draw-list-item-money'>{{item.apply_money}}元</view>
+            <view class='draw-list-item-money'>{{item.fee}}元</view>
+            <view class='draw-list-item-money'>{{item.real_money}}元</view>
           </view>
         </view>
       </view>
