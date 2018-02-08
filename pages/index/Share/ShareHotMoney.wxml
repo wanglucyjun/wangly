@@ -3,7 +3,7 @@
   <view class='con'>
     <view class='bg_pic'>
     <image class='bg' src='../../image/bg.png'></image>
-  
+  <image class='bg-code' src='../../image/code.jpg'></image>
 
     <view class='bg_picbody'>
       <view class='share_box'>
