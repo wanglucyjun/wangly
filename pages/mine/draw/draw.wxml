@@ -17,7 +17,7 @@
   </view>
   <view  class='draw_text2'>手续费{{drawfee}}，实际到账{{actualfee}}，<text>全部提现</text></view>
 
-  <view  class='draw_text5'>今日还可提现{{userHongbao.dayLimit-userHongbao.dayDrawNum}}次，一次提现最小为{{userHongbao.minWithdrawMoney}}元，最大为{{userHongbao.oneTimesLimit}}元，由于微信支付规则调整，暂时不支持提现到零钱</view>
+  <view  class='draw_text5'>提现金额最小为{{userHongbao.minWithdrawMoney}}元，最大为{{userHongbao.oneTimesLimit}}元，由于商户号期限原因，暂时不支持提现到零钱，初创企业，多多包涵</view>
   <view class='draw_text'>提现方式</view>
    <radio-group bindchange="radioChange">
         <view class="draw-item">

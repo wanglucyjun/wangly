@@ -15,7 +15,7 @@ Page({
     tempFilePath:'',
     drawdata:{},
     canDraw:false,
-    money:0.00,
+    money:'',
     actualfee: 0.00,
     drawfee: 0.00
   },
