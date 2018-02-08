@@ -170,7 +170,7 @@
   color:#999;
 }
 .radio-group{
-  margin-right: 200rpx;
+  margin-right: 40rpx;
 }
 .accuse{
    text-align: center;
