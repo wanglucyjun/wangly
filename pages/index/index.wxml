@@ -43,7 +43,7 @@
                      bindinput='NumberInput'></input>
             </view>
            <view class='setSwitch_detail'>
-                <switch  bindchange='clickpublic'>投放广场</switch>
+                <!--<switch  bindchange='clickpublic'>投放广场</switch>-->
                 <switch class='setting' bindchange='clicksetting' >高级设置</switch>
            </view>
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
@@ -59,15 +59,15 @@
      <block wx:if="{{advancedSetting}}" >
             <view class='settingAll'>
              <view class=' fl' >设置转发标题</view>
-              <input placeholder='不服来战' class='hotInput fr'
+              <input placeholder='新年快乐大吉大利' class='hotInput fr'
                      bindinput='shareInput'></input>
             </view>
 
-            <view class='settingAll'>
+           <!-- <view class='settingAll'>
             <text class='fl'>红包领取时限</text>
              <input placeholder='10s' class='hotInput fr'
                      ></input>
-              </view>
+              </view>-->
           <view class='settingAll'>
             <text class='fl'>奖励分配方案</text>
            <radio-group class="radio-group fr" bindchange="radioChange">
