@@ -22,11 +22,11 @@ Page({
     //balanceInfo: {},
     accountBalance:'',
     advancedSetting: false,
-    shareWords:'不服来战',
+    shareWords:'新年快乐大吉大利',
     items: [
-      { name: '0', value: '均分' },
-      { name: '1', value: '随机', checked: 'true' },
-      { name: '2', value: '先到多得' },
+      { name: '1', value: '均分' },
+      { name: '2', value: '随机', checked: 'true' },
+      { name: '3', value: '后到多得' },
     ],
     moneyType:'1'
   },
