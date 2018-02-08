@@ -66,10 +66,11 @@
             <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 
           </view>
         </view>
-        
+        <view class="hb-public" wx:if="{{hongbaoDetail.is_public==1}}">领广场红包每次消耗摇摇豆，摇摇豆余额：{{yaoyaodou}}</view>
       </view>
 
       <view class='share_box marginTop'>
+        
         <view class="caozuoShare">
             <!--<view class=''><text class="iconfont icon-tixian"></text> 去提现</view>-->
             <view class=''><text class="iconfont1 icon-hongbao1" bindtap="againSend">再发一个</text> </view>

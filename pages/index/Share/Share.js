@@ -16,6 +16,7 @@ Page({
     userHongbao:{},
     hongbaoDetail: {},
     hongbaoID:'123',
+    yaoyaodou:0,
     rate: 2,
     moving:false,
     j: 1,//帧动画初始图片 
@@ -116,11 +117,13 @@ Page({
       },
       success: function (res) {
         console.log(res)
-
+       
         if (res.data.code=='0'){
+          app.getBalance()
           that.setData({
             userInfo: login.getSession().userInfo,
             hongbaoDetail: res.data.data,
+            yaoyaodou: app.globalData.balanceInfo.yaoyaodou
           })
           if (that.data.hongbaoDetail.type == 1 && that.data.hongbaoDetail.hadSend == 0){
             that.startMove()

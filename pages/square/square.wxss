@@ -15,7 +15,7 @@ Page{
   color:#fff;
 }
 .body{
-  margin-top:18rpx;
+  margin-top:25rpx;
 }
 .Money_Number{
   width:25%;
@@ -34,7 +34,7 @@ Page{
   width:750rpx;
   height:110rpx;
   background: #fff;
-  margin-bottom:6rpx;
+  margin-bottom:15rpx;
 }
 .received-list-item-box{
   width:700rpx;
@@ -47,7 +47,7 @@ Page{
 
 }
 .received-list-item-center{
-  width:300rpx;
+  width:400rpx;
   height:110rpx;
 }
 .received-list-item-right{

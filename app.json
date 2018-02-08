@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/index/Share/ShareHotMoney",
     "pages/index/Share/Share",
+    "pages/square/square",
     "pages/kouling/kouling",
     "pages/qingting/qingting",
     "pages/mine/mine",
@@ -27,16 +28,10 @@
         "text": "摇摇包"
       },
       {
-        "iconPath": "pages/image/7.png",
-        "selectedIconPath": "pages/image/8.png",
-        "pagePath": "pages/kouling/kouling",
-        "text": "口令包"
-      },
-      {
-        "iconPath": "pages/image/3.png",
-        "selectedIconPath": "pages/image/4.png",
-        "pagePath": "pages/qingting/qingting",
-        "text": "倾听包"
+        "iconPath": "pages/image/9.png",
+        "selectedIconPath": "pages/image/10.png",
+        "pagePath": "pages/square/square",
+        "text": "广场"
       },
       {
         "iconPath": "pages/image/5.png",
