@@ -10,6 +10,7 @@ Page({
     userInfo: [],
     shuoming: '小伙伴们摇摇超过武力值领赏金',
     powerset:'60',
+    ispublic: 0,
     Money: '',
     zhifu: '',
     balance: '0.0',
@@ -166,7 +167,7 @@ Page({
       //停止监听武力值
       wx.stopAccelerometer({})
 
-      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType)
+      methods.hongbaoCreate(1, '', that.data.powerset, that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType, that.data.ispublic)
      
       console.log(e.detail.value);
     }
@@ -185,6 +186,11 @@ Page({
       })
     }
 
+  },
+  clickpublic: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    that.data.ispublic = e.detail.value?1:0;
   },
   shareInput:function(e){
     //var that = this;

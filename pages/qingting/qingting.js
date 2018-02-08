@@ -10,6 +10,7 @@ Page({
     userInfo:[],
     hbType: [],
     shuoming: '小伙伴们听完你说的话就能领取赏金',
+    ispublic:0,
     Money:'',
     zhifu:'',
     balance:'0.0',
@@ -156,7 +157,7 @@ Page({
         var value = obj
         //console.log()
         console.log("server file path is " + value)
-        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value, that.data.recordTime, that.data.moneyType)
+        methods.hongbaoCreate(3, '', '', that.data.Money, that.data.Number, that.data.fuwufee, value, that.data.recordTime, that.data.moneyType,that.data.ispublic)
       }})
 
 
@@ -295,6 +296,11 @@ Page({
       })
     }
 
+  },
+  clickpublic: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    that.data.ispublic = e.detail.value ? 1 : 0;
   },
   shareInput: function (e) {
     //var that = this;

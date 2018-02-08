@@ -9,6 +9,7 @@ Page({
     userInfo: [],
     shuoming1: '小伙伴们说对口令就能获得随机赏金',
     kouling: '',
+    ispublic: 0,
     zhifu: '',
     balance: '0.0',
     Money: '',
@@ -154,7 +155,7 @@ Page({
         that.data.kouling = that.data.tips
       }
       console.log(that.data.kouling);
-      methods.hongbaoCreate(2, that.data.kouling, '', that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType)
+      methods.hongbaoCreate(2, that.data.kouling, '', that.data.Money, that.data.Number, that.data.fuwufee, '', '', that.data.moneyType,that.data.ispublic)
      
     }
   },
@@ -172,6 +173,11 @@ Page({
         })
       }
 
+  },
+  clickpublic: function (e) {
+    var that = this
+    console.log("switch is " + e.detail.value)
+    that.data.ispublic = e.detail.value ? 1 : 0;
   },
   shareInput: function (e) {
     //var that = this;
