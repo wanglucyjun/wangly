@@ -28,6 +28,12 @@
         "text": "摇摇包"
       },
       {
+        "iconPath": "pages/image/3.png",
+        "selectedIconPath": "pages/image/4.png",
+        "pagePath": "pages/qingting/qingting",
+        "text": "倾听包"
+      },
+      {
         "iconPath": "pages/image/9.png",
         "selectedIconPath": "pages/image/10.png",
         "pagePath": "pages/square/square",

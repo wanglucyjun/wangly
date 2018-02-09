@@ -6,19 +6,19 @@ Page{
   width:100%;
   background: #D95940;
   color:#fff;
-  margin:0 auto;
+  margin:0 ;
 }
 .head_content{
-  width:700rpx;
+  width:100%;
   height: 170rpx;
   background: #D95940;
   color:#fff;
 }
 .body{
-  margin-top:25rpx;
+  margin-top:40rpx;
 }
 .Money_Number{
-  width:25%;
+  width:24%;
   height:100rpx;
   padding-top:40rpx;
   text-align: center;
@@ -31,14 +31,14 @@ Page{
 }
 
 .square-item{
-  width:750rpx;
+  width:100%;
   height:160rpx;
   margin-bottom:15rpx;
 }
 .square-item-box{
-  width:700rpx;
-  margin:0 auto;
-  overflow:hidden;
+  width:100%;
+  margin:20rpx 35rpx;
+
 }
 .square-item-col1{
   width:90rpx;
@@ -52,8 +52,15 @@ Page{
 }
 .square-item-col2{
   width:20rpx;
-  height:130rpx;
-
+  height:80rpx;
+}
+.hb{
+  background: #FF9E3B;
+  color:#fff;
+}
+.hb-disable{
+  background:#FFD09C;
+  color:#DCDCDC;
 }
 .square-item-say{
   width:20rpx;
@@ -61,13 +68,11 @@ Page{
   
 }
 .square-item-col3{
-  width:80%;
+  width:76%;
   height:150rpx;
   line-height: 70rpx;
-  background: #FF9E3B;
   border-radius:15rpx;
   font-size:28rpx;
-  color:#fff;
   text-align: center;
 }
 
@@ -79,10 +84,10 @@ Page{
   height: 70%;
 }
 .col3-right{
-  margin: 15rpx;
+  margin-top: 15rpx;
+  margin-right: 15rpx;
   padding: 10rpx;
-  color:yellow;
-  width: 100rpx;
+  color:#FFFFE0;
   font-size: 35rpx;
 }
 .square-item-yao{
@@ -112,13 +117,11 @@ padding: 0;
 .square-item-title{
   font-size:25rpx;
   height:35rpx;
-  margin: 5rpx;
   text-align: left;
 }
 .square-item-detail{
   font-size:25rpx;
   height:35rpx;
-  margin: 5rpx;
   text-align: left;
 }
 .received-list-item-text{
@@ -130,8 +133,8 @@ padding: 0;
 }
 
 .reload-page{
-  width:750rpx;
   background: #fff;
+  margin: 0rpx;
   padding:15rpx;
   text-align: center;
   font-size:35rpx;

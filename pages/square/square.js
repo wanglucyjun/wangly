@@ -133,5 +133,15 @@ Page({
     wx.navigateTo({
       url: '/pages/index/Share/Share?id=' + obj.currentTarget.dataset.hongbaoid,
     })
+  },
+  openOther:function(obj){
+    if (obj.currentTarget.dataset.appid){
+      wx.navigateToMiniProgram({
+        appId: obj.currentTarget.dataset.appid,
+        success(res) {
+          // 打开成功
+        }
+      })
+    }
   }
 })
