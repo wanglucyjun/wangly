@@ -52,7 +52,7 @@
                   <text class='square-item-type fl'  wx:if="{{item.type==3}}">倾听包</text>
               </view>
           </view>
-          <view class="square-item-col3 fl hb"  wx:if="{{item.type==99}}" data-appid='{{item.id}}' bindtap='openOther'>
+          <view class="square-item-col3 fl hb"  wx:if="{{item.type==99}}" data-appid='{{item.appid}}' bindtap='openOther'>
               <view class='square-item-col3-top'>
                   <view class='col3-left fl'>
               <image src='{{item.question}}' mode='widthFix' class='square-item-yao'></image>
@@ -64,7 +64,7 @@
 
               </view>
               <view class='square-item-col3-bottom'>
-                  <text class='square-item-type fl'>{{title.name}}</text>
+                  <text class='square-item-type fl'>{{item.name}}</text>
               </view>
           </view>
         </view>
