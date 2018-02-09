@@ -24,31 +24,7 @@ var getWxLoginResult = function getLoginCode(callback) {
   wx.login({
     success: function (loginResult) {
       
-        // wx.authorize({
-        //   scope: 'userInfo',
-        //   success:function(){
-            
-        //   },
-        //   fail:function(){
-        //     wx.showModal({
-        //       title: '申请权限',
-        //       content: '开通用户信息权限才可以使用哦',
-        //       success: function (res) {
-        //         if (res.confirm) {
-        //           console.log('用户点击确定')
-        //           wx.openSetting({
-
-        //           })
-        //         } else if (res.cancel) {
-        //           console.log('用户点击取消')
-        //           wx.showToast({
-        //             title: '需要开通权限哦',
-        //           })
-        //         }
-        //       }
-        //     })
-        //   }
-        // })
+      console.log('loginsuccess')
       wx.getUserInfo({
         success: function (userResult) {
           callback(null, {
@@ -63,6 +39,39 @@ var getWxLoginResult = function getLoginCode(callback) {
           var error = new LoginError('获取微信用户信息失败，请检查网络状态');
           error.detail = userError;
           callback(error, null);
+          wx.getSetting({
+            success(res) {
+              console.log(res)
+              if (!res.authSetting['scope.userInfo']) {
+                wx.authorize({
+                  scope: 'scope.userInfo',
+                  success: function () {
+
+                  },
+                  fail: function () {
+                    wx.showModal({
+                      title: '申请权限',
+                      content: '开通用户信息权限才可以使用哦',
+                      success: function (res) {
+                        if (res.confirm) {
+                          console.log('用户点击确定')
+                          wx.openSetting({
+
+                          })
+                        } else if (res.cancel) {
+                          console.log('用户点击取消')
+                          wx.showToast({
+                            title: '需要开通权限哦',
+                          })
+                        }
+                      }
+                    })
+                    return
+                  }
+                })
+              }
+            }
+          })
         },
       });
     },

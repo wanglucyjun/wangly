@@ -20,6 +20,187 @@
   </view>
 </view>
 <view class='body'>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+  <view class='square-item' >
+        <view class='square-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
+          <view class='square-item-col1 fl'>
+            <image src='../image/headDefault.jpg' mode='widthFix' class='square-item-logo'></image>
+
+          </view>
+          <view class='square-item-col2 fl'>
+              <image src='../image/say.png'  class='square-item-say'></image>
+          </view>
+          <view class='square-item-col3 fl'>
+              <view class='square-item-col3-top'>
+                  <view class='col3-left fl'>
+                   <image src='../image/2.png' mode='widthFix' class='square-item-yao'></image>
+                  </view>
+                  <view class='col3-right fr'>
+                                        100.00
+                  </view>
+                  <view >
+                    <view class='square-item-title'>新年快乐大吉大利</view>
+                    <view class='square-item-detail' >共10.00元，10份，剩余10份</view>
+                  </view>
+
+              </view>
+              <view class='square-item-col3-bottom'>
+                  <text class='square-item-type fl'>摇摇包</text>
+              </view>
+          </view>
+        </view>
+
+  </view>
+
 <block wx:for="{{receivedHongbao.list}}"  wx:key="id" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" >
       <view class='received-list-item' >
         <view class='received-list-item-box'  data-hongbaoid='{{item.id}}' bindtap='toShare'>
