@@ -84,6 +84,11 @@ function getWithdrawFee(type, money) {
     return fuwufee;
   }
 }
+function getShareWords(type){
+    var shareWords=getModel(type).title;
+    console.log("share id"+shareWords)
+    return shareWords
+}
 
 // 返回是否使用余额支付，初始化接口返回,0为不使用余额支付，1为使用余额支付
 function get_Use_Balance(type){
@@ -279,5 +284,7 @@ success:function(res) {
   getAccountInfo: getAccountInfo,
   getSound: getSound,
   getRandom: getRandom,
+  getShareWords: getShareWords
+  
 }
 

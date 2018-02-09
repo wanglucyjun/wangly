@@ -2,6 +2,7 @@
 var app = getApp();
 const config = require('../../../config')
 var login = require('../../../utils/login.js');
+var methods = require('../../../utils/methods.js')
 Page({
 
   /**
@@ -84,7 +85,7 @@ Page({
    */
   onShareAppMessage: function () {
     var Object = []
-    Object.title = this.data.shareWords
+    Object.title = methods.getShareWords(0)
     Object.desc = "新年快乐"
     Object.path = "pages/index/Share/Share?id=" + this.data.hongbaoID
     return Object
