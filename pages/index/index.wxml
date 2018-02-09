@@ -53,7 +53,14 @@
             </view>
             
           </view>
-<block wx:if="{{advancedSetting}}" >
+
+
+        </view>
+    </view>
+     <view>
+     
+    </view>
+    <block wx:if="{{advancedSetting}}" >
           <view class='settingAll'>
             <text class='fl'>奖励分配方案</text>
            <radio-group class="radio-group fr" bindchange="radioChange">
@@ -63,12 +70,6 @@
             </radio-group>
             </view>
       </block>
-
-        </view>
-    </view>
-     <view>
-     
-    </view>
     <view class='exmple fl' bindtap='clickexample'>查看示例</view>
     <view class='help fr' bindtap='clickhelp'>常见问题</view>
  </view>
