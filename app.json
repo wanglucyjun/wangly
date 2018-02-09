@@ -14,7 +14,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#D95940",
-    "navigationBarTitleText": "摇摇听-包包乐翻天",
+    "navigationBarTitleText": "包包乐翻天",
     "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
@@ -22,23 +22,18 @@
     "selectedColor": "#D95940",
     "list": [
       {
-        "iconPath": "pages/image/1.png",
-        "selectedIconPath": "pages/image/2.png",
-        "pagePath": "pages/index/index",
-        "text": "摇摇包"
-      },
-      {
-        "iconPath": "pages/image/3.png",
-        "selectedIconPath": "pages/image/4.png",
-        "pagePath": "pages/qingting/qingting",
-        "text": "倾听包"
-      },
-      {
         "iconPath": "pages/image/9.png",
         "selectedIconPath": "pages/image/10.png",
         "pagePath": "pages/square/square",
         "text": "广场"
       },
+      {
+        "iconPath": "pages/image/1.png",
+        "selectedIconPath": "pages/image/2.png",
+        "pagePath": "pages/index/index",
+        "text": "摇摇包"
+      },
+      
       {
         "iconPath": "pages/image/5.png",
         "selectedIconPath": "pages/image/6.png",
