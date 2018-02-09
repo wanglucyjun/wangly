@@ -13,7 +13,8 @@ App({
     withdrawFee:[],
     hbType:[],
     balanceInfo:{},
-    shareWords:'新年快乐大吉大利'
+    shareWords:'新年快乐大吉大利',
+    koulingtips:''
   },
   onLoad:function(){
     console.log("App onLoad")

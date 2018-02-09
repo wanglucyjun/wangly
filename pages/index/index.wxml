@@ -46,28 +46,14 @@
                 <switch  bindchange='clickpublic'>投放广场</switch>
                 <switch class='setting' bindchange='clicksetting' >高级设置</switch>
            </view>
+            <view class="server">发红包投放广场会得摇摇豆一个</view>
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
            <view
             class='VoiceBtn' bindtap='toShare'>生成摇摇武力包
             </view>
+            
           </view>
-
-
-        </view>
-    </view>
-     <view>
-     <block wx:if="{{advancedSetting}}" >
-           <!-- <view class='settingAll'>
-             <view class=' fl' >设置转发标题</view>
-              <input placeholder='新年快乐大吉大利' class='hotInput fr'
-                     bindinput='shareInput'></input>
-            </view>
-
-            <view class='settingAll'>
-            <text class='fl'>红包领取时限</text>
-             <input placeholder='10s' class='hotInput fr'
-                     ></input>
-              </view>-->
+<block wx:if="{{advancedSetting}}" >
           <view class='settingAll'>
             <text class='fl'>奖励分配方案</text>
            <radio-group class="radio-group fr" bindchange="radioChange">
@@ -77,6 +63,11 @@
             </radio-group>
             </view>
       </block>
+
+        </view>
+    </view>
+     <view>
+     
     </view>
     <view class='exmple fl' bindtap='clickexample'>查看示例</view>
     <view class='help fr' bindtap='clickhelp'>常见问题</view>

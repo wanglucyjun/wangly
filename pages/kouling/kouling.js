@@ -21,7 +21,7 @@ Page({
     items: [
       { name: '0', value: '均分' },
       { name: '1', value: '随机', checked: 'true' },
-      { name: '2', value: '先到多得'},
+      { name: '2', value: '后到多得'},
     ],
     moneyType: '1'
   },
@@ -35,6 +35,13 @@ Page({
         console.log('发送摇摇包界面');
         console.log(userInfo);
         app.getBalance();
+
+        var tipArray = methods.getModel(1).tips;
+        console.log("tips length " + tipArray.length)
+        Math.random() * (tipArray.length - 1)
+        var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
+        console.log("random " + num)
+        app.globalData.koulingtips = tipArray[num]
         that.refresh();
       }
     });
@@ -42,18 +49,29 @@ Page({
   },
   refresh: function () {
     var that = this;
-    var tipArray = methods.getModel(1).tips;
-    console.log("tips length " + tipArray.length)
-    Math.random() * (tipArray.length - 1)
-    var num = Math.round(Math.random() * (tipArray.length - 1) + 0);
-    console.log("random " + num)
+    
     that.setData({
       userInfo: login.getSession().userInfo,
       balanceInfo: app.globalData.balanceInfo,
-      tips: tipArray[num],
-      kouling: tipArray[num]
+      tips: app.globalData.koulingtips,
+      kouling: app.globalData.koulingtips
     })
   },
+  /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.refresh()
+  },
+
+
   // 跳转链接
 
   tomyRecord: function () {
@@ -63,6 +81,8 @@ Page({
     })
 
   },
+
+
   // 获取页面填入的值
   koulingInput: function (e) {
     var that = this;
@@ -203,7 +223,12 @@ Page({
     wx.navigateTo({
       url: '../mine/help/help',
     })
-  }
+  },
+    onSelect:function(){
+      wx.navigateTo({
+        url: 'select/select',
+      })
+    }
 
 
 })

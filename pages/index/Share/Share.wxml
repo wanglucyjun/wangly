@@ -66,7 +66,7 @@
             <view class="moneyNum">{{hongbaoDetail.allMoney}}<text class='fontSize'>元</text> </view> 
           </view>
         </view>
-        <view class="hb-public" wx:if="{{hongbaoDetail.is_public==1}}">领广场红包每次消耗摇摇豆，摇摇豆余额：{{yaoyaodou}}</view>
+              
       </view>
 
       <view class='share_box marginTop'>
@@ -76,12 +76,15 @@
             <view class=''><text class="iconfont1 icon-hongbao1" bindtap="againSend">再发一个</text> </view>
             <view class=''><text class="iconfont1 icon-fenxiang" bindtap="toShare">去转发</text> </view>
         </view>
+        
       </view>
+
     </view>
 </view>
     <view class='hotMoneyNum'>
         <view class='fl'>共{{hongbaoDetail.allMoney}}元，已领取{{hongbaoDetail.sendNum}}/{{hongbaoDetail.allNum}}个</view>
         <view class='fr'><navigator class='accuse' url='/pages/mine/accuse/accuse?id={{hongbaoID}}'>投诉</navigator></view>
+       
     </view>
     <block wx:for="{{hongbaoDetail.list}}" wx:key="url" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
       <view class='peopleMoney'>
@@ -107,7 +110,7 @@
     <view class='jilu' bindtap='gotoMine'>
       查看我的记录
    </view>
-
+ <view class="weilingqu" wx:if="{{hongbaoDetail.is_public==1}}">领广场红包每次消耗摇摇豆，摇摇豆余额：{{yaoyaodou}}</view>
     <view class='weilingqu'>未领取的金额，将于24小时后退还到余额</view>
   </view>
 </view>

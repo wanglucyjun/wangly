@@ -9,7 +9,8 @@
     "pages/mine/mine",
     "pages/mine/draw/draw",
     "pages/mine/help/help",
-    "pages/mine/accuse/accuse"
+    "pages/mine/accuse/accuse",
+    "pages/kouling/select/select"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,7 +34,12 @@
         "pagePath": "pages/index/index",
         "text": "摇摇包"
       },
-      
+      {
+        "iconPath": "pages/image/7.png",
+        "selectedIconPath": "pages/image/8.png",
+        "pagePath": "pages/kouling/kouling",
+        "text": "口令包"
+      },
       {
         "iconPath": "pages/image/5.png",
         "selectedIconPath": "pages/image/6.png",

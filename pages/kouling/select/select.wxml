@@ -1,0 +1,15 @@
+<view>
+ <view class='help-list'>
+  <block wx:for="{{tips}}"  wx:key="{{item.id}}">
+      <view class='help-list-item' bindtap="kindToggle"  id='{{item.id}}'>
+        <view  class="help-list-item-hd}}">
+          <view class="kind-list-text">{{item.content}}</view>
+        </view>
+      </view>
+  </block>
+ </view>
+<view>
+  <button class='contact' open-type="contact">更多需向客服申请</button>
+  <navigator class='accuse' url='/pages/mine/accuse/accuse'>投诉</navigator>
+</view>
+</view>

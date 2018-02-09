@@ -67,6 +67,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000
+    })
     console.log("onReachBottom")
     this.getReceivedHongbao();
   },

@@ -23,7 +23,8 @@
                 >
                   
               <view class='setHotMoney_name fl' >设置口令</view>
-              <input type='text' placeholder='{{tips}}' class='hotInput fr' bindinput='koulingInput'></input>
+              <!-- <input type='text' placeholder='{{tips}}' class='hotInput fr' bindinput='koulingInput'></input> -->
+              <input class='hotInput fr' bindtap='onSelect' value='{{tips}}'></input>
             </view>
          
 
@@ -46,28 +47,17 @@
            <switch bindchange='clickpublic'>投放广场</switch>
            <switch class='.setting' bindchange='clicksetting' >高级设置</switch>
            </view>
-
+             <view class="server">发红包投放广场会得摇摇豆一个</view>
             <view class="server">需支付￥{{fuwufee}}服务费,优先使用余额￥{{balance}}</view>
             <view 
             class='VoiceBtn' bindtap='toShare'>生成语音口令包</view>
           </view>
-
-
-        </view>
+          
+       </view>
     </view>
     <view>
      <block wx:if="{{advancedSetting}}" >
-            <view class='settingAll'>
-             <view class=' fl' >设置转发标题</view>
-              <input placeholder='不服来战' class='hotInput fr'
-                     bindinput='MoneyInput'></input>
-            </view>
-
-            <view class='settingAll'>
-            <text class='fl'>红包领取时限</text>
-             <input placeholder='10s' class='hotInput fr'
-                     ></input>
-              </view>
+            
           <view class='settingAll'>
             <text class='fl'>奖励分配方案</text>
              <radio-group class="radio-group fr" bindchange="radioChange">

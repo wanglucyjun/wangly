@@ -8,7 +8,7 @@ Page{
   display: flex;
   justify-content: space-around;
   color:#cfcfcf;
-  margin: 10rpx;
+  margin-bottom: 20rpx;
   font-size: 24rpx;
 }
 .bg{
@@ -77,13 +77,12 @@ Page{
 }
 .question2{
   width:690rpx;
-  height:136rpx;
-  line-height:136rpx;
-  font-size:50rpx;
+  font-size:35rpx;
   color:#fde2b3;
   display: flex;
   justify-content: space-around;
   vertical-align: middle;
+  margin-bottom: 10rpx;
 }
 .answer2{
   height:90rpx;
@@ -248,8 +247,8 @@ Page{
 .weilingqu{
   width:750rpx;
   color:#999;
-  height:60rpx;
-  line-height: 60rpx;
+  height:40rpx;
+  line-height: 40rpx;
   text-align: center;
   margin-top:10rpx;
 }
