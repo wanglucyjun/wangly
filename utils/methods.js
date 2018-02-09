@@ -217,7 +217,7 @@ wx.request({
     filePath:filePath,
     voiceLength: voiceLength,
     usebalance:get_Use_Balance(type),
-    moneyType: moneyType
+    award_type: moneyType
   },
 
 success:function(res) {

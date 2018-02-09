@@ -22,7 +22,7 @@ Page({
     //balanceInfo: {},
     accountBalance:'',
     advancedSetting: false,
-    shareWords:'不服来战',
+    shareWords:'新年快乐大吉大利',
     items: [
       { name: '0', value: '均分' },
       { name: '1', value: '随机', checked: 'true' },

@@ -119,14 +119,11 @@
           <view class='draw-list-item-left fl'>
            <view class='draw-list-item-text'>状态：{{item.status_name}}</view>
            <view class='draw-list-item-date'>申请时间：{{item.created_at}}</view>
-           <view class='draw-list-item-date'>处理时间：{{item.updated_at}}</view>
           </view>
           <!-- <view class='draw-list-item-center fl'>
             <text class='draw-list-item-text'> {{item.title}}</text>
           </view> -->
           <view class='draw-list-item-right fr'>
-            <view class='draw-list-item-money'>{{item.apply_money}}元</view>
-            <view class='draw-list-item-money'>{{item.fee}}元</view>
             <view class='draw-list-item-money'>{{item.real_money}}元</view>
           </view>
         </view>

@@ -16,6 +16,13 @@ Page{
     height: 100%;
     position:absolute;
 }
+.bg-code{
+    width: 250rpx;
+    height: 250rpx;
+    position:absolute;
+    left:35%;
+    bottom:10%;
+}
 .con{
   overflow: hidden;
   /* padding:0 30rpx; */

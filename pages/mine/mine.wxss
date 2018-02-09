@@ -261,7 +261,7 @@ Page{
 }
 .draw-list-item{
   width:750rpx;
-  height:130rpx;
+  height:90rpx;
   background: #fff;
   margin-bottom:5rpx;
 }

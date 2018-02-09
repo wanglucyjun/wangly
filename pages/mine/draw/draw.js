@@ -15,7 +15,7 @@ Page({
     tempFilePath:'',
     drawdata:{},
     canDraw:false,
-    money:0.00,
+    money:'',
     actualfee: 0.00,
     drawfee: 0.00
   },
@@ -30,7 +30,7 @@ Page({
     login.checkSession({
       success: function (userInfo) {
         console.log('领取红包界面');
-        console.log(userInfo);
+        //console.log(userInfo);
         that.refresh();
       }
     });
@@ -46,7 +46,7 @@ Page({
       userHongbao: app.globalData.balanceInfo,
       withdrawFee: app.globalData.withdrawFee,
       drawdata: that.data.drawdata,
-      money: 0.00
+      money: ''
     })
     console.log("this.data.drawdata");
   },
@@ -100,21 +100,21 @@ Page({
     console.log(e.detail.value)
     if (e.detail.value==0){
       that.setData({
-        money: 0,
+        money: '',
         actualfee: 0,
         drawfee: 0,
         canDraw: false
       })
-      return;
+      return '';
     }
     if (!that.checkMoney(e.detail.value)){
       that.setData({
-        money: 0,
+        money: '',
         actualfee: 0,
         drawfee: 0,
         canDraw: false
       })
-      return 0;
+      return '';
     }else{
       
       var drawfee = methods.getWithdrawFee(0, e.detail.value)*1
